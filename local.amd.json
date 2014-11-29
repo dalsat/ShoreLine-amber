@@ -1,5 +1,6 @@
 {
     "paths": {
-        "shoreline": "src"
+        "shoreline": "src",
+        "tide": "lib/tide/Tide-Amber/src"
     }
 }
