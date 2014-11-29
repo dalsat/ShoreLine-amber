@@ -1,0 +1,35 @@
+{
+    "name": "shoreline",
+    "description": "A comprehensive platform to deal with bugs in Pharo",
+    "version": "0.1.0",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "/test_runner.js",
+        "test",
+        "tests"
+    ],
+    "authors": [
+        {
+            "name": "Tommaso Dal Sasso",
+            "email": "tommaso.dalsasso@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/ilredeitopi/shoreline",
+    "keywords": [
+        "Amber",
+        "Smalltalk"
+    ],
+    "license": [
+        "MIT"
+    ],
+    "private": false,
+    "dependencies": {
+        "amber": "^0.13.2"
+    },
+    "devDependencies": {
+        "amber-ide-starter-dialog": "^0.1.0",
+        "helios": "^0.3.0"
+    }
+}
