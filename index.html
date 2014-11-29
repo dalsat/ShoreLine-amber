@@ -9,19 +9,12 @@
   </head>
 
   <body>
-  <p>Hi, Tommaso Dal Sasso! Welcome to Amber project: "ShoreLine".</p>
-  <p>This is the place for your application's HTML. After getting familiar with Amber,
-      just remove this welcome contents from index.html and replace it with your own.</p>
-  <button id="amber-with">Hello from TagBrush >> with:</button>
-  <button id="jquery-append">Hello from jQuery append</button>
-  <ol id="output-list"></ol>
   <script type='text/javascript'>
       require(['app'], function (amber) {
           amber.initialize({
             //used for all new packages in IDE
             'transport.defaultAmdNamespace': "shoreline"
           });
-          require(["amber-ide-starter-dialog"], function (dlg) { dlg.start(); });
           amber.globals.ShoreLine._start();
       });
   </script>

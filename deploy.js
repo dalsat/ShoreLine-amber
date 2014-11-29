@@ -2,7 +2,6 @@ define([
     'amber/deploy',
     // --- packages to be deployed begin here ---
     'lib/tide-deploy',
-    'shoreline/ShoreLine',
 
     'shoreline/ShoreLine-Core',
     'shoreline/ShoreLine-Router',
@@ -16,11 +15,13 @@ define([
     'shoreline/ShoreLine-Announcements',
     'shoreline/ShoreLine-Widgets',
     'shoreline/ShoreLine-Pages',
-    'shoreline/ShoreLine-Application'
+    'shoreline/ShoreLine-Application',
     // 'shoreline/ShoreLine-Visualizations',
     // 'shoreline/ShoreLine-Reporter',
 
     // --- packages to be deployed end here ---
+    "css!style/main",
+    "css!bootstrap"
 ], function (amber) {
     return amber;
 });

@@ -1,0 +1,53 @@
+/* main.css */
+
+@import url(fonts.css);
+/*@import url(reports.css);*/
+
+
+body {
+	background: #F5F5F5;
+	margin: 0;
+	border: 0;
+	padding: 70px 0 0 0;
+	font-family: 'Fira Sans';
+}
+
+div {
+	/*font-weight: 100;*/
+	/*font-style: 'italic';*/
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+.shoreline-logo, h1, h2, h3, h4, h5, h6 {
+	font-family: 'Fira Sans';
+	font-weight: normal;
+	text-shadow: 0 1px 0 #E0E0E0;
+}
+
+.logo-shore {
+	color: rgb(100, 100, 100);
+	font-weight: bold;
+}
+
+.logo-line {
+	color: rgb(224, 71, 45);
+}
+
+
+.fira-test {
+	font-family: 'Fira Sans';
+	color: blue;
+	font-size: 30pt;
+}
+
+.title {
+	background: #F0C322;
+	height: 3em;
+	line-height: 3em;
+	margin: 0px;
+
+	text-align: center;
+	font-size: 45pt;
+}
