@@ -1,7 +1,7 @@
 define([
     'amber/deploy',
     // --- packages to be deployed begin here ---
-    'tide/deploy',
+    'tide_lib/deploy',
 
     'shoreline/ShoreLine-Core',
     'shoreline/ShoreLine-Router',

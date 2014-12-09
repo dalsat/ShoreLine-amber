@@ -2,7 +2,7 @@ define([
     'amber/devel',
     './deploy',
     // --- packages used only during development begin here ---
-    'tide/devel',
+    'tide_lib/devel',
     'shoreline/ShoreLine-Tests',
 
     'shoreline/ShoreLine-Examples'
