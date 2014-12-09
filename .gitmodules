@@ -1,0 +1,3 @@
+[submodule "lib/tide"]
+	path = lib/tide
+	url = https://github.com/ilredeitopi/tide.git
