@@ -1,7 +1,6 @@
 {
     "paths": {
         "shoreline": "src",
-        "tide": "lib/tide/Tide-Amber/src",
         "style": "css",
         "bootstrap": "bower_components/bootstrap/dist/css/bootstrap"
     }
