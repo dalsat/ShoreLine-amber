@@ -38,7 +38,7 @@ argumentsOf: aString
 compile
 	| route |
 	
-	route := url.
+	route := self class normalize: url.
 	args := ((route matchesOf: '{([^/]+)}') ifNil: [ {} ]) allButFirst.
 	url := String streamContents: [ :stream |
 		stream
@@ -72,13 +72,13 @@ log: aString
 			<< '[route] confronting '
 			<< aString << ' with '
 			<< url << ': '
-			<< (url match: aString) printString ])
+			<< (aString match: url) printString ])
 !
 
 match: aString
 
-	"self log: aString."
-	^ url match: aString
+	self log: aString.
+	^ aString match: url
 ! !
 
 !SlRoute class methodsFor: 'instance creation'!
@@ -89,6 +89,13 @@ on: aString withCallback: aBlock
 		url: aString;
 		callback: aBlock;
 		yourself
+! !
+
+!SlRoute class methodsFor: 'utils'!
+
+normalize: anUrl
+
+	^ '/', (anUrl trimLeft: '/#!!')
 ! !
 
 Object subclass: #SlRouter
@@ -122,7 +129,7 @@ initialize
 
 handleRequest: anUrl
 	| url |
-	url := anUrl trimLeft: '/#!!'.
+	url := SlRoute normalize: anUrl.
 	^ routes
 		detect: [ :eachRoute | eachRoute handleRequest: url ]
 		ifNone: [ self notFound value: (Dictionary from: { #url -> url }) ]

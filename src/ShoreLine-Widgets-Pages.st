@@ -18,6 +18,8 @@ message: aString
 !SlMessageFrame methodsFor: 'arguments'!
 
 pushArgs: aDictionary
+
+	self message: (aDictionary at: 'message' ifAbsent: self class defaultMessage)
 ! !
 
 !SlMessageFrame methodsFor: 'initialization'!

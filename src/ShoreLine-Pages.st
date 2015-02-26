@@ -48,7 +48,17 @@ SlFrame subclass: #SlHomePage
 initialize
 
 	super initialize.
-	self contents: 'Home Page'.
+	"self contents: 'Home Page'."
+	self contents: self initializeContents.
+!
+
+initializeContents
+
+	^ [ :html |
+		html with: 'hello home page!!'.
+		html ol: [
+			ShoreLine routes do: [ :eachRoute |
+				html li: [ html a href: '#', eachRoute key; with: eachRoute key ] ] ] ]
 ! !
 
 SlFrame subclass: #SlListFrame

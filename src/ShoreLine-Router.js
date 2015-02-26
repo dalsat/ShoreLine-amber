@@ -101,7 +101,7 @@ function $String(){return $globals.String||(typeof String=="undefined"?nil:Strin
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $2,$1,$3,$receiver;
-route=self["@url"];
+route=$recv(self._class())._normalize_(self["@url"]);
 $2=$recv(route)._matchesOf_("{([^/]+)}");
 if(($receiver = $2) == null || $receiver.isNil){
 $1=[];
@@ -131,10 +131,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "compile\x0a\x09| route |\x0a\x09\x0a\x09route := url.\x0a\x09args := ((route matchesOf: '{([^/]+)}') ifNil: [ {} ]) allButFirst.\x0a\x09url := String streamContents: [ :stream |\x0a\x09\x09stream\x0a\x09\x09\x09nextPut: '^';\x0a\x09\x09\x09nextPutAll: (route replace: '{[^/]+}' with: '([^/]+)');\x0a\x09\x09\x09nextPut: '$' ].",
+source: "compile\x0a\x09| route |\x0a\x09\x0a\x09route := self class normalize: url.\x0a\x09args := ((route matchesOf: '{([^/]+)}') ifNil: [ {} ]) allButFirst.\x0a\x09url := String streamContents: [ :stream |\x0a\x09\x09stream\x0a\x09\x09\x09nextPut: '^';\x0a\x09\x09\x09nextPutAll: (route replace: '{[^/]+}' with: '([^/]+)');\x0a\x09\x09\x09nextPut: '$' ].",
 referencedClasses: ["String"],
 //>>excludeEnd("ide");
-messageSends: ["allButFirst", "ifNil:", "matchesOf:", "streamContents:", "nextPut:", "nextPutAll:", "replace:with:"]
+messageSends: ["normalize:", "class", "allButFirst", "ifNil:", "matchesOf:", "streamContents:", "nextPut:", "nextPutAll:", "replace:with:"]
 }),
 $globals.SlRoute);
 
@@ -198,7 +198,7 @@ $1=$recv($2).__lt_lt(": ");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["<<"]=2;
 //>>excludeEnd("ctx");
-return $recv($1).__lt_lt($recv($recv(self["@url"])._match_(aString))._printString());
+return $recv($1).__lt_lt($recv($recv(aString)._match_(self["@url"]))._printString());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["<<"]=1;
 //>>excludeEnd("ctx");
@@ -213,7 +213,7 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "log: aString\x0a\x0a\x09console log: (String streamContents: [ :stream |\x0a\x09\x09stream\x0a\x09\x09\x09<< '[route] confronting '\x0a\x09\x09\x09<< aString << ' with '\x0a\x09\x09\x09<< url << ': '\x0a\x09\x09\x09<< (url match: aString) printString ])",
+source: "log: aString\x0a\x0a\x09console log: (String streamContents: [ :stream |\x0a\x09\x09stream\x0a\x09\x09\x09<< '[route] confronting '\x0a\x09\x09\x09<< aString << ' with '\x0a\x09\x09\x09<< url << ': '\x0a\x09\x09\x09<< (aString match: url) printString ])",
 referencedClasses: ["String"],
 //>>excludeEnd("ide");
 messageSends: ["log:", "streamContents:", "<<", "printString", "match:"]
@@ -230,7 +230,8 @@ var self=this;
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
-$1=$recv(self["@url"])._match_(aString);
+self._log_(aString);
+$1=$recv(aString)._match_(self["@url"]);
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"match:",{aString:aString},$globals.SlRoute)});
@@ -238,10 +239,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "match: aString\x0a\x0a\x09\x22self log: aString.\x22\x0a\x09^ url match: aString",
+source: "match: aString\x0a\x0a\x09self log: aString.\x0a\x09^ aString match: url",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["match:"]
+messageSends: ["log:", "match:"]
 }),
 $globals.SlRoute);
 
@@ -333,6 +334,31 @@ $globals.SlRoute);
 
 $core.addMethod(
 $core.method({
+selector: "normalize:",
+protocol: 'utils',
+fn: function (anUrl){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1="/".__comma($recv(anUrl)._trimLeft_("/#!"));
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"normalize:",{anUrl:anUrl},$globals.SlRoute.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["anUrl"],
+source: "normalize: anUrl\x0a\x0a\x09^ '/', (anUrl trimLeft: '/#!')",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: [",", "trimLeft:"]
+}),
+$globals.SlRoute.klass);
+
+$core.addMethod(
+$core.method({
 selector: "on:withCallback:",
 protocol: 'instance creation',
 fn: function (aString,aBlock){
@@ -369,12 +395,13 @@ protocol: 'routing',
 fn: function (anUrl){
 var self=this;
 var url;
+function $SlRoute(){return $globals.SlRoute||(typeof SlRoute=="undefined"?nil:SlRoute)}
 function $Dictionary(){return $globals.Dictionary||(typeof Dictionary=="undefined"?nil:Dictionary)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
-url=$recv(anUrl)._trimLeft_("/#!");
+url=$recv($SlRoute())._normalize_(anUrl);
 $1=$recv(self["@routes"])._detect_ifNone_((function(eachRoute){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
@@ -399,10 +426,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anUrl"],
-source: "handleRequest: anUrl\x0a\x09| url |\x0a\x09url := anUrl trimLeft: '/#!'.\x0a\x09^ routes\x0a\x09\x09detect: [ :eachRoute | eachRoute handleRequest: url ]\x0a\x09\x09ifNone: [ self notFound value: (Dictionary from: { #url -> url }) ]",
-referencedClasses: ["Dictionary"],
+source: "handleRequest: anUrl\x0a\x09| url |\x0a\x09url := SlRoute normalize: anUrl.\x0a\x09^ routes\x0a\x09\x09detect: [ :eachRoute | eachRoute handleRequest: url ]\x0a\x09\x09ifNone: [ self notFound value: (Dictionary from: { #url -> url }) ]",
+referencedClasses: ["SlRoute", "Dictionary"],
 //>>excludeEnd("ide");
-messageSends: ["trimLeft:", "detect:ifNone:", "handleRequest:", "value:", "notFound", "from:", "->"]
+messageSends: ["normalize:", "detect:ifNone:", "handleRequest:", "value:", "notFound", "from:", "->"]
 }),
 $globals.SlRouter);
 

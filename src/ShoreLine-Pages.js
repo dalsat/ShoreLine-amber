@@ -176,7 +176,7 @@ $globals.SlHomePage.superclass.fn.prototype._initialize.apply($recv(self), []));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
 //>>excludeEnd("ctx");;
-self._contents_("Home Page");
+self._contents_(self._initializeContents());
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlHomePage)});
@@ -184,10 +184,81 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09super initialize.\x0a\x09self contents: 'Home Page'.",
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09\x22self contents: 'Home Page'.\x22\x0a\x09self contents: self initializeContents.",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["initialize", "contents:"]
+messageSends: ["initialize", "contents:", "initializeContents"]
+}),
+$globals.SlHomePage);
+
+$core.addMethod(
+$core.method({
+selector: "initializeContents",
+protocol: 'initialization',
+fn: function (){
+var self=this;
+function $ShoreLine(){return $globals.ShoreLine||(typeof ShoreLine=="undefined"?nil:ShoreLine)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $2,$3,$5,$4,$6,$1;
+$1=(function(html){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$recv(html)._with_("hello home page!");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
+return $recv(html)._ol_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
+return $recv($recv($ShoreLine())._routes())._do_((function(eachRoute){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx4) {
+//>>excludeEnd("ctx");
+return $recv(html)._li_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx5) {
+//>>excludeEnd("ctx");
+$2=$recv(html)._a();
+$3=$2;
+$5=$recv(eachRoute)._key();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["key"]=1;
+//>>excludeEnd("ctx");
+$4="#".__comma($5);
+$recv($3)._href_($4);
+$6=$recv($2)._with_($recv(eachRoute)._key());
+return $6;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx5) {$ctx5.fillBlock({},$ctx4,4)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx4) {$ctx4.fillBlock({eachRoute:eachRoute},$ctx3,3)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)});
+//>>excludeEnd("ctx");
+});
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initializeContents",{},$globals.SlHomePage)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "initializeContents\x0a\x0a\x09^ [ :html |\x0a\x09\x09html with: 'hello home page!'.\x0a\x09\x09html ol: [\x0a\x09\x09\x09ShoreLine routes do: [ :eachRoute |\x0a\x09\x09\x09\x09html li: [ html a href: '#', eachRoute key; with: eachRoute key ] ] ] ]",
+referencedClasses: ["ShoreLine"],
+//>>excludeEnd("ide");
+messageSends: ["with:", "ol:", "do:", "routes", "li:", "href:", "a", ",", "key"]
 }),
 $globals.SlHomePage);
 

@@ -87,15 +87,21 @@ selector: "pushArgs:",
 protocol: 'arguments',
 fn: function (aDictionary){
 var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self._message_($recv(aDictionary)._at_ifAbsent_("message",$recv(self._class())._defaultMessage()));
 return self;
-
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"pushArgs:",{aDictionary:aDictionary},$globals.SlMessageFrame)});
+//>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aDictionary"],
-source: "pushArgs: aDictionary",
+source: "pushArgs: aDictionary\x0a\x0a\x09self message: (aDictionary at: 'message' ifAbsent: self class defaultMessage)",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: []
+messageSends: ["message:", "at:ifAbsent:", "defaultMessage", "class"]
 }),
 $globals.SlMessageFrame);
 
