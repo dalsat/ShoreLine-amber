@@ -45,20 +45,18 @@ SlFrame subclass: #SlHomePage
 
 !SlHomePage methodsFor: 'initialization'!
 
-initialize
-
-	super initialize.
-	"self contents: 'Home Page'."
-	self contents: self initializeContents.
-!
-
 initializeContents
 
 	^ [ :html |
-		html with: 'hello home page!!'.
-		html ol: [
-			ShoreLine routes do: [ :eachRoute |
-				html li: [ html a href: '#', eachRoute key; with: eachRoute key ] ] ] ]
+		html h1: 'Home Page'.
+		
+		html div: [
+			html h2: 'Navigation'.
+			html ol: [
+				ShoreLine routes do: [ :eachRoute |
+					html li: [ html a href: '#', eachRoute key; with: eachRoute key ] ] ] ].
+		
+		html div: SlSummaryWidget new ]
 ! !
 
 SlFrame subclass: #SlListFrame

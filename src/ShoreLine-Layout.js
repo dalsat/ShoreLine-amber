@@ -57,7 +57,7 @@ $globals.SlLayout);
 
 $core.addMethod(
 $core.method({
-selector: "initialize",
+selector: "initializeContents",
 protocol: 'initialization',
 fn: function (){
 var self=this;
@@ -65,26 +65,19 @@ function $Dictionary(){return $globals.Dictionary||(typeof Dictionary=="undefine
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-(
+var $1;
+$1=$recv($Dictionary())._new();
+return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.supercall = true, 
-//>>excludeEnd("ctx");
-$globals.SlLayout.superclass.fn.prototype._initialize.apply($recv(self), []));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.supercall = false;
-//>>excludeEnd("ctx");;
-self["@contents"]=$recv($Dictionary())._new();
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlLayout)});
+}, function($ctx1) {$ctx1.fill(self,"initializeContents",{},$globals.SlLayout)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09super initialize.\x0a\x09contents := Dictionary new.",
+source: "initializeContents\x0a\x0a\x09^ Dictionary new.",
 referencedClasses: ["Dictionary"],
 //>>excludeEnd("ide");
-messageSends: ["initialize", "new"]
+messageSends: ["new"]
 }),
 $globals.SlLayout);
 

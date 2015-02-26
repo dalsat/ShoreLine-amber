@@ -17,10 +17,9 @@ at: aSymbol put: anObject
 
 !SlLayout methodsFor: 'initialization'!
 
-initialize
+initializeContents
 
-	super initialize.
-	contents := Dictionary new.
+	^ Dictionary new.
 ! !
 
 SlLayout subclass: #SlTwoColumnLayout
@@ -86,3 +85,4 @@ columnSize
 		at:	#right put: 9;
 		yourself
 ! !
+

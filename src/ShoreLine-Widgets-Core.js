@@ -1,10 +1,10 @@
-define("shoreline/ShoreLine-Widgets-Core", ["amber/boot", "amber-contrib-web/Web"], function($boot){
+define("shoreline/ShoreLine-Widgets-Core", ["amber/boot", "shoreline/ShoreLine-Core"], function($boot){
 var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
 $core.addPackage('ShoreLine-Widgets-Core');
 $core.packages["ShoreLine-Widgets-Core"].innerEval = function (expr) { return eval(expr); };
 $core.packages["ShoreLine-Widgets-Core"].transport = {"type":"amd","amdNamespace":"shoreline"};
 
-$core.addClass('SlContainer', $globals.Widget, ['canvas', 'contents'], 'ShoreLine-Widgets-Core');
+$core.addClass('SlContainer', $globals.SlWidget, ['canvas', 'contents'], 'ShoreLine-Widgets-Core');
 $core.addMethod(
 $core.method({
 selector: "contents",
@@ -48,6 +48,56 @@ return self;
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anObject"],
 source: "contents: anObject\x0a\x09contents := anObject",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlContainer);
+
+$core.addMethod(
+$core.method({
+selector: "initialize",
+protocol: 'initialization',
+fn: function (){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlContainer.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
+self["@contents"]=self._initializeContents();
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlContainer)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09contents := self initializeContents.",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["initialize", "initializeContents"]
+}),
+$globals.SlContainer);
+
+$core.addMethod(
+$core.method({
+selector: "initializeContents",
+protocol: 'initialization',
+fn: function (){
+var self=this;
+return "";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "initializeContents\x0a\x0a\x09^ ''",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: []
@@ -292,7 +342,7 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09super initialize.\x0a\x09\x22self contents: nil.\x22\x0a\x09debug := false.",
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09debug := false.",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: ["initialize"]
@@ -881,7 +931,7 @@ $globals.SlList);
 
 
 
-$core.addClass('SlNewList', null, ['container', 'sortField'], 'ShoreLine-Widgets-Core');
+$core.addClass('SlNewList', $globals.SlWidget, ['container', 'sortField'], 'ShoreLine-Widgets-Core');
 $core.addMethod(
 $core.method({
 selector: "initialize",
@@ -891,7 +941,14 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-self._initialize();
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlNewList.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlNewList)});
@@ -1273,7 +1330,7 @@ messageSends: []
 $globals.SlNewList.klass);
 
 
-$core.addClass('SlOldList', null, ['container', 'filteredItems', 'sortBlock', 'sortField'], 'ShoreLine-Widgets-Core');
+$core.addClass('SlOldList', $globals.SlWidget, ['container', 'filteredItems', 'sortBlock', 'sortField'], 'ShoreLine-Widgets-Core');
 $core.addMethod(
 $core.method({
 selector: "data",
@@ -1333,7 +1390,14 @@ function $Set(){return $globals.Set||(typeof Set=="undefined"?nil:Set)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-self._initialize();
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlOldList.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
 self["@filteredItems"]=$recv($Set())._new();
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);

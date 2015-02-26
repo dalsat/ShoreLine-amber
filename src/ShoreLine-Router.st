@@ -77,7 +77,7 @@ log: aString
 
 match: aString
 
-	self log: aString.
+	"self log: aString."
 	^ aString match: url
 ! !
 

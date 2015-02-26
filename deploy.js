@@ -17,6 +17,7 @@ define([
     'shoreline/ShoreLine-Announcements',
 
     'shoreline/ShoreLine-Widgets',
+    'shoreline/ShoreLine-Widgets-Legacy',
     'shoreline/ShoreLine-Pages',
     'shoreline/ShoreLine',
 

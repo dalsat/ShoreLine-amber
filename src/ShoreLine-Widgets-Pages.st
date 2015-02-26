@@ -22,14 +22,6 @@ pushArgs: aDictionary
 	self message: (aDictionary at: 'message' ifAbsent: self class defaultMessage)
 ! !
 
-!SlMessageFrame methodsFor: 'initialization'!
-
-initialize
-
-	super initialize.
-	contents := self class defaultMessage.
-! !
-
 !SlMessageFrame class methodsFor: 'as yet unclassified'!
 
 defaultMessage

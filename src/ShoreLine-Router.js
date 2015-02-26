@@ -230,7 +230,6 @@ var self=this;
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
-self._log_(aString);
 $1=$recv(aString)._match_(self["@url"]);
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -239,10 +238,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "match: aString\x0a\x0a\x09self log: aString.\x0a\x09^ aString match: url",
+source: "match: aString\x0a\x0a\x09\x22self log: aString.\x22\x0a\x09^ aString match: url",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["log:", "match:"]
+messageSends: ["match:"]
 }),
 $globals.SlRoute);
 

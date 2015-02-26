@@ -1,5 +1,5 @@
 Smalltalk createPackage: 'ShoreLine-Widgets-Core'!
-Widget subclass: #SlContainer
+SlWidget subclass: #SlContainer
 	instanceVariableNames: 'canvas contents'
 	package: 'ShoreLine-Widgets-Core'!
 
@@ -28,6 +28,19 @@ removemap: aSelector withArguments: aCollection
 	
 	self contentsCollection do: [ :each |
 		(each respondsTo: #map:withArguments:) ifTrue: [ each map: aSelector withArguments: aCollection ] ].
+! !
+
+!SlContainer methodsFor: 'initialization'!
+
+initialize
+
+	super initialize.
+	contents := self initializeContents.
+!
+
+initializeContents
+
+	^ ''
 ! !
 
 !SlContainer methodsFor: 'rendering'!
@@ -67,7 +80,6 @@ pushArgs: aDictionary
 initialize
 
 	super initialize.
-	"self contents: nil."
 	debug := false.
 ! !
 
@@ -190,7 +202,7 @@ renderTitleOn: html
 			with: title ]
 ! !
 
-nil subclass: #SlNewList
+SlWidget subclass: #SlNewList
 	instanceVariableNames: 'container sortField'
 	package: 'ShoreLine-Widgets-Core'!
 
@@ -288,7 +300,7 @@ listName
 	^ nil
 ! !
 
-nil subclass: #SlOldList
+SlWidget subclass: #SlOldList
 	instanceVariableNames: 'container filteredItems sortBlock sortField'
 	package: 'ShoreLine-Widgets-Core'!
 
