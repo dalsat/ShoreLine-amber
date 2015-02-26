@@ -1,445 +1,766 @@
 define("shoreline/ShoreLine-Pages", ["amber/boot", "shoreline/ShoreLine-Widgets-Core"], function($boot){
-var smalltalk=$boot.vm,nil=$boot.nil,_st=$boot.asReceiver,globals=$boot.globals;
-smalltalk.addPackage('ShoreLine-Pages');
-smalltalk.packages["ShoreLine-Pages"].transport = {"type":"amd","amdNamespace":"shoreline"};
+var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
+$core.addPackage('ShoreLine-Pages');
+$core.packages["ShoreLine-Pages"].innerEval = function (expr) { return eval(expr); };
+$core.packages["ShoreLine-Pages"].transport = {"type":"amd","amdNamespace":"shoreline"};
 
-smalltalk.addClass('SlDetailsFrame', globals.SlFrame, ['report'], 'ShoreLine-Pages');
-smalltalk.addMethod(
-smalltalk.method({
+$core.addClass('SlDetailsFrame', $globals.SlFrame, ['report'], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
 selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-function $SlTwoColumnLayout(){return globals.SlTwoColumnLayout||(typeof SlTwoColumnLayout=="undefined"?nil:SlTwoColumnLayout)}
-function $SlReportMetadata(){return globals.SlReportMetadata||(typeof SlReportMetadata=="undefined"?nil:SlReportMetadata)}
-return smalltalk.withContext(function($ctx1) { 
+function $SlTwoColumnLayout(){return $globals.SlTwoColumnLayout||(typeof SlTwoColumnLayout=="undefined"?nil:SlTwoColumnLayout)}
+function $SlReportMetadata(){return $globals.SlReportMetadata||(typeof SlReportMetadata=="undefined"?nil:SlReportMetadata)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $2,$3,$1;
-($ctx1.supercall = true, globals.SlDetailsFrame.superclass.fn.prototype._initialize.apply(_st(self), []));
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlDetailsFrame.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
-$2=_st($SlTwoColumnLayout())._new();
+//>>excludeEnd("ctx");;
+$2=$recv($SlTwoColumnLayout())._new();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["new"]=1;
-_st($2)._left_(_st($SlReportMetadata())._new());
-_st($2)._right_("page");
-$3=_st($2)._yourself();
+//>>excludeEnd("ctx");
+$recv($2)._left_($recv($SlReportMetadata())._new());
+$recv($2)._right_("page");
+$3=$recv($2)._yourself();
 $1=$3;
 self._contents_($1);
-return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},globals.SlDetailsFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlDetailsFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initialize\x0a\x0a\x09super initialize.\x0a\x09self contents: (SlTwoColumnLayout new\x0a\x09\x09left: SlReportMetadata new;\x0a\x09\x09right: 'page';\x0a\x09\x09yourself)",
-messageSends: ["initialize", "contents:", "left:", "new", "right:", "yourself"],
-referencedClasses: ["SlTwoColumnLayout", "SlReportMetadata"]
+referencedClasses: ["SlTwoColumnLayout", "SlReportMetadata"],
+//>>excludeEnd("ide");
+messageSends: ["initialize", "contents:", "left:", "new", "right:", "yourself"]
 }),
-globals.SlDetailsFrame);
+$globals.SlDetailsFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "report",
 protocol: 'accessing',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) {
 var $1;
 $1=self["@report"];
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"report",{},smalltalk.SlDetailsFrame)})},
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "report\x0a\x0a\x09^ report",
-messageSends: [],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
 }),
-globals.SlDetailsFrame);
+$globals.SlDetailsFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "report:",
 protocol: 'accessing',
 fn: function (aReport){
 var self=this;
-return smalltalk.withContext(function($ctx1) {
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $3,$2,$1,$5,$4,$8,$7,$6;
 self["@report"]=aReport;
 $3=self._contents();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["contents"]=1;
-$2=_st($3)._left();
+//>>excludeEnd("ctx");
+$2=$recv($3)._left();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["left"]=1;
-$1=_st($2)._respondsTo_("report:");
+//>>excludeEnd("ctx");
+$1=$recv($2)._respondsTo_("report:");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["respondsTo:"]=1;
-if(smalltalk.assert($1)){
+//>>excludeEnd("ctx");
+if($core.assert($1)){
 $5=self._contents();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["contents"]=2;
-$4=_st($5)._left();
-_st($4)._report_(aReport);
+//>>excludeEnd("ctx");
+$4=$recv($5)._left();
+$recv($4)._report_(aReport);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["report:"]=1;
+//>>excludeEnd("ctx");
 };
 $8=self._contents();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["contents"]=3;
-$7=_st($8)._right();
+//>>excludeEnd("ctx");
+$7=$recv($8)._right();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["right"]=1;
-$6=_st($7)._respondsTo_("report:");
-if(smalltalk.assert($6)){
-_st(_st(self._contents())._right())._report_(aReport);
+//>>excludeEnd("ctx");
+$6=$recv($7)._respondsTo_("report:");
+if($core.assert($6)){
+$recv($recv(self._contents())._right())._report_(aReport);
 };
-return self}, function($ctx1) {$ctx1.fill(self,"report:",{aReport:aReport},smalltalk.SlDetailsFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"report:",{aReport:aReport},$globals.SlDetailsFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aReport"],
 source: "report: aReport\x0a\x0a\x09report := aReport.\x0a\x09\x0a\x09(self contents left respondsTo: #report:) ifTrue: [ self contents left report: aReport ].\x0a\x09(self contents right respondsTo: #report:) ifTrue: [ self contents right report: aReport ].\x0a\x09\x22self map: #report: withArguments: { aReport }.\x22",
-messageSends: ["ifTrue:", "respondsTo:", "left", "contents", "report:", "right"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["ifTrue:", "respondsTo:", "left", "contents", "report:", "right"]
 }),
-globals.SlDetailsFrame);
+$globals.SlDetailsFrame);
 
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "withReport:",
 protocol: 'instance creation',
 fn: function (aBugReport){
 var self=this;
-return smalltalk.withContext(function($ctx1) {
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $2,$3,$1;
 $2=self._new();
-_st($2)._report_(aBugReport);
-$3=_st($2)._yourself();
+$recv($2)._report_(aBugReport);
+$3=$recv($2)._yourself();
 $1=$3;
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"withReport:",{aBugReport:aBugReport},smalltalk.SlDetailsFrame.klass)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"withReport:",{aBugReport:aBugReport},$globals.SlDetailsFrame.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aBugReport"],
 source: "withReport: aBugReport\x0a\x0a\x09^ self new\x0a\x09\x09report: aBugReport;\x0a\x09\x09yourself.",
-messageSends: ["report:", "new", "yourself"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["report:", "new", "yourself"]
 }),
-globals.SlDetailsFrame.klass);
+$globals.SlDetailsFrame.klass);
 
 
-smalltalk.addClass('SlHomePage', globals.SlFrame, [], 'ShoreLine-Pages');
-smalltalk.addMethod(
-smalltalk.method({
+$core.addClass('SlHomePage', $globals.SlFrame, [], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
 selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-($ctx1.supercall = true, globals.SlHomePage.superclass.fn.prototype._initialize.apply(_st(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlHomePage.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
+//>>excludeEnd("ctx");;
 self._contents_("Home Page");
-return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},globals.SlHomePage)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlHomePage)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initialize\x0a\x0a\x09super initialize.\x0a\x09self contents: 'Home Page'.",
-messageSends: ["initialize", "contents:"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["initialize", "contents:"]
 }),
-globals.SlHomePage);
+$globals.SlHomePage);
 
 
 
-smalltalk.addClass('SlListFrame', globals.SlFrame, [], 'ShoreLine-Pages');
-smalltalk.addMethod(
-smalltalk.method({
+$core.addClass('SlListFrame', $globals.SlFrame, [], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
 selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-function $SlTwoColumnLayout(){return globals.SlTwoColumnLayout||(typeof SlTwoColumnLayout=="undefined"?nil:SlTwoColumnLayout)}
-return smalltalk.withContext(function($ctx1) { 
+function $SlTwoColumnLayout(){return $globals.SlTwoColumnLayout||(typeof SlTwoColumnLayout=="undefined"?nil:SlTwoColumnLayout)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-($ctx1.supercall = true, globals.SlListFrame.superclass.fn.prototype._initialize.apply(_st(self), []));
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlListFrame.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
-$1=_st($SlTwoColumnLayout())._new();
-_st($1)._left_(self._initializeControlPanel());
-_st($1)._right_(self._initializeViewPanel());
-$2=_st($1)._yourself();
+//>>excludeEnd("ctx");;
+$1=$recv($SlTwoColumnLayout())._new();
+$recv($1)._left_(self._initializeControlPanel());
+$recv($1)._right_(self._initializeViewPanel());
+$2=$recv($1)._yourself();
 self._contents_($2);
-return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},globals.SlListFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlListFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initialize\x0a\x0a\x09super initialize.\x0a\x09\x0a\x09self contents: (SlTwoColumnLayout new\x0a\x09\x09left: self initializeControlPanel;\x0a\x09\x09right: self initializeViewPanel;\x0a\x09\x09yourself)",
-messageSends: ["initialize", "contents:", "left:", "new", "initializeControlPanel", "right:", "initializeViewPanel", "yourself"],
-referencedClasses: ["SlTwoColumnLayout"]
+referencedClasses: ["SlTwoColumnLayout"],
+//>>excludeEnd("ide");
+messageSends: ["initialize", "contents:", "left:", "new", "initializeControlPanel", "right:", "initializeViewPanel", "yourself"]
 }),
-globals.SlListFrame);
+$globals.SlListFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "initializeControlPanel",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-function $SlTabbedContainer(){return globals.SlTabbedContainer||(typeof SlTabbedContainer=="undefined"?nil:SlTabbedContainer)}
-function $SlFilterList(){return globals.SlFilterList||(typeof SlFilterList=="undefined"?nil:SlFilterList)}
-function $SlProjectList(){return globals.SlProjectList||(typeof SlProjectList=="undefined"?nil:SlProjectList)}
-return smalltalk.withContext(function($ctx1) {
+function $SlTabbedContainer(){return $globals.SlTabbedContainer||(typeof SlTabbedContainer=="undefined"?nil:SlTabbedContainer)}
+function $SlFilterList(){return $globals.SlFilterList||(typeof SlFilterList=="undefined"?nil:SlFilterList)}
+function $SlProjectList(){return $globals.SlProjectList||(typeof SlProjectList=="undefined"?nil:SlProjectList)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $2,$3,$4,$5,$1;
-$2=_st($SlTabbedContainer())._new();
+$2=$recv($SlTabbedContainer())._new();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["new"]=1;
+//>>excludeEnd("ctx");
 $3=$2;
-$4=_st($SlFilterList())._new();
+$4=$recv($SlFilterList())._new();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["new"]=2;
-_st($3)._tabNamed_with_("Filters",$4);
+//>>excludeEnd("ctx");
+$recv($3)._tabNamed_with_("Filters",$4);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["tabNamed:with:"]=1;
-_st($2)._tabNamed_with_("Projects",_st($SlProjectList())._new());
-$5=_st($2)._yourself();
+//>>excludeEnd("ctx");
+$recv($2)._tabNamed_with_("Projects",$recv($SlProjectList())._new());
+$5=$recv($2)._yourself();
 $1=$5;
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"initializeControlPanel",{},globals.SlListFrame)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initializeControlPanel",{},$globals.SlListFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initializeControlPanel\x0a\x0a\x09^ SlTabbedContainer new\x0a\x09\x09tabNamed: 'Filters' with: SlFilterList new;\x0a\x09\x09tabNamed: 'Projects' with: SlProjectList new;\x0a\x09\x09\x22tabNamed: 'SourceArea' with: SourceArea new;\x22\x0a\x09\x09yourself",
-messageSends: ["tabNamed:with:", "new", "yourself"],
-referencedClasses: ["SlTabbedContainer", "SlFilterList", "SlProjectList"]
+referencedClasses: ["SlTabbedContainer", "SlFilterList", "SlProjectList"],
+//>>excludeEnd("ide");
+messageSends: ["tabNamed:with:", "new", "yourself"]
 }),
-globals.SlListFrame);
+$globals.SlListFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "initializeViewPanel",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-function $SlReportList(){return globals.SlReportList||(typeof SlReportList=="undefined"?nil:SlReportList)}
-return smalltalk.withContext(function($ctx1) {
+function $SlReportList(){return $globals.SlReportList||(typeof SlReportList=="undefined"?nil:SlReportList)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1;
-$1=_st($SlReportList())._new();
+$1=$recv($SlReportList())._new();
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"initializeViewPanel",{},globals.SlListFrame)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initializeViewPanel",{},$globals.SlListFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initializeViewPanel\x0a\x0a\x09^ SlReportList new",
-messageSends: ["new"],
-referencedClasses: ["SlReportList"]
+referencedClasses: ["SlReportList"],
+//>>excludeEnd("ide");
+messageSends: ["new"]
 }),
-globals.SlListFrame);
+$globals.SlListFrame);
 
 
 
-smalltalk.addClass('SlToolbarFrame', globals.SlFrame, ['toolbar'], 'ShoreLine-Pages');
-smalltalk.addMethod(
-smalltalk.method({
+$core.addClass('SlStackTraceFrame', $globals.SlFrame, [], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
+selector: "displayList",
+protocol: 'actions',
+fn: function (){
+var self=this;
+function $SlStackTraceList(){return $globals.SlStackTraceList||(typeof SlStackTraceList=="undefined"?nil:SlStackTraceList)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self["@contents"]=$recv($SlStackTraceList())._new();
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"displayList",{},$globals.SlStackTraceFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "displayList\x0a\x0a\x09contents := SlStackTraceList new.",
+referencedClasses: ["SlStackTraceList"],
+//>>excludeEnd("ide");
+messageSends: ["new"]
+}),
+$globals.SlStackTraceFrame);
+
+$core.addMethod(
+$core.method({
+selector: "displayTrace:",
+protocol: 'actions',
+fn: function (traceId){
+var self=this;
+function $SlStackTrace(){return $globals.SlStackTrace||(typeof SlStackTrace=="undefined"?nil:SlStackTrace)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self["@contents"]=$recv($SlStackTrace())._withId_(traceId);
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"displayTrace:",{traceId:traceId},$globals.SlStackTraceFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["traceId"],
+source: "displayTrace: traceId\x0a\x0a\x09contents := SlStackTrace withId: traceId.",
+referencedClasses: ["SlStackTrace"],
+//>>excludeEnd("ide");
+messageSends: ["withId:"]
+}),
+$globals.SlStackTraceFrame);
+
+$core.addMethod(
+$core.method({
+selector: "pushArgs:",
+protocol: 'arguments',
+fn: function (aDictionary){
+var self=this;
+var id;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(aDictionary)._at_ifPresent_ifAbsent_("id",(function(traceId){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return self._displayTrace_(traceId);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({traceId:traceId},$ctx1,1)});
+//>>excludeEnd("ctx");
+}),(function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return self._displayList();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,2)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"pushArgs:",{aDictionary:aDictionary,id:id},$globals.SlStackTraceFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aDictionary"],
+source: "pushArgs: aDictionary\x0a\x09| id |\x0a\x09\x0a\x09aDictionary at: #id\x0a\x09\x09ifPresent: [ :traceId | self displayTrace: traceId ]\x0a\x09\x09ifAbsent: [ self displayList ]",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["at:ifPresent:ifAbsent:", "displayTrace:", "displayList"]
+}),
+$globals.SlStackTraceFrame);
+
+
+
+$core.addClass('SlToolbarFrame', $globals.SlFrame, ['toolbar'], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
 selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-function $SlToolbar(){return smalltalk.SlToolbar||(typeof SlToolbar=="undefined"?nil:SlToolbar)}
-return smalltalk.withContext(function($ctx1) { 
-smalltalk.SlToolbarFrame.superclass.fn.prototype._initialize.apply(_st(self), []);
-self["@toolbar"]=_st($SlToolbar())._new();
-return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},smalltalk.SlToolbarFrame)})},
+function $SlToolbar(){return $globals.SlToolbar||(typeof SlToolbar=="undefined"?nil:SlToolbar)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlToolbarFrame.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
+self["@toolbar"]=$recv($SlToolbar())._new();
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlToolbarFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initialize\x0a\x0a\x09super initialize.\x0a\x09toolbar := SlToolbar new.",
-messageSends: ["initialize", "new"],
-referencedClasses: ["SlToolbar"]
+referencedClasses: ["SlToolbar"],
+//>>excludeEnd("ide");
+messageSends: ["initialize", "new"]
 }),
-globals.SlToolbarFrame);
+$globals.SlToolbarFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "renderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-_st(html)._with_(self["@toolbar"]);
-smalltalk.SlToolbarFrame.superclass.fn.prototype._renderOn_.apply(_st(self), [html]);
-return self}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},smalltalk.SlToolbarFrame)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(html)._with_(self["@toolbar"]);
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlToolbarFrame.superclass.fn.prototype._renderOn_.apply($recv(self), [html]));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},$globals.SlToolbarFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderOn: html\x0a\x0a\x09html with: toolbar.\x09\x09\x0a\x09super renderOn: html.",
-messageSends: ["with:", "renderOn:"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["with:", "renderOn:"]
 }),
-globals.SlToolbarFrame);
+$globals.SlToolbarFrame);
 
 
 
-smalltalk.addClass('SlMainFrame', globals.SlToolbarFrame, ['pages'], 'ShoreLine-Pages');
-smalltalk.addMethod(
-smalltalk.method({
+$core.addClass('SlMainFrame', $globals.SlToolbarFrame, ['pages'], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
 selector: "detailsPageEvent:",
 protocol: 'events',
 fn: function (anAnnouncement){
 var self=this;
-return smalltalk.withContext(function($ctx1) {
-_st(self["@contents"])._report_(_st(anAnnouncement)._report());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(self["@contents"])._report_($recv(anAnnouncement)._report());
 self._displayPage_("details");
-return self}, function($ctx1) {$ctx1.fill(self,"detailsPageEvent:",{anAnnouncement:anAnnouncement},globals.SlMainFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"detailsPageEvent:",{anAnnouncement:anAnnouncement},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anAnnouncement"],
 source: "detailsPageEvent: anAnnouncement\x0a\x0a\x09contents report: anAnnouncement report.\x0a\x09self displayPage: #details.",
-messageSends: ["report:", "report", "displayPage:"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["report:", "report", "displayPage:"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "displayPage:",
 protocol: 'actions',
 fn: function (aSymbol){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-self._displayPage_withArgs_(aSymbol,nil);
-return self}, function($ctx1) {$ctx1.fill(self,"displayPage:",{aSymbol:aSymbol},globals.SlMainFrame)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self._displayPage_withArgs_(aSymbol,[]);
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"displayPage:",{aSymbol:aSymbol},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSymbol"],
-source: "displayPage: aSymbol\x0a\x0a\x09self displayPage: aSymbol withArgs: nil",
-messageSends: ["displayPage:withArgs:"],
-referencedClasses: []
+source: "displayPage: aSymbol\x0a\x0a\x09self displayPage: aSymbol withArgs: {}",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["displayPage:withArgs:"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "displayPage:withArgs:",
 protocol: 'actions',
 fn: function (aSymbol,aDictionary){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-var $receiver;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 self._contents_(self._pageAt_(aSymbol));
-if(($receiver = aDictionary) == null || $receiver.isNil){
-aDictionary;
-} else {
-_st(self["@contents"])._pushArgs_(aDictionary);
-};
+$recv(self["@contents"])._pushArgs_(aDictionary);
 self._updateContents();
-return self}, function($ctx1) {$ctx1.fill(self,"displayPage:withArgs:",{aSymbol:aSymbol,aDictionary:aDictionary},globals.SlMainFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"displayPage:withArgs:",{aSymbol:aSymbol,aDictionary:aDictionary},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSymbol", "aDictionary"],
-source: "displayPage: aSymbol withArgs: aDictionary\x0a\x0a\x09self contents: (self pageAt: aSymbol).\x0a\x09aDictionary ifNotNil: [ contents pushArgs: aDictionary ].\x0a\x09\x0a\x09self updateContents.",
-messageSends: ["contents:", "pageAt:", "ifNotNil:", "pushArgs:", "updateContents"],
-referencedClasses: []
+source: "displayPage: aSymbol withArgs: aDictionary\x0a\x0a\x09self contents: (self pageAt: aSymbol).\x0a\x09contents pushArgs: aDictionary.\x0a\x09\x0a\x09self updateContents.",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["contents:", "pageAt:", "pushArgs:", "updateContents"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "displayReportDetails:",
 protocol: 'actions',
 fn: function (aReport){
 var self=this;
-function $SlDetailsFrame(){return smalltalk.SlDetailsFrame||(typeof SlDetailsFrame=="undefined"?nil:SlDetailsFrame)}
-return smalltalk.withContext(function($ctx1) {
-_st(self["@pages"])._at_put_("details",_st($SlDetailsFrame())._withReport_(aReport));
+function $SlDetailsFrame(){return $globals.SlDetailsFrame||(typeof SlDetailsFrame=="undefined"?nil:SlDetailsFrame)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(self["@pages"])._at_put_("details",$recv($SlDetailsFrame())._withReport_(aReport));
 self._displayPage_("details");
-return self}, function($ctx1) {$ctx1.fill(self,"displayReportDetails:",{aReport:aReport},smalltalk.SlMainFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"displayReportDetails:",{aReport:aReport},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aReport"],
 source: "displayReportDetails: aReport\x0a\x0a\x09pages at: #details put: (SlDetailsFrame withReport: aReport).\x0a\x09self displayPage: #details.",
-messageSends: ["at:put:", "withReport:", "displayPage:"],
-referencedClasses: ["SlDetailsFrame"]
+referencedClasses: ["SlDetailsFrame"],
+//>>excludeEnd("ide");
+messageSends: ["at:put:", "withReport:", "displayPage:"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "errorPageEvent:",
 protocol: 'events',
 fn: function (anAnnouncement){
 var self=this;
-return smalltalk.withContext(function($ctx1) {
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 self._displayErrorPage_("error");
-return self}, function($ctx1) {$ctx1.fill(self,"errorPageEvent:",{anAnnouncement:anAnnouncement},globals.SlMainFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"errorPageEvent:",{anAnnouncement:anAnnouncement},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anAnnouncement"],
 source: "errorPageEvent: anAnnouncement\x0a\x09\x0a\x09self displayErrorPage: #error",
-messageSends: ["displayErrorPage:"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["displayErrorPage:"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-function $Dictionary(){return globals.Dictionary||(typeof Dictionary=="undefined"?nil:Dictionary)}
-return smalltalk.withContext(function($ctx1) { 
-($ctx1.supercall = true, globals.SlMainFrame.superclass.fn.prototype._initialize.apply(_st(self), []));
+function $Dictionary(){return $globals.Dictionary||(typeof Dictionary=="undefined"?nil:Dictionary)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlMainFrame.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
-self["@pages"]=_st($Dictionary())._new();
+//>>excludeEnd("ctx");;
+self["@pages"]=$recv($Dictionary())._new();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["new"]=1;
-_st(_st(self._class())._pages())._do_((function(eachPage){
-return smalltalk.withContext(function($ctx2) {
-return _st(self["@pages"])._at_put_(_st(eachPage)._key(),_st(_st(eachPage)._value())._new());
-}, function($ctx2) {$ctx2.fillBlock({eachPage:eachPage},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},globals.SlMainFrame)})},
+//>>excludeEnd("ctx");
+$recv($recv(self._class())._pages())._do_((function(eachPage){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv(self["@pages"])._at_put_($recv(eachPage)._key(),$recv($recv(eachPage)._value())._new());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({eachPage:eachPage},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initialize\x0a\x0a\x09super initialize.\x0a\x09pages := Dictionary new.\x0a\x09\x0a\x09self class pages do: [ :eachPage |\x0a\x09\x09pages at: eachPage key put: eachPage value new ].",
-messageSends: ["initialize", "new", "do:", "pages", "class", "at:put:", "key", "value"],
-referencedClasses: ["Dictionary"]
+referencedClasses: ["Dictionary"],
+//>>excludeEnd("ide");
+messageSends: ["initialize", "new", "do:", "pages", "class", "at:put:", "key", "value"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "pageAt:",
 protocol: 'accessing',
 fn: function (aSymbol){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1;
-$1=_st(self["@pages"])._at_(aSymbol);
+$1=$recv(self["@pages"])._at_(aSymbol);
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"pageAt:",{aSymbol:aSymbol},globals.SlMainFrame)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"pageAt:",{aSymbol:aSymbol},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSymbol"],
 source: "pageAt: aSymbol\x0a\x0a\x09^ pages at: aSymbol \x22ifAbsent: []\x22",
-messageSends: ["at:"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["at:"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "pageNotFound:",
 protocol: 'actions',
 fn: function (args){
 var self=this;
-function $Dictionary(){return globals.Dictionary||(typeof Dictionary=="undefined"?nil:Dictionary)}
-return smalltalk.withContext(function($ctx1) { 
+function $Dictionary(){return $globals.Dictionary||(typeof Dictionary=="undefined"?nil:Dictionary)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $4,$3,$2,$1;
-$4=_st("Page ".__comma(_st(args)._at_("url"))).__comma(" not found");
+$4=$recv("Page ".__comma($recv(args)._at_("url"))).__comma(" not found");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx[","]=1;
+//>>excludeEnd("ctx");
 $3="message".__minus_gt($4);
 $2=[$3];
-$1=_st($Dictionary())._from_($2);
+$1=$recv($Dictionary())._from_($2);
 self._displayPage_withArgs_("notFound",$1);
-return self}, function($ctx1) {$ctx1.fill(self,"pageNotFound:",{args:args},globals.SlMainFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"pageNotFound:",{args:args},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["args"],
 source: "pageNotFound: args\x0a\x0a\x09self displayPage: #notFound withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })",
-messageSends: ["displayPage:withArgs:", "from:", "->", ",", "at:"],
-referencedClasses: ["Dictionary"]
+referencedClasses: ["Dictionary"],
+//>>excludeEnd("ide");
+messageSends: ["displayPage:withArgs:", "from:", "->", ",", "at:"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "registerEvents",
 protocol: 'events',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) {
-globals.SlMainFrame.superclass.fn.prototype._registerEvents.apply(_st(self), []);
-_st(_st(self._class())._events())._do_((function(eventAssociation){
-return smalltalk.withContext(function($ctx2) {
-return _st(self._announcer())._on_send_to_(_st(eventAssociation)._key(),_st(eventAssociation)._value(),self);
-}, function($ctx2) {$ctx2.fillBlock({eventAssociation:eventAssociation},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"registerEvents",{},globals.SlMainFrame)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlMainFrame.superclass.fn.prototype._registerEvents.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
+$recv($recv(self._class())._events())._do_((function(eventAssociation){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv(self._announcer())._on_send_to_($recv(eventAssociation)._key(),$recv(eventAssociation)._value(),self);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({eventAssociation:eventAssociation},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"registerEvents",{},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "registerEvents\x0a\x0a\x09super registerEvents.\x0a\x09\x0a\x09self class events do: [ :eventAssociation |\x0a\x09\x09self announcer\x0a\x09\x09\x09on: eventAssociation key\x0a\x09\x09\x09send: eventAssociation value\x0a\x09\x09\x09to: self ]",
-messageSends: ["registerEvents", "do:", "events", "class", "on:send:to:", "announcer", "key", "value"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["registerEvents", "do:", "events", "class", "on:send:to:", "announcer", "key", "value"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "reportSelectedEvent:",
 protocol: 'events',
 fn: function (anAnnouncement){
 var self=this;
-return smalltalk.withContext(function($ctx1) {
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 self._displayPage_("details");
-return self}, function($ctx1) {$ctx1.fill(self,"reportSelectedEvent:",{anAnnouncement:anAnnouncement},globals.SlMainFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"reportSelectedEvent:",{anAnnouncement:anAnnouncement},$globals.SlMainFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anAnnouncement"],
 source: "reportSelectedEvent: anAnnouncement\x0a\x0a\x09self displayPage: #details",
-messageSends: ["displayPage:"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["displayPage:"]
 }),
-globals.SlMainFrame);
+$globals.SlMainFrame);
 
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "events",
 protocol: 'configuration',
 fn: function (){
@@ -447,43 +768,66 @@ var self=this;
 var $1;
 $1=[];
 return $1;
+
 },
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "events\x0a\x0a\x09^{}",
-messageSends: [],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
 }),
-globals.SlMainFrame.klass);
+$globals.SlMainFrame.klass);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "pages",
 protocol: 'configuration',
 fn: function (){
 var self=this;
-function $SlHomePage(){return globals.SlHomePage||(typeof SlHomePage=="undefined"?nil:SlHomePage)}
-function $SlListFrame(){return globals.SlListFrame||(typeof SlListFrame=="undefined"?nil:SlListFrame)}
-function $SlDetailsFrame(){return globals.SlDetailsFrame||(typeof SlDetailsFrame=="undefined"?nil:SlDetailsFrame)}
-function $SlMessageFrame(){return globals.SlMessageFrame||(typeof SlMessageFrame=="undefined"?nil:SlMessageFrame)}
-function $SlErrorFrame(){return globals.SlErrorFrame||(typeof SlErrorFrame=="undefined"?nil:SlErrorFrame)}
-return smalltalk.withContext(function($ctx1) { 
-var $2,$3,$4,$5,$1;
+function $SlHomePage(){return $globals.SlHomePage||(typeof SlHomePage=="undefined"?nil:SlHomePage)}
+function $SlListFrame(){return $globals.SlListFrame||(typeof SlListFrame=="undefined"?nil:SlListFrame)}
+function $SlDetailsFrame(){return $globals.SlDetailsFrame||(typeof SlDetailsFrame=="undefined"?nil:SlDetailsFrame)}
+function $SlStackTraceFrame(){return $globals.SlStackTraceFrame||(typeof SlStackTraceFrame=="undefined"?nil:SlStackTraceFrame)}
+function $SlMessageFrame(){return $globals.SlMessageFrame||(typeof SlMessageFrame=="undefined"?nil:SlMessageFrame)}
+function $SlErrorFrame(){return $globals.SlErrorFrame||(typeof SlErrorFrame=="undefined"?nil:SlErrorFrame)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $2,$3,$4,$5,$6,$1;
 $2="home".__minus_gt($SlHomePage());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["->"]=1;
+//>>excludeEnd("ctx");
 $3="list".__minus_gt($SlListFrame());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["->"]=2;
+//>>excludeEnd("ctx");
 $4="details".__minus_gt($SlDetailsFrame());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["->"]=3;
-$5="test".__minus_gt($SlMessageFrame());
+//>>excludeEnd("ctx");
+$5="stacktraces".__minus_gt($SlStackTraceFrame());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["->"]=4;
-$1=[$2,$3,$4,$5,"notFound".__minus_gt($SlErrorFrame())];
+//>>excludeEnd("ctx");
+$6="test".__minus_gt($SlMessageFrame());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.sendIdx["->"]=5;
+//>>excludeEnd("ctx");
+$1=[$2,$3,$4,$5,$6,"notFound".__minus_gt($SlErrorFrame())];
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"pages",{},globals.SlMainFrame.klass)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"pages",{},$globals.SlMainFrame.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "pages\x0a\x0a\x09^ {\x0a\x09\x09#home -> SlHomePage.\x0a\x09\x09#list -> SlListFrame.\x0a\x09\x09#details -> SlDetailsFrame.\x0a\x22\x09\x09#images -> SlImagesFrame.\x0a\x09\x09#stacktracelist -> SlStackTraceListView.\x0a\x09\x09#stacktraces -> SlStackTraceView.\x0a\x22\x09\x09\x0a\x09\x09#test -> SlMessageFrame.\x0a\x09\x09#notFound -> SlErrorFrame\x0a\x09}",
-messageSends: ["->"],
-referencedClasses: ["SlHomePage", "SlListFrame", "SlDetailsFrame", "SlMessageFrame", "SlErrorFrame"]
+source: "pages\x0a\x0a\x09^ {\x0a\x09\x09#home -> SlHomePage.\x0a\x09\x09#list -> SlListFrame.\x0a\x09\x09#details -> SlDetailsFrame.\x0a\x22\x09\x09#images -> SlImagesFrame.\x0a\x09\x09#stacktracelist -> SlStackTraceListView.\x22\x0a\x09\x09#stacktraces -> SlStackTraceFrame.\x0a\x09\x09\x0a\x09\x09#test -> SlMessageFrame.\x0a\x09\x09#notFound -> SlErrorFrame\x0a\x09}",
+referencedClasses: ["SlHomePage", "SlListFrame", "SlDetailsFrame", "SlStackTraceFrame", "SlMessageFrame", "SlErrorFrame"],
+//>>excludeEnd("ide");
+messageSends: ["->"]
 }),
-globals.SlMainFrame.klass);
+$globals.SlMainFrame.klass);
 
 });

@@ -1,100 +1,156 @@
-define("shoreline/ShoreLine-Widgets-Pages", ["amber/boot", "shoreline/ShoreLine-Widgets-Core"], function($boot){
-var smalltalk=$boot.vm,nil=$boot.nil,_st=$boot.asReceiver,globals=$boot.globals;
-smalltalk.addPackage('ShoreLine-Widgets-Pages');
-smalltalk.packages["ShoreLine-Widgets-Pages"].transport = {"type":"amd","amdNamespace":"shoreline"};
+define("shoreline/ShoreLine-Widgets-Pages", ["amber/boot", "amber-contrib-web/Web"], function($boot){
+var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
+$core.addPackage('ShoreLine-Widgets-Pages');
+$core.packages["ShoreLine-Widgets-Pages"].innerEval = function (expr) { return eval(expr); };
+$core.packages["ShoreLine-Widgets-Pages"].transport = {"type":"amd","amdNamespace":"shoreline"};
 
-smalltalk.addClass('SlMessageFrame', globals.SlFrame, [], 'ShoreLine-Widgets-Pages');
-smalltalk.addMethod(
-smalltalk.method({
+$core.addClass('SlMessageFrame', $globals.Widget, [], 'ShoreLine-Widgets-Pages');
+$core.addMethod(
+$core.method({
+selector: "initialize",
+protocol: 'initialization',
+fn: function (){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlMessageFrame.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlMessageFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09\x22contents := self class message.\x22",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["initialize"]
+}),
+$globals.SlMessageFrame);
+
+$core.addMethod(
+$core.method({
 selector: "message",
 protocol: 'accessing',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1;
 $1=self._contents();
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"message",{},globals.SlMessageFrame)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"message",{},$globals.SlMessageFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "message\x0a\x0a\x09^ self contents",
-messageSends: ["contents"],
-referencedClasses: []
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["contents"]
 }),
-globals.SlMessageFrame);
+$globals.SlMessageFrame);
 
-smalltalk.addMethod(
-smalltalk.method({
+$core.addMethod(
+$core.method({
 selector: "message:",
 protocol: 'accessing',
 fn: function (aString){
 var self=this;
-self["@contents"]=aString;
-return self},
-args: ["aString"],
-source: "message: aString\x0a\x0a\x09contents := aString",
-messageSends: [],
-referencedClasses: []
-}),
-globals.SlMessageFrame);
+return self;
 
-smalltalk.addMethod(
-smalltalk.method({
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aString"],
+source: "message: aString\x0a\x0a\x09\x22contents := aString\x22",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlMessageFrame);
+
+$core.addMethod(
+$core.method({
 selector: "pushArgs:",
 protocol: 'arguments',
 fn: function (aDictionary){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-self._message_(_st(aDictionary)._at_ifAbsent_("message",_st(self._class())._defaultMessage()));
-return self}, function($ctx1) {$ctx1.fill(self,"pushArgs:",{aDictionary:aDictionary},globals.SlMessageFrame)})},
-args: ["aDictionary"],
-source: "pushArgs: aDictionary\x0a\x0a\x09self message: (aDictionary at: #message ifAbsent: self class defaultMessage)",
-messageSends: ["message:", "at:ifAbsent:", "defaultMessage", "class"],
-referencedClasses: []
-}),
-globals.SlMessageFrame);
+return self;
 
-
-smalltalk.addMethod(
-smalltalk.method({
-selector: "defaultMessage",
-protocol: 'accessing',
-fn: function (){
-var self=this;
-return "No Message";
 },
-args: [],
-source: "defaultMessage\x0a\x0a\x09^ 'No Message'",
-messageSends: [],
-referencedClasses: []
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aDictionary"],
+source: "pushArgs: aDictionary",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
 }),
-globals.SlMessageFrame.klass);
+$globals.SlMessageFrame);
 
 
-smalltalk.addClass('SlErrorFrame', globals.SlMessageFrame, ['message'], 'ShoreLine-Widgets-Pages');
-smalltalk.addMethod(
-smalltalk.method({
-selector: "renderContentsOn:",
-protocol: 'rendering',
-fn: function (html){
+
+$core.addClass('SlErrorFrame', $globals.SlMessageFrame, ['message'], 'ShoreLine-Widgets-Pages');
+$core.addMethod(
+$core.method({
+selector: "pushArgs:",
+protocol: 'arguments',
+fn: function (aDictionary){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-var $1,$2;
-$1=_st(html)._p();
-_st($1)._class_("alert alert-danger");
-$2=_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
-_st(_st(html)._tag_("b"))._with_("Error: ");
-return ($ctx2.supercall = true, globals.SlErrorFrame.superclass.fn.prototype._renderContentsOn_.apply(_st(self), [html]));
-$ctx2.supercall = false;
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-$ctx1.sendIdx["with:"]=1;
-return self}, function($ctx1) {$ctx1.fill(self,"renderContentsOn:",{html:html},globals.SlErrorFrame)})},
-args: ["html"],
-source: "renderContentsOn: html\x0a\x0a\x09html p\x0a\x09\x09class: 'alert alert-danger';\x0a\x09\x09with: [\x0a\x09\x09\x09(html tag: #b) with: 'Error: '.\x0a\x09\x09\x09super renderContentsOn: html ]",
-messageSends: ["class:", "p", "with:", "tag:", "renderContentsOn:"],
-referencedClasses: []
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self._message_($recv(aDictionary)._at_ifAbsent_("message","Error (no error message)"));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"pushArgs:",{aDictionary:aDictionary},$globals.SlErrorFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aDictionary"],
+source: "pushArgs: aDictionary\x0a\x0a\x09self message: (aDictionary at: 'message' ifAbsent: 'Error (no error message)')",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["message:", "at:ifAbsent:"]
 }),
-globals.SlErrorFrame);
+$globals.SlErrorFrame);
 
+
+$core.addMethod(
+$core.method({
+selector: "withMessage:",
+protocol: 'instance creation',
+fn: function (aString){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $2,$3,$1;
+$2=self._new();
+$recv($2)._message_(aString);
+$3=$recv($2)._yourself();
+$1=$3;
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"withMessage:",{aString:aString},$globals.SlErrorFrame.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aString"],
+source: "withMessage: aString\x0a\x0a\x09^ self new\x0a\x09\x09message: aString;\x0a\x09\x09yourself",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["message:", "new", "yourself"]
+}),
+$globals.SlErrorFrame.klass);
 
 });

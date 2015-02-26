@@ -26,12 +26,13 @@
     ],
     "private": false,
     "dependencies": {
-        "amber": "^0.13.2",
-        "bootstrap": ""
-
+        "amber": "^0.14.10",
+        "bootstrap": "^3.3"
     },
+
     "devDependencies": {
         "amber-ide-starter-dialog": "^0.1.0",
-        "helios": "^0.3.0"
+        "amber-attic": "^0.1.5",
+        "helios": "^0.4.0"
     }
 }

@@ -81,6 +81,32 @@ initializeViewPanel
 	^ SlReportList new
 ! !
 
+SlFrame subclass: #SlStackTraceFrame
+	instanceVariableNames: ''
+	package: 'ShoreLine-Pages'!
+
+!SlStackTraceFrame methodsFor: 'actions'!
+
+displayList
+
+	contents := SlStackTraceList new.
+!
+
+displayTrace: traceId
+
+	contents := SlStackTrace withId: traceId.
+! !
+
+!SlStackTraceFrame methodsFor: 'arguments'!
+
+pushArgs: aDictionary
+	| id |
+	
+	aDictionary at: #id
+		ifPresent: [ :traceId | self displayTrace: traceId ]
+		ifAbsent: [ self displayList ]
+! !
+
 SlFrame subclass: #SlToolbarFrame
 	instanceVariableNames: 'toolbar'
 	package: 'ShoreLine-Pages'!
@@ -109,23 +135,20 @@ SlToolbarFrame subclass: #SlMainFrame
 
 pageAt: aSymbol
 
-	^ pages at: aSymbol "ifAbsent: [
-		(pages at: #notFound)
-			pushArgs: (Dictionary from: {#message -> 'page not found'});
-			yourself ]"
+	^ pages at: aSymbol "ifAbsent: []"
 ! !
 
 !SlMainFrame methodsFor: 'actions'!
 
 displayPage: aSymbol
 
-	self displayPage: aSymbol withArgs: nil
+	self displayPage: aSymbol withArgs: {}
 !
 
 displayPage: aSymbol withArgs: aDictionary
 
 	self contents: (self pageAt: aSymbol).
-	aDictionary ifNotNil: [ contents pushArgs: aDictionary ].
+	contents pushArgs: aDictionary.
 	
 	self updateContents.
 !
@@ -195,9 +218,9 @@ pages
 		#list -> SlListFrame.
 		#details -> SlDetailsFrame.
 "		#images -> SlImagesFrame.
-		#stacktracelist -> SlStackTraceListView.
-		#stacktraces -> SlStackTraceView.
-"		
+		#stacktracelist -> SlStackTraceListView."
+		#stacktraces -> SlStackTraceFrame.
+		
 		#test -> SlMessageFrame.
 		#notFound -> SlErrorFrame
 	}

@@ -1,117 +1,5 @@
 Smalltalk createPackage: 'ShoreLine-Widgets'!
-SlWidget subclass: #SlList
-	instanceVariableNames: 'container filteredItems sortBlock sortField'
-	package: 'ShoreLine-Widgets'!
-
-!SlList methodsFor: 'accessing'!
-
-data
-
-	^ self subclassResponsibility
-!
-
-sortBlock
-
-	^ sortBlock
-!
-
-sortBlock: aBlock
-
-	sortBlock := aBlock
-!
-
-width
-
-	^ container asJQuery innerWidth
-! !
-
-!SlList methodsFor: 'actions'!
-
-updateContents
-
-	"ForkPool default fork: [ "self updateList: (self filteredItemsFrom: self data) "]."
-!
-
-updateList: aCollection
-
-	container contents: [ :html | self renderList: aCollection on: html ].
-! !
-
-!SlList methodsFor: 'filtering'!
-
-filteredItemsFrom: aCollection
-
-	self subclassResponsibility
-! !
-
-!SlList methodsFor: 'initialization'!
-
-initialize
-
-	super initialize.
-	filteredItems := Set new.
-! !
-
-!SlList methodsFor: 'rendering'!
-
-renderContentsOn: html
-	
-	html div
-		class: 'panel-body';
-		with: [
-			self renderControlsOn: html.
-			container := html div ];
-		yourself.
-!
-
-renderControlsOn: html
-!
-
-renderHeadControlsOn: html
-!
-
-renderHeaderOn: html
-
-	html div
-		class: 'panel-heading';
-		with: [
-			html with: self class listName.
-			self renderHeadControlsOn: html ].
-!
-
-renderItem: anElement on: html
-
-	^ self subclassResponsibility
-!
-
-renderItems: aCollection on: html
-
-	(sortBlock ifNil: [ aCollection ] ifNotNil: [ aCollection sort: sortBlock ])
-		do: [ :each | self renderItem: each on: html ].
-!
-
-renderList: aCollection on: html
-
-	html div: [ self renderItems: aCollection on: html ].
-!
-
-renderOn: html
-
-	html div
-		class: 'panel panel-default';
-		with: [
-			self renderHeaderOn: html.
-			self renderContentsOn: html ].
-! !
-
-!SlList class methodsFor: 'configuration'!
-
-listName
-
-	^ self subclassResponsibility
-! !
-
-SlList subclass: #SlLoadList
+SlOldList subclass: #SlLoadList
 	instanceVariableNames: ''
 	package: 'ShoreLine-Widgets'!
 
@@ -570,18 +458,18 @@ listName
 	^ 'Projects'
 ! !
 
-SlList subclass: #SlStaticList
+SlOldList subclass: #SlOldStaticList
 	instanceVariableNames: ''
 	package: 'ShoreLine-Widgets'!
 
-!SlStaticList methodsFor: 'accessing'!
+!SlOldStaticList methodsFor: 'accessing'!
 
 data
 
 	^ self class defaultFilters
 ! !
 
-!SlStaticList methodsFor: 'filtering'!
+!SlOldStaticList methodsFor: 'filtering'!
 
 filteredItemsFrom: aCollection
 
@@ -589,7 +477,7 @@ filteredItemsFrom: aCollection
 	^ aCollection
 ! !
 
-!SlStaticList methodsFor: 'rendering'!
+!SlOldStaticList methodsFor: 'rendering'!
 
 renderContentsOn: html
 	
@@ -597,7 +485,7 @@ renderContentsOn: html
 	self updateContents
 ! !
 
-SlStaticList subclass: #SlFilterList
+SlOldStaticList subclass: #SlFilterList
 	instanceVariableNames: 'filters selected configure'
 	package: 'ShoreLine-Widgets'!
 
@@ -707,7 +595,7 @@ testFilter
 	^ 'Test Filter' -> ' :each | each project id = 5'
 ! !
 
-SlStaticList subclass: #SlSortList
+SlOldStaticList subclass: #SlSortList
 	instanceVariableNames: 'selected configure reverse'
 	package: 'ShoreLine-Widgets'!
 
@@ -870,6 +758,113 @@ withReport: aReport
 		yourself
 ! !
 
+SlToolbarFrame subclass: #SlStackTrace
+	instanceVariableNames: 'stacktrace traceId'
+	package: 'ShoreLine-Widgets'!
+
+!SlStackTrace methodsFor: 'accessing'!
+
+stacktrace
+
+	^ stacktrace ifNil: [ stacktrace := TDClientProxy on: '/stacktraces' ]
+! !
+
+!SlStackTrace methodsFor: 'arguments'!
+
+pushArgs: aDictionary
+
+	traceId := aDictionary at: #id
+! !
+
+!SlStackTrace methodsFor: 'rendering'!
+
+renderOn: html
+
+	self stacktrace
+		connect;
+		then: [
+			| trace |
+			trace := stacktrace list at: traceId ifAbsent: [ nil ].
+			
+			html div
+				class: 'container';
+				with: [
+					html div
+						class: 'panel panel-default';
+						with: [
+							html div
+								class: 'panel-heading';
+								with: 'StackTrace ', traceId.
+							html div
+								class: 'panel-body';
+								with: [ self renderStackTrace: trace on: html ] ] ] ]
+!
+
+renderStackTrace: aStackTrace on: html
+
+	self renderStackTraceMetadata: aStackTrace on: html.
+	self renderStackTraceEvents: aStackTrace on: html.
+!
+
+renderStackTraceEvents: aStackTrace on: html
+
+	aStackTrace stacktrace do: [ :each |
+		html div: each contents ]
+!
+
+renderStackTraceMetadata: aStackTrace on: html
+
+	html div: (Date fromString: aStackTrace date) asDateString.
+	html div: aStackTrace author.
+! !
+
+SlList subclass: #SlStackTraceList
+	instanceVariableNames: 'stacktrace'
+	package: 'ShoreLine-Widgets'!
+
+!SlStackTraceList methodsFor: 'accessing'!
+
+dataDo: aBlock
+
+	self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ]
+!
+
+dataTag
+
+	^ #stacktraces
+!
+
+extractData
+
+	^ self data "reportsOnDate: (Date fromString: '2014/12/15')"reportsWithAuthor: 'TommasoDalSasso'
+!
+
+header
+
+	^ { 'Date'. 'Author'. 'Creation Date'. 'Class'. 'Method' }
+!
+
+title
+
+	^ 'Stack Traces'
+! !
+
+!SlStackTraceList methodsFor: 'rendering'!
+
+renderItem: aStacktrace on: html
+
+	html tr with: [
+		| date |
+		date := Date fromString: aStacktrace date.
+		
+		html td with: date asDateString.
+		html td with: aStacktrace author.
+
+		html td with: date asDateString.
+		html td with: aStacktrace topClass.
+		html td with: aStacktrace topMethod ]
+! !
+
 SlContainer subclass: #SlTabbedContainer
 	instanceVariableNames: ''
 	package: 'ShoreLine-Widgets'!
@@ -945,11 +940,6 @@ initialize
 
 !SlToolbar methodsFor: 'rendering'!
 
-adjustBodyPadding
-
-	'body' asJQuery css: 'padding-top' value: '70px'
-!
-
 renderControlsOn: html
 
 	html ul
@@ -984,13 +974,14 @@ renderLogoOn: html
 	html span
 		class: 'shoreline-logo';
 		with: [
-			html span style: 'color: rgb(100, 100, 100)'; with: 'Shore'.
-			html span style: 'color: rgb(224, 71, 45)'; with: 'Line' ]
+			html span class: 'logo-shore'; with: 'Shore'.
+			html span class: 'logo-line'; with: 'Line' ]
 !
 
 renderMenuItem: aMenuItem on: html
 
 	html li: [ html a
+		href: '#';
 		onClick: [ self announce: aMenuItem value new ];
 		with: aMenuItem key ].
 !
@@ -1004,8 +995,6 @@ renderMenuOn: html
 !
 
 renderOn: html
-
-	self adjustBodyPadding.
 
 	html nav
 		class: 'navbar navbar-default navbar-fixed-top';

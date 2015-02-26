@@ -7,16 +7,68 @@ The Announcer class for ShoreLine events.!
 
 SlAnnouncer class instanceVariableNames: 'current'!
 
-!SlAnnouncer class methodsFor: 'as yet unclassified'!
+!SlAnnouncer class methodsFor: 'accessing'!
 
 current
 
 	^ current ifNil: [ current := super new ]
-!
+! !
+
+!SlAnnouncer class methodsFor: 'instance creation'!
 
 new
 
 	^ self shouldNotImplement
+! !
+
+Object subclass: #SlData
+	instanceVariableNames: 'proxies'
+	package: 'ShoreLine-Core'!
+
+!SlData methodsFor: 'accessing'!
+
+at: aSymbol
+
+	^ proxies at: aSymbol ifAbsentPut: [ self loadProxy: aSymbol ]
+! !
+
+!SlData methodsFor: 'actions'!
+
+loadProxy: aSymbol
+
+	^ (TDClientProxy on: (self class proxies at: aSymbol))
+		connect;
+		yourself
+!
+
+with: aSymbol do: aBlock
+	| proxy |
+	proxy := self at: aSymbol.
+	proxy then: (aBlock value: proxy)
+! !
+
+!SlData methodsFor: 'initialization'!
+
+initialize
+
+	super initialize.
+	proxies := Dictionary new.
+! !
+
+SlData class instanceVariableNames: 'data'!
+
+!SlData class methodsFor: 'accessing'!
+
+current
+
+	^ data ifNil: [ data := self new ]
+!
+
+proxies
+
+	^ Dictionary from: {
+		#stacktraces -> '/stacktraces'
+	}
 ! !
 
 Object subclass: #SlObject
@@ -73,7 +125,7 @@ announcer
 ! !
 
 Object subclass: #SlSession
-	instanceVariableNames: 'data'
+	instanceVariableNames: ''
 	package: 'ShoreLine-Core'!
 !SlSession commentStamp!
 Manages and stores the session data:
@@ -85,12 +137,7 @@ Manages and stores the session data:
 
 data
 
-	^ data
-!
-
-data: anObject
-
-	data := anObject
+	^ SlData current
 ! !
 
 !SlSession methodsFor: 'initialization'!
@@ -98,7 +145,7 @@ data: anObject
 initialize
 
 	super initialize.
-	data := Dictionary new.
+	"data := Dictionary new."
 ! !
 
 SlSession class instanceVariableNames: 'session'!
