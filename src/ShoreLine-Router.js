@@ -230,8 +230,7 @@ var self=this;
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
-self._log_(aString);
-$1=$recv(aString)._match_(self["@url"]);
+$1=$recv(self["@url"])._match_(aString);
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"match:",{aString:aString},$globals.SlRoute)});
@@ -239,10 +238,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "match: aString\x0a\x0a\x09self log: aString.\x0a\x09^ aString match: url",
+source: "match: aString\x0a\x0a\x09\x22self log: aString.\x22\x0a\x09^ url match: aString",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["log:", "match:"]
+messageSends: ["match:"]
 }),
 $globals.SlRoute);
 
@@ -370,6 +369,7 @@ protocol: 'routing',
 fn: function (anUrl){
 var self=this;
 var url;
+function $Dictionary(){return $globals.Dictionary||(typeof Dictionary=="undefined"?nil:Dictionary)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
@@ -387,7 +387,7 @@ return $recv(eachRoute)._handleRequest_(url);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-return $recv(self._notFound())._value_(url);
+return $recv(self._notFound())._value_($recv($Dictionary())._from_(["url".__minus_gt(url)]));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx2) {$ctx2.fillBlock({},$ctx1,2)});
 //>>excludeEnd("ctx");
@@ -399,10 +399,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anUrl"],
-source: "handleRequest: anUrl\x0a\x09| url |\x0a\x09url := anUrl trimLeft: '/#!'.\x0a\x09^ routes detect: [ :eachRoute | eachRoute handleRequest: url ] ifNone: [ self notFound value: url ]",
-referencedClasses: [],
+source: "handleRequest: anUrl\x0a\x09| url |\x0a\x09url := anUrl trimLeft: '/#!'.\x0a\x09^ routes\x0a\x09\x09detect: [ :eachRoute | eachRoute handleRequest: url ]\x0a\x09\x09ifNone: [ self notFound value: (Dictionary from: { #url -> url }) ]",
+referencedClasses: ["Dictionary"],
 //>>excludeEnd("ide");
-messageSends: ["trimLeft:", "detect:ifNone:", "handleRequest:", "value:", "notFound"]
+messageSends: ["trimLeft:", "detect:ifNone:", "handleRequest:", "value:", "notFound", "from:", "->"]
 }),
 $globals.SlRouter);
 

@@ -77,8 +77,8 @@ log: aString
 
 match: aString
 
-	self log: aString.
-	^ aString match: url
+	"self log: aString."
+	^ url match: aString
 ! !
 
 !SlRoute class methodsFor: 'instance creation'!
@@ -123,7 +123,9 @@ initialize
 handleRequest: anUrl
 	| url |
 	url := anUrl trimLeft: '/#!!'.
-	^ routes detect: [ :eachRoute | eachRoute handleRequest: url ] ifNone: [ self notFound value: url ]
+	^ routes
+		detect: [ :eachRoute | eachRoute handleRequest: url ]
+		ifNone: [ self notFound value: (Dictionary from: { #url -> url }) ]
 !
 
 notFound
