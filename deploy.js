@@ -8,7 +8,7 @@ define([
     'shoreline/ShoreLine-Router',
 
     'shoreline/ShoreLine-Widgets-Core',
-    // 'shoreline/ShoreLine-Layout',
+    'shoreline/ShoreLine-Layout',
     'shoreline/ShoreLine-Widgets-Pages',
 
         // 'shoreline/ShoreLine-Model',
@@ -19,7 +19,7 @@ define([
     'shoreline/ShoreLine-Widgets',
     'shoreline/ShoreLine-Pages',
     'shoreline/ShoreLine',
-    
+
         // 'shoreline/ShoreLine-Visualizations',
         // 'shoreline/ShoreLine-Reporter',
 

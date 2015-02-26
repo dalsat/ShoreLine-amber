@@ -934,8 +934,9 @@ SlWidget subclass: #SlToolbar
 !SlToolbar methodsFor: 'initialization'!
 
 initialize
-
-	login := MozPersonaLogin new.
+	
+	super initialize.
+	"login := MozPersonaLogin new."
 ! !
 
 !SlToolbar methodsFor: 'rendering'!

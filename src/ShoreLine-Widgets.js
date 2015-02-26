@@ -74,10 +74,16 @@ selector: "onLoadedData:",
 protocol: 'events',
 fn: function (anAnnouncement){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 self._updateData();
 self._updateContents();
-return self}, function($ctx1) {$ctx1.fill(self,"onLoadedData:",{anAnnouncement:anAnnouncement},globals.SlLoadList)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"onLoadedData:",{anAnnouncement:anAnnouncement},$globals.SlLoadList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anAnnouncement"],
 source: "onLoadedData: anAnnouncement\x0a\x0a\x09self updateData.\x0a\x09self updateContents.",
@@ -2707,16 +2713,28 @@ selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-function $MozPersonaLogin(){return smalltalk.MozPersonaLogin||(typeof MozPersonaLogin=="undefined"?nil:MozPersonaLogin)}
-return smalltalk.withContext(function($ctx1) { 
-self["@login"]=_st($MozPersonaLogin())._new();
-return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},smalltalk.SlToolbar)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlToolbar.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09login := MozPersonaLogin new.",
-referencedClasses: ["MozPersonaLogin"],
+source: "initialize\x0a\x09\x0a\x09super initialize.\x0a\x09\x22login := MozPersonaLogin new.\x22",
+referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["new"]
+messageSends: ["initialize"]
 }),
 $globals.SlToolbar);
 
@@ -2726,22 +2744,40 @@ selector: "renderControlsOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._ul();
-_st($1)._class_("nav navbar-nav");
+$1=$recv(html)._ul();
+$recv($1)._class_("nav navbar-nav");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["class:"]=1;
-$2=_st($1)._with_((function(){
+//>>excludeEnd("ctx");
+$2=$recv($1)._with_((function(){
 var backLink;
-return smalltalk.withContext(function($ctx2) {
-backLink=_st(html)._li_((function(){
-return smalltalk.withContext(function($ctx3) {
-return _st(_st(html)._a())._class_("glyphicon glyphicon-chevron-left");
-}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)})}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+backLink=$recv(html)._li_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
+return $recv($recv(html)._a())._class_("glyphicon glyphicon-chevron-left");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
 backLink;
-return _st(_st(backLink)._asJQuery())._slideToggle();
-}, function($ctx2) {$ctx2.fillBlock({backLink:backLink},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderControlsOn:",{html:html},smalltalk.SlToolbar)})},
+return $recv($recv(backLink)._asJQuery())._slideToggle();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({backLink:backLink},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderControlsOn:",{html:html},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderControlsOn: html\x0a\x0a\x09html ul\x0a\x09\x09class: 'nav navbar-nav';\x0a\x09\x09with: [\x0a\x09\x09\x09| backLink |\x0a\x09\x09\x09backLink := html li: [ html a class: 'glyphicon glyphicon-chevron-left' ].\x0a\x09\x09\x09backLink asJQuery slideToggle ].",
@@ -2757,17 +2793,28 @@ selector: "renderDebugControlsOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-function $SlHeliosPopupAnnouncement(){return globals.SlHeliosPopupAnnouncement||(typeof SlHeliosPopupAnnouncement=="undefined"?nil:SlHeliosPopupAnnouncement)}
-return smalltalk.withContext(function($ctx1) { 
+function $SlHeliosPopupAnnouncement(){return $globals.SlHeliosPopupAnnouncement||(typeof SlHeliosPopupAnnouncement=="undefined"?nil:SlHeliosPopupAnnouncement)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._button();
-_st($1)._class_("btn btn-default navbar-btn navbar-right");
-_st($1)._onClick_((function(){
-return smalltalk.withContext(function($ctx2) {
-return self._announce_(_st($SlHeliosPopupAnnouncement())._new());
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-$2=_st($1)._with_("Helios");
-return self}, function($ctx1) {$ctx1.fill(self,"renderDebugControlsOn:",{html:html},globals.SlToolbar)})},
+$1=$recv(html)._button();
+$recv($1)._class_("btn btn-default navbar-btn navbar-right");
+$recv($1)._onClick_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return self._announce_($recv($SlHeliosPopupAnnouncement())._new());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+$2=$recv($1)._with_("Helios");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderDebugControlsOn:",{html:html},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderDebugControlsOn: html\x0a\x0a\x09html button\x0a\x09\x09class: 'btn btn-default navbar-btn navbar-right';\x0a\x09\x09onClick: [ self announce: SlHeliosPopupAnnouncement new ];\x0a\x09\x09with: 'Helios'",
@@ -2783,28 +2830,53 @@ selector: "renderHeaderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-function $SlHomePageAnnouncement(){return smalltalk.SlHomePageAnnouncement||(typeof SlHomePageAnnouncement=="undefined"?nil:SlHomePageAnnouncement)}
-return smalltalk.withContext(function($ctx1) { 
+function $SlHomePageAnnouncement(){return $globals.SlHomePageAnnouncement||(typeof SlHomePageAnnouncement=="undefined"?nil:SlHomePageAnnouncement)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$3,$4,$2;
-$1=_st(html)._div();
-_st($1)._class_("navbar-header");
+$1=$recv(html)._div();
+$recv($1)._class_("navbar-header");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["class:"]=1;
-$2=_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
-$3=_st(html)._a();
-_st($3)._class_("navbar-brand");
-_st($3)._onClick_((function(){
-return smalltalk.withContext(function($ctx3) {
-return self._announce_(_st($SlHomePageAnnouncement())._new());
-}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)})}));
-$4=_st($3)._with_((function(){
-return smalltalk.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
+$2=$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$3=$recv(html)._a();
+$recv($3)._class_("navbar-brand");
+$recv($3)._onClick_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
+return self._announce_($recv($SlHomePageAnnouncement())._new());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+$4=$recv($3)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
 return self._renderLogoOn_(html);
-}, function($ctx3) {$ctx3.fillBlock({},$ctx2,3)})}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2,3)});
+//>>excludeEnd("ctx");
+}));
 return $4;
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["with:"]=1;
-return self}, function($ctx1) {$ctx1.fill(self,"renderHeaderOn:",{html:html},smalltalk.SlToolbar)})},
+//>>excludeEnd("ctx");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderHeaderOn:",{html:html},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderHeaderOn: html\x0a\x0a\x09html div\x0a\x09\x09class: 'navbar-header';\x0a\x09\x09with: [ html a\x0a\x09\x09\x09class: 'navbar-brand';\x0a\x09\x09\x09onClick: [ self announce: SlHomePageAnnouncement new ];\x0a\x09\x09\x09with: [ self renderLogoOn: html ] ]",
@@ -2820,28 +2892,51 @@ selector: "renderLogoOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$3,$4,$5,$6,$2;
-$1=_st(html)._span();
+$1=$recv(html)._span();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["span"]=1;
-_st($1)._class_("shoreline-logo");
+//>>excludeEnd("ctx");
+$recv($1)._class_("shoreline-logo");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["class:"]=1;
-$2=_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
-$3=_st(html)._span();
+//>>excludeEnd("ctx");
+$2=$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$3=$recv(html)._span();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["span"]=2;
-_st($3)._class_("logo-shore");
+//>>excludeEnd("ctx");
+$recv($3)._class_("logo-shore");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["class:"]=2;
-$4=_st($3)._with_("Shore");
+//>>excludeEnd("ctx");
+$4=$recv($3)._with_("Shore");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["with:"]=2;
+//>>excludeEnd("ctx");
 $4;
-$5=_st(html)._span();
-_st($5)._class_("logo-line");
-$6=_st($5)._with_("Line");
+$5=$recv(html)._span();
+$recv($5)._class_("logo-line");
+$6=$recv($5)._with_("Line");
 return $6;
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["with:"]=1;
-return self}, function($ctx1) {$ctx1.fill(self,"renderLogoOn:",{html:html},globals.SlToolbar)})},
+//>>excludeEnd("ctx");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderLogoOn:",{html:html},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderLogoOn: html\x0a\x09\x0a\x09\x22colors: #ffffff rgb(224, 71, 45)\x22\x0a\x09html span\x0a\x09\x09class: 'shoreline-logo';\x0a\x09\x09with: [\x0a\x09\x09\x09html span class: 'logo-shore'; with: 'Shore'.\x0a\x09\x09\x09html span class: 'logo-line'; with: 'Line' ]",
@@ -2857,20 +2952,36 @@ selector: "renderMenuItem:on:",
 protocol: 'rendering',
 fn: function (aMenuItem,html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-_st(html)._li_((function(){
-return smalltalk.withContext(function($ctx2) {
-$1=_st(html)._a();
-_st($1)._href_("#");
-_st($1)._onClick_((function(){
-return smalltalk.withContext(function($ctx3) {
-return self._announce_(_st(_st(aMenuItem)._value())._new());
-}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)})}));
-$2=_st($1)._with_(_st(aMenuItem)._key());
+$recv(html)._li_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$1=$recv(html)._a();
+$recv($1)._href_("#");
+$recv($1)._onClick_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
+return self._announce_($recv($recv(aMenuItem)._value())._new());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+$2=$recv($1)._with_($recv(aMenuItem)._key());
 return $2;
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderMenuItem:on:",{aMenuItem:aMenuItem,html:html},globals.SlToolbar)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderMenuItem:on:",{aMenuItem:aMenuItem,html:html},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aMenuItem", "html"],
 source: "renderMenuItem: aMenuItem on: html\x0a\x0a\x09html li: [ html a\x0a\x09\x09href: '#';\x0a\x09\x09onClick: [ self announce: aMenuItem value new ];\x0a\x09\x09with: aMenuItem key ].",
@@ -2886,18 +2997,34 @@ selector: "renderMenuOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._ul();
-_st($1)._class_("nav navbar-nav");
-$2=_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
-return _st(_st(self._class())._menuItems())._do_((function(eachItem){
-return smalltalk.withContext(function($ctx3) {
+$1=$recv(html)._ul();
+$recv($1)._class_("nav navbar-nav");
+$2=$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv($recv(self._class())._menuItems())._do_((function(eachItem){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
 return self._renderMenuItem_on_(eachItem,html);
-}, function($ctx3) {$ctx3.fillBlock({eachItem:eachItem},$ctx2,2)})}));
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderMenuOn:",{html:html},globals.SlToolbar)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({eachItem:eachItem},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderMenuOn:",{html:html},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderMenuOn: html\x0a\x0a\x09html ul\x0a\x09\x09class: 'nav navbar-nav';\x0a\x09\x09with: [\x0a\x09\x09\x09self class menuItems do: [ :eachItem | self renderMenuItem: eachItem on: html ] ].",
@@ -2913,20 +3040,31 @@ selector: "renderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._nav();
-_st($1)._class_("navbar navbar-default navbar-fixed-top");
-_st($1)._at_put_("role","navigation");
-$2=_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
+$1=$recv(html)._nav();
+$recv($1)._class_("navbar navbar-default navbar-fixed-top");
+$recv($1)._at_put_("role","navigation");
+$2=$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
 self._renderControlsOn_(html);
 self._renderHeaderOn_(html);
 self._renderMenuOn_(html);
 self._renderUserOn_(html);
 return self._renderDebugControlsOn_(html);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},globals.SlToolbar)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderOn: html\x0a\x0a\x09html nav\x0a\x09\x09class: 'navbar navbar-default navbar-fixed-top';\x0a\x09\x09at: 'role' put: 'navigation';\x0a\x09\x09with: [\x0a\x09\x09\x09self renderControlsOn: html.\x0a\x09\x09\x09self renderHeaderOn: html.\x0a\x09\x09\x09self renderMenuOn: html.\x0a\x09\x09\x09self renderUserOn: html.\x0a\x09\x09\x09self renderDebugControlsOn: html ].",
@@ -2942,15 +3080,26 @@ selector: "renderUserOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._ul();
-_st($1)._class_("nav navbar-nav navbar-right");
-$2=_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
-return _st(html)._li_(self["@login"]);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderUserOn:",{html:html},smalltalk.SlToolbar)})},
+$1=$recv(html)._ul();
+$recv($1)._class_("nav navbar-nav navbar-right");
+$2=$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv(html)._li_(self["@login"]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderUserOn:",{html:html},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderUserOn: html\x0a\x0a\x09html ul\x0a\x09\x09class: 'nav navbar-nav navbar-right';\x0a\x09\x09with: [ html li: login ].",
@@ -2967,11 +3116,16 @@ selector: "menuItems",
 protocol: 'items',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1;
 $1=["Menu Items".__minus_gt(nil)];
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"menuItems",{},globals.SlToolbar.klass)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"menuItems",{},$globals.SlToolbar.klass)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "menuItems\x0a\x0a\x09^ {\x0a\x09\x09\x22'Helios' -> SlHeliosPopupAnnouncement.\x22\x0a\x09\x09'Menu Items' -> nil\x0a\x09}",

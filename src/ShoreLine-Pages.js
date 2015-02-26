@@ -786,7 +786,6 @@ protocol: 'configuration',
 fn: function (){
 var self=this;
 function $SlHomePage(){return $globals.SlHomePage||(typeof SlHomePage=="undefined"?nil:SlHomePage)}
-function $SlListFrame(){return $globals.SlListFrame||(typeof SlListFrame=="undefined"?nil:SlListFrame)}
 function $SlDetailsFrame(){return $globals.SlDetailsFrame||(typeof SlDetailsFrame=="undefined"?nil:SlDetailsFrame)}
 function $SlStackTraceFrame(){return $globals.SlStackTraceFrame||(typeof SlStackTraceFrame=="undefined"?nil:SlStackTraceFrame)}
 function $SlMessageFrame(){return $globals.SlMessageFrame||(typeof SlMessageFrame=="undefined"?nil:SlMessageFrame)}
@@ -794,28 +793,24 @@ function $SlErrorFrame(){return $globals.SlErrorFrame||(typeof SlErrorFrame=="un
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $2,$3,$4,$5,$6,$1;
+var $2,$3,$4,$5,$1;
 $2="home".__minus_gt($SlHomePage());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["->"]=1;
 //>>excludeEnd("ctx");
-$3="list".__minus_gt($SlListFrame());
+$3="details".__minus_gt($SlDetailsFrame());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["->"]=2;
 //>>excludeEnd("ctx");
-$4="details".__minus_gt($SlDetailsFrame());
+$4="stacktraces".__minus_gt($SlStackTraceFrame());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["->"]=3;
 //>>excludeEnd("ctx");
-$5="stacktraces".__minus_gt($SlStackTraceFrame());
+$5="test".__minus_gt($SlMessageFrame());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["->"]=4;
 //>>excludeEnd("ctx");
-$6="test".__minus_gt($SlMessageFrame());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx["->"]=5;
-//>>excludeEnd("ctx");
-$1=[$2,$3,$4,$5,$6,"notFound".__minus_gt($SlErrorFrame())];
+$1=[$2,$3,$4,$5,"notFound".__minus_gt($SlErrorFrame())];
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"pages",{},$globals.SlMainFrame.klass)});
@@ -823,8 +818,8 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "pages\x0a\x0a\x09^ {\x0a\x09\x09#home -> SlHomePage.\x0a\x09\x09#list -> SlListFrame.\x0a\x09\x09#details -> SlDetailsFrame.\x0a\x22\x09\x09#images -> SlImagesFrame.\x0a\x09\x09#stacktracelist -> SlStackTraceListView.\x22\x0a\x09\x09#stacktraces -> SlStackTraceFrame.\x0a\x09\x09\x0a\x09\x09#test -> SlMessageFrame.\x0a\x09\x09#notFound -> SlErrorFrame\x0a\x09}",
-referencedClasses: ["SlHomePage", "SlListFrame", "SlDetailsFrame", "SlStackTraceFrame", "SlMessageFrame", "SlErrorFrame"],
+source: "pages\x0a\x0a\x09^ {\x0a\x09\x09#home -> SlHomePage.\x0a\x09\x09\x22#list -> SlListFrame.\x22\x0a\x09\x09#details -> SlDetailsFrame.\x0a\x09\x09\x22#images -> SlImagesFrame.\x0a\x09\x09#stacktracelist -> SlStackTraceListView.\x22\x0a\x09\x09#stacktraces -> SlStackTraceFrame.\x0a\x09\x09\x0a\x09\x09#test -> SlMessageFrame.\x0a\x09\x09#notFound -> SlErrorFrame\x0a\x09}",
+referencedClasses: ["SlHomePage", "SlDetailsFrame", "SlStackTraceFrame", "SlMessageFrame", "SlErrorFrame"],
 //>>excludeEnd("ide");
 messageSends: ["->"]
 }),

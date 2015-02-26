@@ -1,10 +1,10 @@
-define("shoreline/ShoreLine-Widgets-Pages", ["amber/boot", "amber-contrib-web/Web"], function($boot){
+define("shoreline/ShoreLine-Widgets-Pages", ["amber/boot", "shoreline/ShoreLine-Widgets-Core"], function($boot){
 var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
 $core.addPackage('ShoreLine-Widgets-Pages');
 $core.packages["ShoreLine-Widgets-Pages"].innerEval = function (expr) { return eval(expr); };
 $core.packages["ShoreLine-Widgets-Pages"].transport = {"type":"amd","amdNamespace":"shoreline"};
 
-$core.addClass('SlMessageFrame', $globals.Widget, [], 'ShoreLine-Widgets-Pages');
+$core.addClass('SlMessageFrame', $globals.SlFrame, [], 'ShoreLine-Widgets-Pages');
 $core.addMethod(
 $core.method({
 selector: "initialize",
@@ -22,6 +22,7 @@ $globals.SlMessageFrame.superclass.fn.prototype._initialize.apply($recv(self), [
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
 //>>excludeEnd("ctx");;
+self["@contents"]=$recv(self._class())._defaultMessage();
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlMessageFrame)});
@@ -29,10 +30,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09super initialize.\x0a\x09\x22contents := self class message.\x22",
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09contents := self class defaultMessage.",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["initialize"]
+messageSends: ["initialize", "defaultMessage", "class"]
 }),
 $globals.SlMessageFrame);
 
@@ -67,12 +68,13 @@ selector: "message:",
 protocol: 'accessing',
 fn: function (aString){
 var self=this;
+self["@contents"]=aString;
 return self;
 
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "message: aString\x0a\x0a\x09\x22contents := aString\x22",
+source: "message: aString\x0a\x0a\x09contents := aString",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: []
@@ -97,6 +99,24 @@ messageSends: []
 }),
 $globals.SlMessageFrame);
 
+
+$core.addMethod(
+$core.method({
+selector: "defaultMessage",
+protocol: 'as yet unclassified',
+fn: function (){
+var self=this;
+return "No Message";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "defaultMessage\x0a\x0a\x09^ 'No Message'",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlMessageFrame.klass);
 
 
 $core.addClass('SlErrorFrame', $globals.SlMessageFrame, ['message'], 'ShoreLine-Widgets-Pages');

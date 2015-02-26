@@ -215,9 +215,9 @@ pages
 
 	^ {
 		#home -> SlHomePage.
-		#list -> SlListFrame.
+		"#list -> SlListFrame."
 		#details -> SlDetailsFrame.
-"		#images -> SlImagesFrame.
+		"#images -> SlImagesFrame.
 		#stacktracelist -> SlStackTraceListView."
 		#stacktraces -> SlStackTraceFrame.
 		

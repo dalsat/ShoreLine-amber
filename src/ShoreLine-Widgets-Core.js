@@ -1,17 +1,19 @@
-define("shoreline/ShoreLine-Widgets-Core", ["amber/boot", "shoreline/ShoreLine-Core"], function($boot){
+define("shoreline/ShoreLine-Widgets-Core", ["amber/boot", "amber-contrib-web/Web"], function($boot){
 var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
 $core.addPackage('ShoreLine-Widgets-Core');
 $core.packages["ShoreLine-Widgets-Core"].innerEval = function (expr) { return eval(expr); };
 $core.packages["ShoreLine-Widgets-Core"].transport = {"type":"amd","amdNamespace":"shoreline"};
 
-$core.addClass('SlContainer', $globals.SlWidget, ['canvas', 'contents'], 'ShoreLine-Widgets-Core');
+$core.addClass('SlContainer', $globals.Widget, ['canvas', 'contents'], 'ShoreLine-Widgets-Core');
 $core.addMethod(
 $core.method({
 selector: "contents",
 protocol: 'accessing',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $2,$1,$receiver;
 $2=self["@contents"];
 if(($receiver = $2) == null || $receiver.isNil){
@@ -20,7 +22,10 @@ $1="";
 $1=$2;
 };
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"contents",{},globals.SlContainer)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"contents",{},$globals.SlContainer)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "contents\x0a\x0a\x09^ contents ifNil: [ '' ]",
@@ -37,7 +42,9 @@ protocol: 'accessing',
 fn: function (anObject){
 var self=this;
 self["@contents"]=anObject;
-return self},
+return self;
+
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anObject"],
 source: "contents: anObject\x0a\x09contents := anObject",
@@ -53,19 +60,29 @@ selector: "propagateMessage:",
 protocol: 'fix',
 fn: function (aSelector){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(self["@contents"])._respondsTo_(aSelector);
+$1=$recv(self["@contents"])._respondsTo_(aSelector);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["respondsTo:"]=1;
-if(smalltalk.assert($1)){
-_st(self["@contents"])._perform_(aSelector);
+//>>excludeEnd("ctx");
+if($core.assert($1)){
+$recv(self["@contents"])._perform_(aSelector);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["perform:"]=1;
+//>>excludeEnd("ctx");
 };
-$2=_st(self["@contents"])._respondsTo_("propagateMessage:");
-if(smalltalk.assert($2)){
-_st(self["@contents"])._perform_("propagateMessage:");
+$2=$recv(self["@contents"])._respondsTo_("propagateMessage:");
+if($core.assert($2)){
+$recv(self["@contents"])._perform_("propagateMessage:");
 };
-return self}, function($ctx1) {$ctx1.fill(self,"propagateMessage:",{aSelector:aSelector},smalltalk.SlContainer)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"propagateMessage:",{aSelector:aSelector},$globals.SlContainer)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSelector"],
 source: "propagateMessage: aSelector\x0a\x0a\x09(contents respondsTo: aSelector) ifTrue: [ contents perform: aSelector ].\x0a\x09(contents respondsTo: #propagateMessage:) ifTrue: [ contents perform: #propagateMessage: ].",
@@ -81,28 +98,50 @@ selector: "removemap:withArguments:",
 protocol: 'fix',
 fn: function (aSelector,aCollection){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2,$3;
 $1=self._contentsCollection();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["contentsCollection"]=1;
-_st($1)._do_((function(each){
-return smalltalk.withContext(function($ctx2) {
-$2=_st(each)._respondsTo_(aSelector);
+//>>excludeEnd("ctx");
+$recv($1)._do_((function(each){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$2=$recv(each)._respondsTo_(aSelector);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["respondsTo:"]=1;
-if(smalltalk.assert($2)){
-_st(console)._log_(_st(_st(self["@contents"])._class())._name());
-return _st(self["@contents"])._perform_withArguments_(aSelector,aCollection);
+//>>excludeEnd("ctx");
+if($core.assert($2)){
+$recv(console)._log_($recv($recv(self["@contents"])._class())._name());
+return $recv(self["@contents"])._perform_withArguments_(aSelector,aCollection);
 };
-}, function($ctx2) {$ctx2.fillBlock({each:each},$ctx1,1)})}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({each:each},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["do:"]=1;
-_st(self._contentsCollection())._do_((function(each){
-return smalltalk.withContext(function($ctx2) {
-$3=_st(each)._respondsTo_("map:withArguments:");
-if(smalltalk.assert($3)){
-return _st(each)._map_withArguments_(aSelector,aCollection);
+//>>excludeEnd("ctx");
+$recv(self._contentsCollection())._do_((function(each){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$3=$recv(each)._respondsTo_("map:withArguments:");
+if($core.assert($3)){
+return $recv(each)._map_withArguments_(aSelector,aCollection);
 };
-}, function($ctx2) {$ctx2.fillBlock({each:each},$ctx1,3)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"removemap:withArguments:",{aSelector:aSelector,aCollection:aCollection},globals.SlContainer)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({each:each},$ctx1,3)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"removemap:withArguments:",{aSelector:aSelector,aCollection:aCollection},$globals.SlContainer)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSelector", "aCollection"],
 source: "removemap: aSelector withArguments: aCollection\x0a\x09\x0a\x09self contentsCollection do: [ :each | (each respondsTo: aSelector) ifTrue: [ console log: contents class name. contents perform: aSelector withArguments: aCollection] ].\x0a\x09\x0a\x09self contentsCollection do: [ :each |\x0a\x09\x09(each respondsTo: #map:withArguments:) ifTrue: [ each map: aSelector withArguments: aCollection ] ].",
@@ -118,9 +157,15 @@ selector: "renderContentsOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-_st(html)._with_(self._contents());
-return self}, function($ctx1) {$ctx1.fill(self,"renderContentsOn:",{html:html},globals.SlContainer)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(html)._with_(self._contents());
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderContentsOn:",{html:html},$globals.SlContainer)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderContentsOn: html\x0a\x0a\x09html with: self contents.",
@@ -136,12 +181,23 @@ selector: "renderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-self["@canvas"]=_st(_st(html)._div())._with_((function(){
-return smalltalk.withContext(function($ctx2) {
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self["@canvas"]=$recv($recv(html)._div())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
 return self._renderContentsOn_(html);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},globals.SlContainer)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},$globals.SlContainer)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderOn: html\x0a\x0a\x09canvas := html div with: [ self renderContentsOn: html ]",
@@ -157,12 +213,23 @@ selector: "updateContents",
 protocol: 'rendering',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-_st(self["@canvas"])._contents_((function(html){
-return smalltalk.withContext(function($ctx2) {
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(self["@canvas"])._contents_((function(html){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
 return self._renderContentsOn_(html);
-}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"updateContents",{},globals.SlContainer)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"updateContents",{},$globals.SlContainer)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "updateContents\x0a\x0a\x09canvas contents: [ :html | self renderContentsOn: html ]",
@@ -179,7 +246,7 @@ protocol: 'rendering',
 fn: function (anObject){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 self._contents_(anObject);
 self._updateContents();
@@ -206,11 +273,23 @@ selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-($ctx1.supercall = true, globals.SlFrame.superclass.fn.prototype._initialize.apply(_st(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlFrame.superclass.fn.prototype._initialize.apply($recv(self), []));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
+//>>excludeEnd("ctx");;
 self["@debug"]=false;
-return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},globals.SlFrame)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlFrame)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initialize\x0a\x0a\x09super initialize.\x0a\x09\x22self contents: nil.\x22\x0a\x09debug := false.",
@@ -226,7 +305,9 @@ selector: "pushArgs:",
 protocol: 'arguments',
 fn: function (aDictionary){
 var self=this;
-return self},
+return self;
+
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aDictionary"],
 source: "pushArgs: aDictionary",
@@ -242,15 +323,27 @@ selector: "renderContentsOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1;
 $1=self["@debug"];
-if(smalltalk.assert($1)){
+if($core.assert($1)){
 self._renderDebugControlsOn_(html);
 };
-($ctx1.supercall = true, globals.SlFrame.superclass.fn.prototype._renderContentsOn_.apply(_st(self), [html]));
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlFrame.superclass.fn.prototype._renderContentsOn_.apply($recv(self), [html]));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
-return self}, function($ctx1) {$ctx1.fill(self,"renderContentsOn:",{html:html},globals.SlFrame)})},
+//>>excludeEnd("ctx");;
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderContentsOn:",{html:html},$globals.SlFrame)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderContentsOn: html\x0a\x0a\x09debug ifTrue: [ self renderDebugControlsOn: html ].\x0a\x09super renderContentsOn: html",
@@ -266,16 +359,27 @@ selector: "renderDebugControlsOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._a();
-_st($1)._href_("#");
-_st($1)._onClick_((function(){
-return smalltalk.withContext(function($ctx2) {
+$1=$recv(html)._a();
+$recv($1)._href_("#");
+$recv($1)._onClick_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
 return self._updateContents();
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-$2=_st($1)._with_("refresh");
-return self}, function($ctx1) {$ctx1.fill(self,"renderDebugControlsOn:",{html:html},smalltalk.SlFrame)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+$2=$recv($1)._with_("refresh");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderDebugControlsOn:",{html:html},$globals.SlFrame)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderDebugControlsOn: html\x0a\x0a\x09html a\x0a\x09\x09href: '#';\x0a\x09\x09onClick: [ self updateContents ];\x0a\x09\x09with: 'refresh'.",
@@ -291,11 +395,23 @@ selector: "renderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-($ctx1.supercall = true, globals.SlFrame.superclass.fn.prototype._renderOn_.apply(_st(self), [html]));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlFrame.superclass.fn.prototype._renderOn_.apply($recv(self), [html]));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
-_st(self["@canvas"])._class_("container-fluid");
-return self}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},globals.SlFrame)})},
+//>>excludeEnd("ctx");;
+$recv(self["@canvas"])._class_("container-fluid");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},$globals.SlFrame)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderOn: html\x0a\x0a\x09super renderOn: html.\x0a\x09canvas class: 'container-fluid'.",
@@ -318,7 +434,7 @@ protocol: 'accessing',
 fn: function (){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
 $1=$recv($recv(self._session())._data())._at_(self._dataTag());
@@ -343,7 +459,7 @@ protocol: 'accessing',
 fn: function (aBlock){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 $recv(aBlock)._value_(self._extractData());
 return self;
@@ -367,7 +483,7 @@ protocol: 'accessing',
 fn: function (){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
 $1=self._subclassResponsibility();
@@ -392,7 +508,7 @@ protocol: 'accessing',
 fn: function (){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
 $1=self._subclassResponsibility();
@@ -437,7 +553,7 @@ protocol: 'rendering',
 fn: function (html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1,$3,$4,$2;
 $recv(self._data())._then_((function(data){
@@ -510,7 +626,7 @@ protocol: 'rendering',
 fn: function (anItem,html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 self._subclassResponsibility();
 return self;
@@ -534,7 +650,7 @@ protocol: 'rendering',
 fn: function (aCollection,html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1,$2;
 $1=$recv(html)._table();
@@ -578,7 +694,7 @@ protocol: 'rendering',
 fn: function (html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 $recv(self._header())._ifNotEmpty_((function(header){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -629,7 +745,7 @@ protocol: 'rendering',
 fn: function (html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 (
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -677,7 +793,7 @@ protocol: 'rendering',
 fn: function (html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1,$2;
 $recv(self._title())._ifNotEmpty_((function(title){
@@ -731,7 +847,7 @@ protocol: 'actions',
 fn: function (){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 $recv(self._data())._then_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -765,17 +881,22 @@ $globals.SlList);
 
 
 
-$core.addClass('SlNewList', $globals.SlWidget, ['container', 'sortField'], 'ShoreLine-Widgets-Core');
+$core.addClass('SlNewList', null, ['container', 'sortField'], 'ShoreLine-Widgets-Core');
 $core.addMethod(
 $core.method({
 selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-($ctx1.supercall = true, globals.SlNewList.superclass.fn.prototype._initialize.apply(_st(self), []));
-$ctx1.supercall = false;
-return self}, function($ctx1) {$ctx1.fill(self,"initialize",{},globals.SlNewList)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self._initialize();
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "initialize\x0a\x0a\x09super initialize.",
@@ -791,11 +912,16 @@ selector: "render",
 protocol: 'rendering',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1;
 $1=self._subclassResponsibility();
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"render",{},globals.SlNewList)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"render",{},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "render\x0a\x0a\x09^ self subclassResponsibility",
@@ -811,19 +937,32 @@ selector: "renderContentsOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._div();
+$1=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["div"]=1;
-_st($1)._class_("panel-body");
-_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$recv($1)._class_("panel-body");
+$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
 self._renderControlsOn_(html);
-self["@container"]=_st(html)._div();
+self["@container"]=$recv(html)._div();
 return self["@container"];
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-$2=_st($1)._yourself();
-return self}, function($ctx1) {$ctx1.fill(self,"renderContentsOn:",{html:html},globals.SlNewList)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+$2=$recv($1)._yourself();
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderContentsOn:",{html:html},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderContentsOn: html\x0a\x09\x0a\x09html div\x0a\x09\x09class: 'panel-body';\x0a\x09\x09with: [\x0a\x09\x09\x09self renderControlsOn: html.\x0a\x09\x09\x09container := html div ];\x0a\x09\x09yourself.",
@@ -839,7 +978,9 @@ selector: "renderControlsOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return self},
+return self;
+
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderControlsOn: html",
@@ -855,7 +996,9 @@ selector: "renderHeadControlsOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return self},
+return self;
+
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderHeadControlsOn: html",
@@ -871,26 +1014,43 @@ selector: "renderHeaderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $2,$1,$3,$4,$receiver;
 $2=self._class();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["class"]=1;
-$1=_st($2)._listName();
+//>>excludeEnd("ctx");
+$1=$recv($2)._listName();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["listName"]=1;
+//>>excludeEnd("ctx");
 if(($receiver = $1) == null || $receiver.isNil){
 $1;
 } else {
-$3=_st(html)._div();
-_st($3)._class_("panel-heading");
-$4=_st($3)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
-_st(html)._with_(_st(self._class())._listName());
+$3=$recv(html)._div();
+$recv($3)._class_("panel-heading");
+$4=$recv($3)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$recv(html)._with_($recv(self._class())._listName());
 return self._renderHeadControlsOn_(html);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,2)})}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,2)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
 $4;
 };
-return self}, function($ctx1) {$ctx1.fill(self,"renderHeaderOn:",{html:html},globals.SlNewList)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderHeaderOn:",{html:html},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderHeaderOn: html\x0a\x0a\x09self class listName ifNotNil: [\x0a\x09\x09html div\x0a\x09\x09\x09class: 'panel-heading';\x0a\x09\x09\x09with: [\x0a\x09\x09\x09\x09html with: self class listName.\x0a\x09\x09\x09\x09self renderHeadControlsOn: html ] ]",
@@ -906,11 +1066,16 @@ selector: "renderItem:on:",
 protocol: 'rendering',
 fn: function (anElement,html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1;
 $1=self._subclassResponsibility();
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"renderItem:on:",{anElement:anElement,html:html},globals.SlNewList)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderItem:on:",{anElement:anElement,html:html},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anElement", "html"],
 source: "renderItem: anElement on: html\x0a\x0a\x09^ self subclassResponsibility",
@@ -926,25 +1091,15 @@ selector: "renderItems:on:",
 protocol: 'rendering',
 fn: function (aCollection,html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-var $2,$1,$receiver;
-$2=self["@sortBlock"];
-if(($receiver = $2) == null || $receiver.isNil){
-$1=aCollection;
-} else {
-$1=_st(aCollection)._sort_(self["@sortBlock"]);
-};
-_st($1)._do_((function(each){
-return smalltalk.withContext(function($ctx2) {
-return self._renderItem_on_(each,html);
-}, function($ctx2) {$ctx2.fillBlock({each:each},$ctx1,3)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderItems:on:",{aCollection:aCollection,html:html},globals.SlNewList)})},
+return self;
+
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aCollection", "html"],
-source: "renderItems: aCollection on: html\x0a\x0a\x09(sortBlock ifNil: [ aCollection ] ifNotNil: [ aCollection sort: sortBlock ])\x0a\x09\x09do: [ :each | self renderItem: each on: html ].",
+source: "renderItems: aCollection on: html\x0a\x0a\x09\x22(sortBlock ifNil: [ aCollection ] ifNotNil: [ aCollection sort: sortBlock ])\x0a\x09\x09do: [ :each | self renderItem: each on: html ].\x22",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["do:", "ifNil:ifNotNil:", "sort:", "renderItem:on:"]
+messageSends: []
 }),
 $globals.SlNewList);
 
@@ -954,12 +1109,23 @@ selector: "renderList:on:",
 protocol: 'rendering',
 fn: function (aCollection,html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-_st(html)._div_((function(){
-return smalltalk.withContext(function($ctx2) {
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(html)._div_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
 return self._renderItems_on_(aCollection,html);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderList:on:",{aCollection:aCollection,html:html},globals.SlNewList)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderList:on:",{aCollection:aCollection,html:html},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aCollection", "html"],
 source: "renderList: aCollection on: html\x0a\x0a\x09html div: [ self renderItems: aCollection on: html ].",
@@ -975,17 +1141,28 @@ selector: "renderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._div();
-_st($1)._class_("panel panel-default");
-$2=_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
+$1=$recv(html)._div();
+$recv($1)._class_("panel panel-default");
+$2=$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
 self._renderHeaderOn_(html);
 return self._renderContentsOn_(html);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
 self._render();
-return self}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},globals.SlNewList)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderOn: html\x0a\x0a\x09html div\x0a\x09\x09class: 'panel panel-default';\x0a\x09\x09with: [\x0a\x09\x09\x09self renderHeaderOn: html.\x0a\x09\x09\x09self renderContentsOn: html ].\x0a\x09\x0a\x09self render.\x0a\x09\x22self updateContents.\x22",
@@ -1001,9 +1178,15 @@ selector: "updateContents",
 protocol: 'actions',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 self._updateList_(self._data());
-return self}, function($ctx1) {$ctx1.fill(self,"updateContents",{},globals.SlNewList)})},
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"updateContents",{},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "updateContents\x0a\x0a\x09self updateList: self data",
@@ -1019,12 +1202,23 @@ selector: "updateList:",
 protocol: 'actions',
 fn: function (aCollection){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
-_st(self["@container"])._contents_((function(html){
-return smalltalk.withContext(function($ctx2) {
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(self["@container"])._contents_((function(html){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
 return self._renderList_on_(aCollection,html);
-}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"updateList:",{aCollection:aCollection},globals.SlNewList)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"updateList:",{aCollection:aCollection},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aCollection"],
 source: "updateList: aCollection\x0a\x0a\x09container contents: [ :html | self renderList: aCollection on: html ].",
@@ -1040,11 +1234,16 @@ selector: "width",
 protocol: 'accessing',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1;
-$1=_st(_st(self["@container"])._asJQuery())._innerWidth();
+$1=$recv($recv(self["@container"])._asJQuery())._innerWidth();
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"width",{},globals.SlNewList)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"width",{},$globals.SlNewList)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "width\x0a\x0a\x09^ container asJQuery innerWidth",
@@ -1062,6 +1261,7 @@ protocol: 'configuration',
 fn: function (){
 var self=this;
 return nil;
+
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
@@ -1073,7 +1273,7 @@ messageSends: []
 $globals.SlNewList.klass);
 
 
-$core.addClass('SlOldList', $globals.SlWidget, ['container', 'filteredItems', 'sortBlock', 'sortField'], 'ShoreLine-Widgets-Core');
+$core.addClass('SlOldList', null, ['container', 'filteredItems', 'sortBlock', 'sortField'], 'ShoreLine-Widgets-Core');
 $core.addMethod(
 $core.method({
 selector: "data",
@@ -1081,7 +1281,7 @@ protocol: 'accessing',
 fn: function (){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
 $1=self._subclassResponsibility();
@@ -1106,7 +1306,7 @@ protocol: 'filtering',
 fn: function (aCollection){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 self._subclassResponsibility();
 return self;
@@ -1131,16 +1331,9 @@ fn: function (){
 var self=this;
 function $Set(){return $globals.Set||(typeof Set=="undefined"?nil:Set)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-(
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.supercall = true, 
-//>>excludeEnd("ctx");
-$globals.SlOldList.superclass.fn.prototype._initialize.apply($recv(self), []));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.supercall = false;
-//>>excludeEnd("ctx");;
+self._initialize();
 self["@filteredItems"]=$recv($Set())._new();
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -1163,7 +1356,7 @@ protocol: 'rendering',
 fn: function (html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1,$2;
 $1=$recv(html)._div();
@@ -1240,7 +1433,7 @@ protocol: 'rendering',
 fn: function (html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1,$2;
 $1=$recv(html)._div();
@@ -1279,7 +1472,7 @@ protocol: 'rendering',
 fn: function (anElement,html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
 $1=self._subclassResponsibility();
@@ -1304,7 +1497,7 @@ protocol: 'rendering',
 fn: function (aCollection,html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $2,$1,$receiver;
 $2=self["@sortBlock"];
@@ -1343,7 +1536,7 @@ protocol: 'rendering',
 fn: function (aCollection,html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 $recv(html)._div_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -1375,7 +1568,7 @@ protocol: 'rendering',
 fn: function (html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1,$2;
 $1=$recv(html)._div();
@@ -1450,7 +1643,7 @@ protocol: 'actions',
 fn: function (){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 self._updateList_(self._filteredItemsFrom_(self._data()));
 return self;
@@ -1474,7 +1667,7 @@ protocol: 'actions',
 fn: function (aCollection){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 $recv(self["@container"])._contents_((function(html){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -1506,7 +1699,7 @@ protocol: 'accessing',
 fn: function (){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
 $1=$recv($recv(self["@container"])._asJQuery())._innerWidth();
@@ -1532,7 +1725,7 @@ protocol: 'configuration',
 fn: function (){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) { 
+return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
 $1=self._subclassResponsibility();

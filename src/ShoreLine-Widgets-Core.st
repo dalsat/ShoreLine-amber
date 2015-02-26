@@ -1,5 +1,5 @@
 Smalltalk createPackage: 'ShoreLine-Widgets-Core'!
-SlWidget subclass: #SlContainer
+Widget subclass: #SlContainer
 	instanceVariableNames: 'canvas contents'
 	package: 'ShoreLine-Widgets-Core'!
 
@@ -190,7 +190,7 @@ renderTitleOn: html
 			with: title ]
 ! !
 
-SlWidget subclass: #SlNewList
+nil subclass: #SlNewList
 	instanceVariableNames: 'container sortField'
 	package: 'ShoreLine-Widgets-Core'!
 
@@ -260,8 +260,8 @@ renderItem: anElement on: html
 
 renderItems: aCollection on: html
 
-	(sortBlock ifNil: [ aCollection ] ifNotNil: [ aCollection sort: sortBlock ])
-		do: [ :each | self renderItem: each on: html ].
+	"(sortBlock ifNil: [ aCollection ] ifNotNil: [ aCollection sort: sortBlock ])
+		do: [ :each | self renderItem: each on: html ]."
 !
 
 renderList: aCollection on: html
@@ -288,7 +288,7 @@ listName
 	^ nil
 ! !
 
-SlWidget subclass: #SlOldList
+nil subclass: #SlOldList
 	instanceVariableNames: 'container filteredItems sortBlock sortField'
 	package: 'ShoreLine-Widgets-Core'!
 

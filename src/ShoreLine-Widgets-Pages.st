@@ -1,5 +1,5 @@
 Smalltalk createPackage: 'ShoreLine-Widgets-Pages'!
-Widget subclass: #SlMessageFrame
+SlFrame subclass: #SlMessageFrame
 	instanceVariableNames: ''
 	package: 'ShoreLine-Widgets-Pages'!
 
@@ -12,7 +12,7 @@ message
 
 message: aString
 
-	"contents := aString"
+	contents := aString
 ! !
 
 !SlMessageFrame methodsFor: 'arguments'!
@@ -25,7 +25,14 @@ pushArgs: aDictionary
 initialize
 
 	super initialize.
-	"contents := self class message."
+	contents := self class defaultMessage.
+! !
+
+!SlMessageFrame class methodsFor: 'as yet unclassified'!
+
+defaultMessage
+
+	^ 'No Message'
 ! !
 
 SlMessageFrame subclass: #SlErrorFrame
