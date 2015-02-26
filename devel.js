@@ -3,7 +3,7 @@ define([
     './deploy',
     // --- packages used only during development begin here ---
 
-    // 'tide_lib/devel',
+    'tide_lib/devel',
     'shoreline/ShoreLine-Tests',
     // 'shoreline/ShoreLine-Examples'
     'amber-attic/Benchfib',

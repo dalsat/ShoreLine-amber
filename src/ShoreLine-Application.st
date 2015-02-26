@@ -1,1 +1,0 @@
-Smalltalk createPackage: 'ShoreLine-Application'!

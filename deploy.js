@@ -2,8 +2,6 @@ define([
     'amber/deploy',
     // --- packages to be deployed begin here ---
     'amber-contrib-web/Web',
-    'shoreline/ShoreLine',
-
     'tide_lib/deploy',
 
     'shoreline/ShoreLine-Core',
@@ -20,7 +18,8 @@ define([
 
     'shoreline/ShoreLine-Widgets',
     'shoreline/ShoreLine-Pages',
-    'shoreline/ShoreLine-Application',
+    'shoreline/ShoreLine',
+    
         // 'shoreline/ShoreLine-Visualizations',
         // 'shoreline/ShoreLine-Reporter',
 
