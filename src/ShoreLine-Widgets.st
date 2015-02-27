@@ -107,14 +107,63 @@ renderItem: aStacktrace on: html
 ! !
 
 SlWidget subclass: #SlSummaryWidget
-	instanceVariableNames: ''
+	instanceVariableNames: 'data'
 	package: 'ShoreLine-Widgets'!
+
+!SlSummaryWidget methodsFor: 'accessing'!
+
+data
+
+	^ data ifNil: [ data := TDClientProxy on: '/stacktraces' ]
+!
+
+dataDo: aBlock
+	| proxy |
+	
+	^ SlSession current data with: #stacktraces do: aBlock
+! !
 
 !SlSummaryWidget methodsFor: 'rendering'!
 
+renderAuthor: anAuthor on: html
+
+	html li: anAuthor associationValue, ' (', anAuthor key, ')'
+!
+
+renderAuthors: aDictionary on: html
+
+	(aDictionary at: #authors) then: [ :collection |
+		collection contents then: [ :authors |
+
+			html div
+				class: 'summary-users';
+				with: [
+					html h5: 'Most active users:'.
+					html ol: [ authors do: [ :each| self renderAuthor: each on: html ] ] ] ] ]
+!
+
+renderClasses: aDictionary on: html
+
+	(aDictionary at: #classes) then: [ :r | r contents then: [ :classes |
+		html div: [
+			html h5: 'Most frequent classes'.
+			html ol: [ classes do: [ :eachClass | html li: eachClass associationValue, ' (', eachClass key, ')' ] ] ] ] ]
+!
+
+renderNumberOfTraces: aDictionary on: html
+
+	(aDictionary at: #numberOfTraces) then: [ :number | html div: number asString, ' stack traces in the last 7 days' ]
+!
+
 renderOn: html
 
-	html with: 'Summay widget'.
+	self data connect.
+	self data then: [
+		html h2: 'Summay widget'.
+		self data summary then: [ :dictionary |
+			self renderNumberOfTraces: dictionary on: html.
+			self renderAuthors: dictionary on: html.
+			self renderClasses: dictionary on: html ] ]
 ! !
 
 SlContainer subclass: #SlTabbedContainer

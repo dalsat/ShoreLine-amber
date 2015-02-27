@@ -151,11 +151,8 @@ function $TDClientProxy(){return $globals.TDClientProxy||(typeof TDClientProxy==
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $2,$3,$1;
-$2=$recv($TDClientProxy())._on_($recv($recv(self._class())._proxies())._at_(aSymbol));
-$recv($2)._connect();
-$3=$recv($2)._yourself();
-$1=$3;
+var $1;
+$1=$recv($recv($TDClientProxy())._on_($recv($recv(self._class())._proxies())._at_(aSymbol)))._yourself();
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"loadProxy:",{aSymbol:aSymbol},$globals.SlData)});
@@ -163,10 +160,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSymbol"],
-source: "loadProxy: aSymbol\x0a\x0a\x09^ (TDClientProxy on: (self class proxies at: aSymbol))\x0a\x09\x09connect;\x0a\x09\x09yourself",
+source: "loadProxy: aSymbol\x0a\x0a\x09^ (TDClientProxy on: (self class proxies at: aSymbol))\x0a\x09\x09\x22connect;\x22\x0a\x09\x09yourself",
 referencedClasses: ["TDClientProxy"],
 //>>excludeEnd("ide");
-messageSends: ["connect", "on:", "at:", "proxies", "class", "yourself"]
+messageSends: ["yourself", "on:", "at:", "proxies", "class"]
 }),
 $globals.SlData);
 
@@ -181,6 +178,7 @@ var proxy;
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 proxy=self._at_(aSymbol);
+$recv(proxy)._connect();
 $recv(proxy)._then_($recv(aBlock)._value_(proxy));
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -189,10 +187,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSymbol", "aBlock"],
-source: "with: aSymbol do: aBlock\x0a\x09| proxy |\x0a\x09proxy := self at: aSymbol.\x0a\x09proxy then: (aBlock value: proxy)",
+source: "with: aSymbol do: aBlock\x0a\x09| proxy |\x0a\x09proxy := self at: aSymbol.\x0a\x09proxy connect.\x0a\x09proxy then: (aBlock value: proxy)",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["at:", "then:", "value:"]
+messageSends: ["at:", "connect", "then:", "value:"]
 }),
 $globals.SlData);
 

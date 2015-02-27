@@ -37,13 +37,14 @@ at: aSymbol
 loadProxy: aSymbol
 
 	^ (TDClientProxy on: (self class proxies at: aSymbol))
-		connect;
+		"connect;"
 		yourself
 !
 
 with: aSymbol do: aBlock
 	| proxy |
 	proxy := self at: aSymbol.
+	proxy connect.
 	proxy then: (aBlock value: proxy)
 ! !
 
