@@ -519,34 +519,64 @@ $globals.SlSummaryWidget);
 
 $core.addMethod(
 $core.method({
-selector: "renderAuthor:on:",
+selector: "renderAuthor:withIndex:on:",
 protocol: 'rendering',
-fn: function (anAuthor,html){
+fn: function (anAuthor,aNumber,html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $2,$1;
-$2=$recv($recv($recv(anAuthor)._associationValue()).__comma(" (")).__comma($recv(anAuthor)._key());
+var $1,$2;
+$recv($recv(html)._tr())._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx[","]=2;
+return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-$1=$recv($2).__comma(")");
+$1=$recv(html)._td();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx[","]=1;
+$ctx2.sendIdx["td"]=1;
 //>>excludeEnd("ctx");
-$recv(html)._li_($1);
+$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
+return $recv($recv(html)._tag_("b"))._with_(aNumber);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["with:"]=3;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["with:"]=2;
+//>>excludeEnd("ctx");
+$2=$recv(html)._td();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["td"]=2;
+//>>excludeEnd("ctx");
+$recv($2)._with_($recv(anAuthor)._associationValue());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["with:"]=4;
+//>>excludeEnd("ctx");
+return $recv($recv(html)._td())._with_($recv(anAuthor)._key());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"renderAuthor:on:",{anAuthor:anAuthor,html:html},$globals.SlSummaryWidget)});
+}, function($ctx1) {$ctx1.fill(self,"renderAuthor:withIndex:on:",{anAuthor:anAuthor,aNumber:aNumber,html:html},$globals.SlSummaryWidget)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["anAuthor", "html"],
-source: "renderAuthor: anAuthor on: html\x0a\x0a\x09html li: anAuthor associationValue, ' (', anAuthor key, ')'",
+args: ["anAuthor", "aNumber", "html"],
+source: "renderAuthor: anAuthor withIndex: aNumber on: html\x0a\x0a\x09html tr with: [\x0a\x09\x09html td with: [ (html tag: #b) with: aNumber ].\x0a\x09\x09html td with: anAuthor associationValue.\x0a\x09\x09html td with: anAuthor key ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["li:", ",", "associationValue", "key"]
+messageSends: ["with:", "tr", "td", "tag:", "associationValue", "key"]
 }),
 $globals.SlSummaryWidget);
 
@@ -559,7 +589,7 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $1,$2;
+var $1,$3,$5,$6,$4,$7,$9,$11,$10,$8,$2;
 $recv($recv(aDictionary)._at_("authors"))._then_((function(collection){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
@@ -569,33 +599,147 @@ return $recv($recv(collection)._contents())._then_((function(authors){
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
 $1=$recv(html)._div();
-$recv($1)._class_("summary-users");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["div"]=1;
+//>>excludeEnd("ctx");
+$recv($1)._class_("summary-users panel panel-default");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["class:"]=1;
+//>>excludeEnd("ctx");
 $2=$recv($1)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx4) {
 //>>excludeEnd("ctx");
-$recv(html)._h5_("Most active users:");
-return $recv(html)._ol_((function(){
+$3=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["div"]=2;
+//>>excludeEnd("ctx");
+$recv($3)._class_("panel-heading");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["class:"]=2;
+//>>excludeEnd("ctx");
+$4=$recv($3)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx5) {
 //>>excludeEnd("ctx");
-return $recv(authors)._do_((function(each){
+$5=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["div"]=3;
+//>>excludeEnd("ctx");
+$recv($5)._class_("panel-title");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["class:"]=3;
+//>>excludeEnd("ctx");
+$6=$recv($5)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx6) {
 //>>excludeEnd("ctx");
-return self._renderAuthor_on_(each,html);
+return $recv(html)._h5_("Top Reporters");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx6) {$ctx6.fillBlock({each:each},$ctx5,5)});
+}, function($ctx6) {$ctx6.fillBlock({},$ctx5,5)});
 //>>excludeEnd("ctx");
 }));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["with:"]=3;
+//>>excludeEnd("ctx");
+return $6;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx5) {$ctx5.fillBlock({},$ctx4,4)});
 //>>excludeEnd("ctx");
 }));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["with:"]=2;
+//>>excludeEnd("ctx");
+$4;
+$7=$recv(html)._div();
+$recv($7)._class_("panel-body");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["class:"]=4;
+//>>excludeEnd("ctx");
+$8=$recv($7)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx5) {
+//>>excludeEnd("ctx");
+$9=$recv(html)._table();
+$recv($9)._class_("table table-hover table-striped");
+$10=$recv($9)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx6) {
+//>>excludeEnd("ctx");
+$recv($recv(html)._thead())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx7) {
+//>>excludeEnd("ctx");
+return $recv($recv(html)._tr())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx8) {
+//>>excludeEnd("ctx");
+$11=$recv(html)._th();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx8.sendIdx["th"]=1;
+//>>excludeEnd("ctx");
+$recv($11)._with_("User Name");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx8.sendIdx["with:"]=8;
+//>>excludeEnd("ctx");
+return $recv($recv(html)._th())._with_("Number of Traces");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx8.sendIdx["with:"]=9;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx8) {$ctx8.fillBlock({},$ctx7,9)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx7.sendIdx["with:"]=7;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx7) {$ctx7.fillBlock({},$ctx6,8)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx6.sendIdx["with:"]=6;
+//>>excludeEnd("ctx");
+return $recv($recv(html)._tbody())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx7) {
+//>>excludeEnd("ctx");
+return $recv(authors)._withIndexDo_((function(each,i){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx8) {
+//>>excludeEnd("ctx");
+return self._renderAuthor_withIndex_on_(each,i,html);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx8) {$ctx8.fillBlock({each:each,i:i},$ctx7,11)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx7) {$ctx7.fillBlock({},$ctx6,10)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx6) {$ctx6.fillBlock({},$ctx5,7)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["with:"]=5;
+//>>excludeEnd("ctx");
+return $10;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx5) {$ctx5.fillBlock({},$ctx4,6)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["with:"]=4;
+//>>excludeEnd("ctx");
+return $8;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx4) {$ctx4.fillBlock({},$ctx3,3)});
 //>>excludeEnd("ctx");
 }));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
 return $2;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx3) {$ctx3.fillBlock({authors:authors},$ctx2,2)});
@@ -615,10 +759,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aDictionary", "html"],
-source: "renderAuthors: aDictionary on: html\x0a\x0a\x09(aDictionary at: #authors) then: [ :collection |\x0a\x09\x09collection contents then: [ :authors |\x0a\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'summary-users';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html h5: 'Most active users:'.\x0a\x09\x09\x09\x09\x09html ol: [ authors do: [ :each| self renderAuthor: each on: html ] ] ] ] ] ",
+source: "renderAuthors: aDictionary on: html\x0a\x0a\x09(aDictionary at: #authors) then: [ :collection |\x0a\x09\x09collection contents then: [ :authors |\x0a\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'summary-users panel panel-default';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'panel-heading';\x0a\x09\x09\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09\x09\x09class: 'panel-title';\x0a\x09\x09\x09\x09\x09\x09\x09\x09with: [ html h5: 'Top Reporters' ] ].\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'panel-body';\x0a\x09\x09\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09\x09\x09html table\x0a\x09\x09\x09\x09\x09\x09\x09\x09class: 'table table-hover table-striped';\x0a\x09\x09\x09\x09\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09html thead with: [\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09html tr with: [\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09html th with: 'User Name'.\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09html th with: 'Number of Traces' ] ].\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09html tbody with: [ authors withIndexDo: [ :each :i |\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09self renderAuthor: each withIndex: i on: html ] ] ] ] ] ] ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["then:", "at:", "contents", "class:", "div", "with:", "h5:", "ol:", "do:", "renderAuthor:on:"]
+messageSends: ["then:", "at:", "contents", "class:", "div", "with:", "h5:", "table", "thead", "tr", "th", "tbody", "withIndexDo:", "renderAuthor:withIndex:on:"]
 }),
 $globals.SlSummaryWidget);
 
@@ -631,7 +775,7 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $2,$1;
+var $1,$3,$4,$5,$2;
 $recv($recv(aDictionary)._at_("classes"))._then_((function(r){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
@@ -644,32 +788,98 @@ return $recv(html)._div_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx4) {
 //>>excludeEnd("ctx");
-$recv(html)._h5_("Most frequent classes");
-return $recv(html)._ol_((function(){
+$recv(html)._h5_("The troublesome classes");
+$1=$recv(html)._table();
+$recv($1)._class_("table");
+$2=$recv($1)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx5) {
 //>>excludeEnd("ctx");
-return $recv(classes)._do_((function(eachClass){
+$recv($recv(html)._thead())._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx6) {
 //>>excludeEnd("ctx");
-$2=$recv($recv($recv(eachClass)._associationValue()).__comma(" (")).__comma($recv(eachClass)._key());
+$3=$recv(html)._tr();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx6.sendIdx[","]=2;
+$ctx6.sendIdx["tr"]=1;
 //>>excludeEnd("ctx");
-$1=$recv($2).__comma(")");
+return $recv($3)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx6.sendIdx[","]=1;
+return $core.withContext(function($ctx7) {
 //>>excludeEnd("ctx");
-return $recv(html)._li_($1);
+$4=$recv(html)._th();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx6) {$ctx6.fillBlock({eachClass:eachClass},$ctx5,5)});
+$ctx7.sendIdx["th"]=1;
+//>>excludeEnd("ctx");
+$recv($4)._with_("Class Name");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx7.sendIdx["with:"]=4;
+//>>excludeEnd("ctx");
+return $recv($recv(html)._th())._with_("Number of Stack Traces");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx7.sendIdx["with:"]=5;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx7) {$ctx7.fillBlock({},$ctx6,6)});
 //>>excludeEnd("ctx");
 }));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx6.sendIdx["with:"]=3;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx6) {$ctx6.fillBlock({},$ctx5,5)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["with:"]=2;
+//>>excludeEnd("ctx");
+return $recv($recv(html)._tbody())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx6) {
+//>>excludeEnd("ctx");
+return $recv(classes)._do_((function(eachClass){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx7) {
+//>>excludeEnd("ctx");
+return $recv($recv(html)._tr())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx8) {
+//>>excludeEnd("ctx");
+$5=$recv(html)._td();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx8.sendIdx["td"]=1;
+//>>excludeEnd("ctx");
+$recv($5)._with_($recv(eachClass)._associationValue());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx8.sendIdx["with:"]=8;
+//>>excludeEnd("ctx");
+return $recv($recv(html)._td())._with_($recv(eachClass)._key());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx8) {$ctx8.fillBlock({},$ctx7,9)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx7.sendIdx["with:"]=7;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx7) {$ctx7.fillBlock({eachClass:eachClass},$ctx6,8)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx6) {$ctx6.fillBlock({},$ctx5,7)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["with:"]=6;
+//>>excludeEnd("ctx");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx5) {$ctx5.fillBlock({},$ctx4,4)});
 //>>excludeEnd("ctx");
 }));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
+return $2;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx4) {$ctx4.fillBlock({},$ctx3,3)});
 //>>excludeEnd("ctx");
@@ -692,10 +902,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aDictionary", "html"],
-source: "renderClasses: aDictionary on: html\x0a\x0a\x09(aDictionary at: #classes) then: [ :r | r contents then: [ :classes |\x0a\x09\x09html div: [\x0a\x09\x09\x09html h5: 'Most frequent classes'.\x0a\x09\x09\x09html ol: [ classes do: [ :eachClass | html li: eachClass associationValue, ' (', eachClass key, ')' ] ] ] ] ]",
+source: "renderClasses: aDictionary on: html\x0a\x0a\x09(aDictionary at: #classes) then: [ :r | r contents then: [ :classes |\x0a\x09\x09html div: [\x0a\x09\x09\x09html h5: 'The troublesome classes'.\x0a\x09\x09\x09html table\x0a\x09\x09\x09\x09class: 'table';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html thead with: [\x0a\x09\x09\x09\x09\x09\x09html tr with: [\x0a\x09\x09\x09\x09\x09\x09\x09html th with: 'Class Name'.\x0a\x09\x09\x09\x09\x09\x09\x09html th with: 'Number of Stack Traces' ] ].\x0a\x09\x09\x09\x09\x09html tbody with: [\x0a\x09\x09\x09\x09\x09\x09classes do: [ :eachClass | html tr with: [\x0a\x09\x09\x09\x09\x09\x09\x09html td with: eachClass associationValue.\x0a\x09\x09\x09\x09\x09\x09\x09html td with: eachClass key ] ] ] ] ] ] ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["then:", "at:", "contents", "div:", "h5:", "ol:", "do:", "li:", ",", "associationValue", "key"]
+messageSends: ["then:", "at:", "contents", "div:", "h5:", "class:", "table", "with:", "thead", "tr", "th", "tbody", "do:", "td", "associationValue", "key"]
 }),
 $globals.SlSummaryWidget);
 
@@ -740,7 +950,7 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $1,$2;
+var $1,$2,$3,$5,$6,$4,$7,$9,$10,$11,$12,$8;
 $1=self._data();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["data"]=1;
@@ -759,9 +969,100 @@ return $recv($recv(self._data())._summary())._then_((function(dictionary){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
-self._renderNumberOfTraces_on_(dictionary,html);
-self._renderAuthors_on_(dictionary,html);
+$3=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["div"]=1;
+//>>excludeEnd("ctx");
+$recv($3)._class_("row");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["class:"]=1;
+//>>excludeEnd("ctx");
+$4=$recv($3)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx4) {
+//>>excludeEnd("ctx");
+$5=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["div"]=2;
+//>>excludeEnd("ctx");
+$recv($5)._class_("col-xs-4");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["class:"]=2;
+//>>excludeEnd("ctx");
+$6=$recv($5)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx5) {
+//>>excludeEnd("ctx");
+return self._renderNumberOfTraces_on_(dictionary,html);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx5) {$ctx5.fillBlock({},$ctx4,4)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["with:"]=2;
+//>>excludeEnd("ctx");
+return $6;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx4) {$ctx4.fillBlock({},$ctx3,3)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
+$4;
+$7=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["div"]=3;
+//>>excludeEnd("ctx");
+$recv($7)._class_("row");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["class:"]=3;
+//>>excludeEnd("ctx");
+$8=$recv($7)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx4) {
+//>>excludeEnd("ctx");
+$9=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["div"]=4;
+//>>excludeEnd("ctx");
+$recv($9)._class_("col-xs-4");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["class:"]=4;
+//>>excludeEnd("ctx");
+$10=$recv($9)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx5) {
+//>>excludeEnd("ctx");
+return self._renderAuthors_on_(dictionary,html);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx5) {$ctx5.fillBlock({},$ctx4,6)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["with:"]=4;
+//>>excludeEnd("ctx");
+$10;
+$11=$recv(html)._div();
+$recv($11)._class_("col-xs-4");
+$12=$recv($11)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx5) {
+//>>excludeEnd("ctx");
 return self._renderClasses_on_(dictionary,html);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx5) {$ctx5.fillBlock({},$ctx4,7)});
+//>>excludeEnd("ctx");
+}));
+return $12;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx4) {$ctx4.fillBlock({},$ctx3,5)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["with:"]=3;
+//>>excludeEnd("ctx");
+return $8;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx3) {$ctx3.fillBlock({dictionary:dictionary},$ctx2,2)});
 //>>excludeEnd("ctx");
@@ -780,10 +1081,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
-source: "renderOn: html\x0a\x0a\x09self data connect.\x0a\x09self data then: [\x0a\x09\x09html h2: 'Summay widget'.\x0a\x09\x09self data summary then: [ :dictionary |\x0a\x09\x09\x09self renderNumberOfTraces: dictionary on: html.\x0a\x09\x09\x09self renderAuthors: dictionary on: html.\x0a\x09\x09\x09self renderClasses: dictionary on: html ] ]",
+source: "renderOn: html\x0a\x0a\x09self data connect.\x0a\x09self data then: [\x0a\x09\x09html h2: 'Summay widget'.\x0a\x09\x09self data summary then: [ :dictionary |\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'row';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderNumberOfTraces: dictionary on: html ] ].\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'row';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderAuthors: dictionary on: html ].\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderClasses: dictionary on: html ] ] ] ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["connect", "data", "then:", "h2:", "summary", "renderNumberOfTraces:on:", "renderAuthors:on:", "renderClasses:on:"]
+messageSends: ["connect", "data", "then:", "h2:", "summary", "class:", "div", "with:", "renderNumberOfTraces:on:", "renderAuthors:on:", "renderClasses:on:"]
 }),
 $globals.SlSummaryWidget);
 

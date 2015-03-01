@@ -125,9 +125,12 @@ dataDo: aBlock
 
 !SlSummaryWidget methodsFor: 'rendering'!
 
-renderAuthor: anAuthor on: html
+renderAuthor: anAuthor withIndex: aNumber on: html
 
-	html li: anAuthor associationValue, ' (', anAuthor key, ')'
+	html tr with: [
+		html td with: [ (html tag: #b) with: aNumber ].
+		html td with: anAuthor associationValue.
+		html td with: anAuthor key ]
 !
 
 renderAuthors: aDictionary on: html
@@ -136,18 +139,44 @@ renderAuthors: aDictionary on: html
 		collection contents then: [ :authors |
 
 			html div
-				class: 'summary-users';
+				class: 'summary-users panel panel-default';
 				with: [
-					html h5: 'Most active users:'.
-					html ol: [ authors do: [ :each| self renderAuthor: each on: html ] ] ] ] ]
+					html div
+						class: 'panel-heading';
+						with: [
+							html div
+								class: 'panel-title';
+								with: [ html h5: 'Top Reporters' ] ].
+					html div
+						class: 'panel-body';
+						with: [
+							html table
+								class: 'table table-hover table-striped';
+								with: [
+									html thead with: [
+										html tr with: [
+											html th with: 'User Name'.
+											html th with: 'Number of Traces' ] ].
+									html tbody with: [ authors withIndexDo: [ :each :i |
+										self renderAuthor: each withIndex: i on: html ] ] ] ] ] ] ]
 !
 
 renderClasses: aDictionary on: html
 
 	(aDictionary at: #classes) then: [ :r | r contents then: [ :classes |
 		html div: [
-			html h5: 'Most frequent classes'.
-			html ol: [ classes do: [ :eachClass | html li: eachClass associationValue, ' (', eachClass key, ')' ] ] ] ] ]
+			html h5: 'The troublesome classes'.
+			html table
+				class: 'table';
+				with: [
+					html thead with: [
+						html tr with: [
+							html th with: 'Class Name'.
+							html th with: 'Number of Stack Traces' ] ].
+					html tbody with: [
+						classes do: [ :eachClass | html tr with: [
+							html td with: eachClass associationValue.
+							html td with: eachClass key ] ] ] ] ] ] ]
 !
 
 renderNumberOfTraces: aDictionary on: html
@@ -161,9 +190,21 @@ renderOn: html
 	self data then: [
 		html h2: 'Summay widget'.
 		self data summary then: [ :dictionary |
-			self renderNumberOfTraces: dictionary on: html.
-			self renderAuthors: dictionary on: html.
-			self renderClasses: dictionary on: html ] ]
+			html div
+				class: 'row';
+				with: [
+					html div
+						class: 'col-xs-4';
+						with: [ self renderNumberOfTraces: dictionary on: html ] ].
+			html div
+				class: 'row';
+				with: [
+					html div
+						class: 'col-xs-4';
+						with: [ self renderAuthors: dictionary on: html ].
+					html div
+						class: 'col-xs-4';
+						with: [ self renderClasses: dictionary on: html ] ] ] ]
 ! !
 
 SlContainer subclass: #SlTabbedContainer
