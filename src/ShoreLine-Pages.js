@@ -925,31 +925,6 @@ $globals.SlToolbarFrame);
 $core.addClass('SlMainFrame', $globals.SlToolbarFrame, ['pages'], 'ShoreLine-Pages');
 $core.addMethod(
 $core.method({
-selector: "detailsPageEvent:",
-protocol: 'events',
-fn: function (anAnnouncement){
-var self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv(self["@contents"])._report_($recv(anAnnouncement)._report());
-self._displayPage_("details");
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"detailsPageEvent:",{anAnnouncement:anAnnouncement},$globals.SlMainFrame)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["anAnnouncement"],
-source: "detailsPageEvent: anAnnouncement\x0a\x0a\x09contents report: anAnnouncement report.\x0a\x09self displayPage: #details.",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: ["report:", "report", "displayPage:"]
-}),
-$globals.SlMainFrame);
-
-$core.addMethod(
-$core.method({
 selector: "displayPage:",
 protocol: 'actions',
 fn: function (aSlPage){
@@ -1024,30 +999,6 @@ $globals.SlMainFrame);
 
 $core.addMethod(
 $core.method({
-selector: "errorPageEvent:",
-protocol: 'events',
-fn: function (anAnnouncement){
-var self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-self._displayErrorPage_("error");
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"errorPageEvent:",{anAnnouncement:anAnnouncement},$globals.SlMainFrame)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["anAnnouncement"],
-source: "errorPageEvent: anAnnouncement\x0a\x09\x0a\x09self displayErrorPage: #error",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: ["displayErrorPage:"]
-}),
-$globals.SlMainFrame);
-
-$core.addMethod(
-$core.method({
 selector: "initialize",
 protocol: 'initialization',
 fn: function (){
@@ -1089,7 +1040,7 @@ $ctx2.sendIdx["at:put:"]=1;
 }, function($ctx2) {$ctx2.fillBlock({eachPage:eachPage},$ctx1,1)});
 //>>excludeEnd("ctx");
 }));
-$recv(self["@pages"])._at_put_("notFound",$recv($SlErrorFrame())._new());
+$recv(self["@pages"])._at_put_("error",$recv($SlErrorFrame())._new());
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlMainFrame)});
@@ -1097,7 +1048,7 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09super initialize.\x0a\x09pages := Dictionary new.\x0a\x09\x0a\x09ShoreLine pages do: [ :eachPage |\x0a\x09\x09pages at: eachPage id put: eachPage new ].\x0a\x09pages at: #notFound put: SlErrorFrame new.\x0a\x09\x22self class pages do: [ :eachPage |\x0a\x09\x09pages at: eachPage key put: eachPage value new ].\x22",
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09pages := Dictionary new.\x0a\x09\x0a\x09ShoreLine pages do: [ :eachPage |\x0a\x09\x09pages at: eachPage id put: eachPage new ].\x0a\x09pages at: #error put: SlErrorFrame new.\x0a\x09\x22self class pages do: [ :eachPage |\x0a\x09\x09pages at: eachPage key put: eachPage value new ].\x22",
 referencedClasses: ["Dictionary", "ShoreLine", "SlErrorFrame"],
 //>>excludeEnd("ide");
 messageSends: ["initialize", "new", "do:", "pages", "at:put:", "id"]
@@ -1147,7 +1098,7 @@ $ctx1.sendIdx[","]=1;
 $3="message".__minus_gt($4);
 $2=[$3];
 $1=$recv($Dictionary())._from_($2);
-self._displayPageNamed_withArgs_("notFound",$1);
+self._displayPageNamed_withArgs_("error",$1);
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"pageNotFound:",{args:args},$globals.SlMainFrame)});
@@ -1155,7 +1106,7 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["args"],
-source: "pageNotFound: args\x0a\x0a\x09self displayPageNamed: #notFound withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })",
+source: "pageNotFound: args\x0a\x0a\x09self displayPageNamed: #error withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })",
 referencedClasses: ["Dictionary"],
 //>>excludeEnd("ide");
 messageSends: ["displayPageNamed:withArgs:", "from:", "->", ",", "at:"]
@@ -1246,52 +1197,6 @@ source: "events\x0a\x0a\x09^{}",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: []
-}),
-$globals.SlMainFrame.klass);
-
-$core.addMethod(
-$core.method({
-selector: "pages",
-protocol: 'configuration',
-fn: function (){
-var self=this;
-function $SlHomePage(){return $globals.SlHomePage||(typeof SlHomePage=="undefined"?nil:SlHomePage)}
-function $SlDetailsFrame(){return $globals.SlDetailsFrame||(typeof SlDetailsFrame=="undefined"?nil:SlDetailsFrame)}
-function $SlStackTraceFrame(){return $globals.SlStackTraceFrame||(typeof SlStackTraceFrame=="undefined"?nil:SlStackTraceFrame)}
-function $SlMessageFrame(){return $globals.SlMessageFrame||(typeof SlMessageFrame=="undefined"?nil:SlMessageFrame)}
-function $SlErrorFrame(){return $globals.SlErrorFrame||(typeof SlErrorFrame=="undefined"?nil:SlErrorFrame)}
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-var $2,$3,$4,$5,$1;
-$2="home".__minus_gt($SlHomePage());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx["->"]=1;
-//>>excludeEnd("ctx");
-$3="details".__minus_gt($SlDetailsFrame());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx["->"]=2;
-//>>excludeEnd("ctx");
-$4="stacktraces".__minus_gt($SlStackTraceFrame());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx["->"]=3;
-//>>excludeEnd("ctx");
-$5="test".__minus_gt($SlMessageFrame());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx["->"]=4;
-//>>excludeEnd("ctx");
-$1=[$2,$3,$4,$5,"notFound".__minus_gt($SlErrorFrame())];
-return $1;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"pages",{},$globals.SlMainFrame.klass)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "pages\x0a\x0a\x09^ {\x0a\x09\x09#home -> SlHomePage.\x0a\x09\x09\x22#list -> SlListFrame.\x22\x0a\x09\x09#details -> SlDetailsFrame.\x0a\x09\x09\x22#images -> SlImagesFrame.\x0a\x09\x09#stacktracelist -> SlStackTraceListView.\x22\x0a\x09\x09#stacktraces -> SlStackTraceFrame.\x0a\x09\x09\x0a\x09\x09#test -> SlMessageFrame.\x0a\x09\x09#notFound -> SlErrorFrame\x0a\x09}",
-referencedClasses: ["SlHomePage", "SlDetailsFrame", "SlStackTraceFrame", "SlMessageFrame", "SlErrorFrame"],
-//>>excludeEnd("ide");
-messageSends: ["->"]
 }),
 $globals.SlMainFrame.klass);
 

@@ -1,4 +1,4 @@
-define("shoreline/ShoreLine-Router", ["amber/boot", "amber_core/Kernel-Objects"], function($boot){
+define("shoreline/ShoreLine-Router", ["amber/boot", "amber_core/Kernel-Objects", "shoreline/ShoreLine-Core"], function($boot){
 var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
 $core.addPackage('ShoreLine-Router');
 $core.packages["ShoreLine-Router"].innerEval = function (expr) { return eval(expr); };
@@ -386,7 +386,7 @@ messageSends: ["url:", "new", "callback:", "yourself"]
 $globals.SlRoute.klass);
 
 
-$core.addClass('SlRouter', $globals.Object, ['routes', 'notFound'], 'ShoreLine-Router');
+$core.addClass('SlRouter', $globals.SlObject, ['routes', 'notFound'], 'ShoreLine-Router');
 $core.addMethod(
 $core.method({
 selector: "handleRequest:",
@@ -443,14 +443,13 @@ return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 (
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.supercall = true,
+$ctx1.supercall = true, 
 //>>excludeEnd("ctx");
 $globals.SlRouter.superclass.fn.prototype._initialize.apply($recv(self), []));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
 //>>excludeEnd("ctx");;
 self["@routes"]=[];
-self._registerEvents();
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlRouter)});
@@ -458,10 +457,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09super initialize.\x0a\x09routes := {}.\x0a\x09self registerEvents.",
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09routes := {}.",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["initialize", "registerEvents"]
+messageSends: ["initialize"]
 }),
 $globals.SlRouter);
 
@@ -644,11 +643,10 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $2,$3,$1;
-$2=self._new();
-$recv($2)._registerAll_(aDictionary);
-$3=$recv($2)._yourself();
-$1=$3;
+var $1;
+$1=self._withRoutes_notFound_(aDictionary,(function(){
+
+}));
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"withRoutes:",{aDictionary:aDictionary},$globals.SlRouter.klass)});
@@ -656,10 +654,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aDictionary"],
-source: "withRoutes: aDictionary\x0a\x0a\x09^ self new\x0a\x09\x09registerAll: aDictionary;\x0a\x09\x09yourself",
+source: "withRoutes: aDictionary\x0a\x0a\x09^ self withRoutes: aDictionary notFound: []",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["registerAll:", "new", "yourself"]
+messageSends: ["withRoutes:notFound:"]
 }),
 $globals.SlRouter.klass);
 

@@ -1603,7 +1603,6 @@ selector: "renderHeaderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-function $SlHomePageAnnouncement(){return $globals.SlHomePageAnnouncement||(typeof SlHomePageAnnouncement=="undefined"?nil:SlHomePageAnnouncement)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
@@ -1623,7 +1622,7 @@ $recv($3)._onClick_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
-return self._announce_($recv($SlHomePageAnnouncement())._new());
+return self._url_("/");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
 //>>excludeEnd("ctx");
@@ -1652,10 +1651,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
-source: "renderHeaderOn: html\x0a\x0a\x09html div\x0a\x09\x09class: 'navbar-header';\x0a\x09\x09with: [ html a\x0a\x09\x09\x09class: 'navbar-brand';\x0a\x09\x09\x09onClick: [ self announce: SlHomePageAnnouncement new ];\x0a\x09\x09\x09with: [ self renderLogoOn: html ] ]",
-referencedClasses: ["SlHomePageAnnouncement"],
+source: "renderHeaderOn: html\x0a\x0a\x09html div\x0a\x09\x09class: 'navbar-header';\x0a\x09\x09with: [ html a\x0a\x09\x09\x09class: 'navbar-brand';\x0a\x09\x09\x09onClick: [ self url: '/' ];\x0a\x09\x09\x09with: [ self renderLogoOn: html ] ]",
+referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["class:", "div", "with:", "a", "onClick:", "announce:", "new", "renderLogoOn:"]
+messageSends: ["class:", "div", "with:", "a", "onClick:", "url:", "renderLogoOn:"]
 }),
 $globals.SlToolbar);
 

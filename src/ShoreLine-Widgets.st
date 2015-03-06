@@ -332,7 +332,7 @@ renderHeaderOn: html
 		class: 'navbar-header';
 		with: [ html a
 			class: 'navbar-brand';
-			onClick: [ self announce: SlHomePageAnnouncement new ];
+			onClick: [ self url: '/' ];
 			with: [ self renderLogoOn: html ] ]
 !
 

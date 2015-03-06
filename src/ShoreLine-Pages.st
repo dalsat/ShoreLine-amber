@@ -303,21 +303,10 @@ displayPageNamed: aString withArgs: aDictionary
 
 pageNotFound: args
 
-	self displayPageNamed: #notFound withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })
+	self displayPageNamed: #error withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })
 ! !
 
 !SlMainFrame methodsFor: 'events'!
-
-detailsPageEvent: anAnnouncement
-
-	contents report: anAnnouncement report.
-	self displayPage: #details.
-!
-
-errorPageEvent: anAnnouncement
-	
-	self displayErrorPage: #error
-!
 
 registerEvents
 
@@ -339,7 +328,7 @@ initialize
 	
 	ShoreLine pages do: [ :eachPage |
 		pages at: eachPage id put: eachPage new ].
-	pages at: #notFound put: SlErrorFrame new.
+	pages at: #error put: SlErrorFrame new.
 	"self class pages do: [ :eachPage |
 		pages at: eachPage key put: eachPage value new ]."
 ! !
@@ -349,20 +338,5 @@ initialize
 events
 
 	^{}
-!
-
-pages
-
-	^ {
-		#home -> SlHomePage.
-		"#list -> SlListFrame."
-		#details -> SlDetailsFrame.
-		"#images -> SlImagesFrame.
-		#stacktracelist -> SlStackTraceListView."
-		#stacktraces -> SlStackTraceFrame.
-		
-		#test -> SlMessageFrame.
-		#notFound -> SlErrorFrame
-	}
 ! !
 

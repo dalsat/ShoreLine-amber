@@ -98,7 +98,7 @@ normalize: anUrl
 	^ '/', (anUrl trimLeft: '/#!!')
 ! !
 
-Object subclass: #SlRouter
+SlObject subclass: #SlRouter
 	instanceVariableNames: 'routes notFound'
 	package: 'ShoreLine-Router'!
 
@@ -122,7 +122,6 @@ initialize
 
 	super initialize.
 	routes := {}.
-	self registerEvents.
 ! !
 
 !SlRouter methodsFor: 'routing'!
@@ -160,9 +159,7 @@ registerAll: anAssociationCollection
 
 withRoutes: aDictionary
 
-	^ self new
-		registerAll: aDictionary;
-		yourself
+	^ self withRoutes: aDictionary notFound: []
 !
 
 withRoutes: aCollection notFound: aBlock
