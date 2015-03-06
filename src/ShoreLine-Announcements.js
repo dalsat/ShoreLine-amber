@@ -505,76 +505,6 @@ messageSends: ["sortBlock:", "new", "yourself"]
 $globals.SlReportSortedAnnouncement.klass);
 
 
-$core.addClass('SlURLAnnouncement', $globals.SlAnnouncement, ['url'], 'ShoreLine-Announcements');
-$core.addMethod(
-$core.method({
-selector: "url",
-protocol: 'as yet unclassified',
-fn: function (){
-var self=this;
-var $1;
-$1=self["@url"];
-return $1;
-
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "url\x0a\x0a\x09^ url",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: []
-}),
-$globals.SlURLAnnouncement);
-
-$core.addMethod(
-$core.method({
-selector: "url:",
-protocol: 'as yet unclassified',
-fn: function (anURL){
-var self=this;
-self["@url"]=anURL;
-return self;
-
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["anURL"],
-source: "url: anURL\x0a\x0a\x09url := anURL",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: []
-}),
-$globals.SlURLAnnouncement);
-
-
-$core.addMethod(
-$core.method({
-selector: "withURL:",
-protocol: 'instance creation',
-fn: function (anURL){
-var self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-var $2,$3,$1;
-$2=self._new();
-$recv($2)._url_(anURL);
-$3=$recv($2)._yourself();
-$1=$3;
-return $1;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"withURL:",{anURL:anURL},$globals.SlURLAnnouncement.klass)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["anURL"],
-source: "withURL: anURL\x0a\x0a\x09^ self new\x0a\x09\x09url: anURL;\x0a\x09\x09yourself",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: ["url:", "new", "yourself"]
-}),
-$globals.SlURLAnnouncement.klass);
-
-
 $core.addClass('SlVisualizationAnnouncement', $globals.SlAnnouncement, ['targetClass', 'action'], 'ShoreLine-Announcements');
 $core.addMethod(
 $core.method({
@@ -711,9 +641,6 @@ referencedClasses: [],
 messageSends: ["targetClass:", "new", "action:", "yourself"]
 }),
 $globals.SlVisualizationAnnouncement.klass);
-
-
-$core.addClass('SlVisualizationRefreshAnnouncement', $globals.SlVisualizationAnnouncement, [], 'ShoreLine-Announcements');
 
 
 $core.addClass('SlVisualizationZoomAnnouncement', $globals.SlVisualizationAnnouncement, [], 'ShoreLine-Announcements');

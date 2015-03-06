@@ -174,31 +174,6 @@ withSortBlock: aBlock
 		yourself
 ! !
 
-SlAnnouncement subclass: #SlURLAnnouncement
-	instanceVariableNames: 'url'
-	package: 'ShoreLine-Announcements'!
-
-!SlURLAnnouncement methodsFor: 'as yet unclassified'!
-
-url
-
-	^ url
-!
-
-url: anURL
-
-	url := anURL
-! !
-
-!SlURLAnnouncement class methodsFor: 'instance creation'!
-
-withURL: anURL
-
-	^ self new
-		url: anURL;
-		yourself
-! !
-
 SlAnnouncement subclass: #SlVisualizationAnnouncement
 	instanceVariableNames: 'targetClass action'
 	package: 'ShoreLine-Announcements'!
@@ -241,10 +216,6 @@ onClass: aSymbol withAction: aString
 		action: aString;
 		yourself
 ! !
-
-SlVisualizationAnnouncement subclass: #SlVisualizationRefreshAnnouncement
-	instanceVariableNames: ''
-	package: 'ShoreLine-Announcements'!
 
 SlVisualizationAnnouncement subclass: #SlVisualizationZoomAnnouncement
 	instanceVariableNames: ''
