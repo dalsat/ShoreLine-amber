@@ -122,7 +122,7 @@ data
 
 dataDo: aBlock
 
-	aBlock value: self extractData
+	self data then: [ aBlock value: self extractData ]
 !
 
 dataTag
@@ -143,13 +143,6 @@ header
 title
 
 	^ ''
-! !
-
-!SlList methodsFor: 'actions'!
-
-updateContents
-
-	self data then: [ super updateContents ]
 ! !
 
 !SlList methodsFor: 'rendering'!
@@ -179,13 +172,13 @@ renderList: aCollection on: html
 		with: [
 			self renderListHeaderOn: html.
 			
-			aCollection do: [ :each | self renderItem: each on: html ] ]
+			html tbody with: [ aCollection do: [ :each | self renderItem: each on: html ] ] ]
 !
 
 renderListHeaderOn: html
 
 	self header ifNotEmpty: [ :header |
-		html tr with: [ header do: [ :each | html th with: each ] ] ]
+		html thead with: [ html tr with: [ header do: [ :each | html th with: each ] ] ] ]
 !
 
 renderOn: html

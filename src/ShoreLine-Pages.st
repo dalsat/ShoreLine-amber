@@ -39,26 +39,6 @@ withReport: aBugReport
 		yourself.
 ! !
 
-SlFrame subclass: #SlHomePage
-	instanceVariableNames: ''
-	package: 'ShoreLine-Pages'!
-
-!SlHomePage methodsFor: 'initialization'!
-
-initializeContents
-
-	^ [ :html |
-		html h1: 'Home Page'.
-		
-		html div: [
-			html h2: 'Navigation'.
-			html ol: [
-				ShoreLine routes do: [ :eachRoute |
-					html li: [ html a href: '#', eachRoute key; with: eachRoute key ] ] ] ].
-		
-		html div: SlSummaryWidget new ]
-! !
-
 SlFrame subclass: #SlListFrame
 	instanceVariableNames: ''
 	package: 'ShoreLine-Pages'!
@@ -89,11 +69,87 @@ initializeViewPanel
 	^ SlReportList new
 ! !
 
-SlFrame subclass: #SlStackTraceFrame
+SlFrame subclass: #SlPage
 	instanceVariableNames: ''
 	package: 'ShoreLine-Pages'!
 
-!SlStackTraceFrame methodsFor: 'actions'!
+!SlPage class methodsFor: 'accessing'!
+
+enabled
+
+	^ true
+!
+
+id
+
+	^ self subclassResponsibility
+!
+
+order
+
+	^ 10
+!
+
+path
+
+	^ self subclassResponsibility
+!
+
+showInMenu
+
+	^ false
+!
+
+title
+
+	^ self subclassResponsibility
+! !
+
+SlPage subclass: #SlHomePage
+	instanceVariableNames: ''
+	package: 'ShoreLine-Pages'!
+
+!SlHomePage methodsFor: 'initialization'!
+
+initializeContents
+
+	^ [ :html |
+		html h1: 'Home Page'.		
+		html div: SlSummaryWidget new ]
+! !
+
+!SlHomePage class methodsFor: 'accessing'!
+
+id
+
+	^ #home
+!
+
+order
+
+	^ 1
+!
+
+path
+
+	^ '/'
+!
+
+showInMenu
+
+	^ true
+!
+
+title
+
+	^ 'Home'
+! !
+
+SlPage subclass: #SlStackTracePage
+	instanceVariableNames: ''
+	package: 'ShoreLine-Pages'!
+
+!SlStackTracePage methodsFor: 'actions'!
 
 displayList
 
@@ -105,7 +161,7 @@ displayTrace: traceId
 	contents := SlStackTrace withId: traceId.
 ! !
 
-!SlStackTraceFrame methodsFor: 'arguments'!
+!SlStackTracePage methodsFor: 'arguments'!
 
 pushArgs: aDictionary
 	| id |
@@ -115,16 +171,90 @@ pushArgs: aDictionary
 		ifAbsent: [ self displayList ]
 ! !
 
+!SlStackTracePage class methodsFor: 'accessing'!
+
+id
+
+	^ #stacktraces
+!
+
+order
+
+	^ 10
+!
+
+path
+
+	^ '/stacktraces'
+!
+
+showInMenu
+
+	^ true
+!
+
+title
+
+	^ 'Stack Traces'
+! !
+
+SlPage subclass: #SlTestPage
+	instanceVariableNames: ''
+	package: 'ShoreLine-Pages'!
+
+!SlTestPage methodsFor: 'initialization'!
+
+initializeContents
+
+	^ SlMessageFrame new
+		message: 'Test Page';
+		yourself
+! !
+
+!SlTestPage class methodsFor: 'accessing'!
+
+id
+
+	^ #test
+!
+
+order
+
+	^ 100
+!
+
+path
+
+	^ '/test'
+!
+
+showInMenu
+
+	^ true
+!
+
+title
+
+	^ 'Test'
+! !
+
 SlFrame subclass: #SlToolbarFrame
 	instanceVariableNames: 'toolbar'
 	package: 'ShoreLine-Pages'!
+
+!SlToolbarFrame methodsFor: 'accessing'!
+
+toolbarItems
+
+	^ {}
+! !
 
 !SlToolbarFrame methodsFor: 'initialization'!
 
 initialize
 
 	super initialize.
-	toolbar := SlToolbar new.
+	toolbar := SlToolbar withItems: self toolbarItems.
 ! !
 
 !SlToolbarFrame methodsFor: 'rendering'!
@@ -144,32 +274,36 @@ SlToolbarFrame subclass: #SlMainFrame
 pageAt: aSymbol
 
 	^ pages at: aSymbol "ifAbsent: []"
+!
+
+toolbarItems
+
+	^ ShoreLine menuPages
 ! !
 
 !SlMainFrame methodsFor: 'actions'!
 
-displayPage: aSymbol
+displayPage: aSlPage
 
-	self displayPage: aSymbol withArgs: {}
+	self displayPage: aSlPage withArgs: {}
 !
 
-displayPage: aSymbol withArgs: aDictionary
+displayPage: aSlPage withArgs: aDictionary
 
-	self contents: (self pageAt: aSymbol).
+	self displayPageNamed: aSlPage id withArgs: aDictionary
+!
+
+displayPageNamed: aString withArgs: aDictionary
+
+	self contents: (self pageAt: aString).
 	contents pushArgs: aDictionary.
 	
 	self updateContents.
 !
 
-displayReportDetails: aReport
-
-	pages at: #details put: (SlDetailsFrame withReport: aReport).
-	self displayPage: #details.
-!
-
 pageNotFound: args
 
-	self displayPage: #notFound withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })
+	self displayPageNamed: #notFound withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })
 ! !
 
 !SlMainFrame methodsFor: 'events'!
@@ -194,11 +328,6 @@ registerEvents
 			on: eventAssociation key
 			send: eventAssociation value
 			to: self ]
-!
-
-reportSelectedEvent: anAnnouncement
-
-	self displayPage: #details
 ! !
 
 !SlMainFrame methodsFor: 'initialization'!
@@ -208,8 +337,11 @@ initialize
 	super initialize.
 	pages := Dictionary new.
 	
-	self class pages do: [ :eachPage |
-		pages at: eachPage key put: eachPage value new ].
+	ShoreLine pages do: [ :eachPage |
+		pages at: eachPage id put: eachPage new ].
+	pages at: #notFound put: SlErrorFrame new.
+	"self class pages do: [ :eachPage |
+		pages at: eachPage key put: eachPage value new ]."
 ! !
 
 !SlMainFrame class methodsFor: 'configuration'!

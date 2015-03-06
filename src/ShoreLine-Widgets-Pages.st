@@ -22,16 +22,16 @@ pushArgs: aDictionary
 	self message: (aDictionary at: 'message' ifAbsent: self class defaultMessage)
 ! !
 
-!SlMessageFrame class methodsFor: 'as yet unclassified'!
-
-defaultMessage
-
-	^ 'No Message'
-! !
-
 SlMessageFrame subclass: #SlErrorFrame
 	instanceVariableNames: 'message'
 	package: 'ShoreLine-Widgets-Pages'!
+
+!SlErrorFrame methodsFor: 'accessing'!
+
+message: aString
+
+	self contents: aString
+! !
 
 !SlErrorFrame methodsFor: 'arguments'!
 

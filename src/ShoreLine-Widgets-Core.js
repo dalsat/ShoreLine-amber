@@ -511,7 +511,15 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-$recv(aBlock)._value_(self._extractData());
+$recv(self._data())._then_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv(aBlock)._value_(self._extractData());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"dataDo:",{aBlock:aBlock},$globals.SlList)});
@@ -519,10 +527,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aBlock"],
-source: "dataDo: aBlock\x0a\x0a\x09aBlock value: self extractData",
+source: "dataDo: aBlock\x0a\x0a\x09self data then: [ aBlock value: self extractData ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["value:", "extractData"]
+messageSends: ["then:", "data", "value:", "extractData"]
 }),
 $globals.SlList);
 
@@ -710,19 +718,30 @@ $2=$recv($1)._with_((function(){
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
 self._renderListHeaderOn_(html);
-return $recv(aCollection)._do_((function(each){
+return $recv($recv(html)._tbody())._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
+return $recv(aCollection)._do_((function(each){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx4) {
+//>>excludeEnd("ctx");
 return self._renderItem_on_(each,html);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx3) {$ctx3.fillBlock({each:each},$ctx2,2)});
+}, function($ctx4) {$ctx4.fillBlock({each:each},$ctx3,3)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
 //>>excludeEnd("ctx");
 }));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
 //>>excludeEnd("ctx");
 }));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"renderList:on:",{aCollection:aCollection,html:html},$globals.SlList)});
@@ -730,10 +749,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aCollection", "html"],
-source: "renderList: aCollection on: html\x0a\x0a\x09html table\x0a\x09\x09class: 'table';\x0a\x09\x09with: [\x0a\x09\x09\x09self renderListHeaderOn: html.\x0a\x09\x09\x09\x0a\x09\x09\x09aCollection do: [ :each | self renderItem: each on: html ] ]",
+source: "renderList: aCollection on: html\x0a\x0a\x09html table\x0a\x09\x09class: 'table';\x0a\x09\x09with: [\x0a\x09\x09\x09self renderListHeaderOn: html.\x0a\x09\x09\x09\x0a\x09\x09\x09html tbody with: [ aCollection do: [ :each | self renderItem: each on: html ] ] ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["class:", "table", "with:", "renderListHeaderOn:", "do:", "renderItem:on:"]
+messageSends: ["class:", "table", "with:", "renderListHeaderOn:", "tbody", "do:", "renderItem:on:"]
 }),
 $globals.SlList);
 
@@ -750,19 +769,30 @@ $recv(self._header())._ifNotEmpty_((function(header){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-return $recv($recv(html)._tr())._with_((function(){
+return $recv($recv(html)._thead())._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
-return $recv(header)._do_((function(each){
+return $recv($recv(html)._tr())._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx4) {
 //>>excludeEnd("ctx");
+return $recv(header)._do_((function(each){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx5) {
+//>>excludeEnd("ctx");
 return $recv($recv(html)._th())._with_(each);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx4) {$ctx4.fillBlock({each:each},$ctx3,3)});
+}, function($ctx5) {$ctx5.fillBlock({each:each},$ctx4,4)});
 //>>excludeEnd("ctx");
 }));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx4) {$ctx4.fillBlock({},$ctx3,3)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["with:"]=2;
+//>>excludeEnd("ctx");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
 //>>excludeEnd("ctx");
@@ -781,10 +811,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
-source: "renderListHeaderOn: html\x0a\x0a\x09self header ifNotEmpty: [ :header |\x0a\x09\x09html tr with: [ header do: [ :each | html th with: each ] ] ]",
+source: "renderListHeaderOn: html\x0a\x0a\x09self header ifNotEmpty: [ :header |\x0a\x09\x09html thead with: [ html tr with: [ header do: [ :each | html th with: each ] ] ] ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["ifNotEmpty:", "header", "with:", "tr", "do:", "th"]
+messageSends: ["ifNotEmpty:", "header", "with:", "thead", "tr", "do:", "th"]
 }),
 $globals.SlList);
 
@@ -887,45 +917,6 @@ source: "title\x0a\x0a\x09^ ''",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: []
-}),
-$globals.SlList);
-
-$core.addMethod(
-$core.method({
-selector: "updateContents",
-protocol: 'actions',
-fn: function (){
-var self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv(self._data())._then_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx2) {
-//>>excludeEnd("ctx");
-return (
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx2.supercall = true, 
-//>>excludeEnd("ctx");
-$globals.SlList.superclass.fn.prototype._updateContents.apply($recv(self), []));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx2.supercall = false;
-//>>excludeEnd("ctx");;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
-//>>excludeEnd("ctx");
-}));
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"updateContents",{},$globals.SlList)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "updateContents\x0a\x0a\x09self data then: [ super updateContents ]",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: ["then:", "data", "updateContents"]
 }),
 $globals.SlList);
 

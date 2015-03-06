@@ -243,9 +243,16 @@ initialize
 initializeRouter
 
 	^ SlRouter
-		withRoutes: (self class routes collect: [ :each |
-			each key -> [ :args | self root displayPage: each value withArgs: args ] ])
+		withRoutes: (self class pages collect: [ :eachPage |
+			eachPage path -> [ :args | self root displayPage: eachPage withArgs: args ] ])
 		notFound: [ :args | self root pageNotFound: args ]
+! !
+
+!ShoreLine methodsFor: 'navigation'!
+
+url: aString
+
+	window location hash: aString
 ! !
 
 ShoreLine class instanceVariableNames: 'current'!
@@ -260,6 +267,16 @@ canvas
 current
 
 	^ current ifNil: [ current := self new ]
+!
+
+menuPages
+
+	^ self pages select: #showInMenu
+!
+
+pages
+
+	^ SlPage allSubclasses select: #enabled
 !
 
 startWidget

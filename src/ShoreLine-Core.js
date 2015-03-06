@@ -151,8 +151,11 @@ function $TDClientProxy(){return $globals.TDClientProxy||(typeof TDClientProxy==
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $1;
-$1=$recv($recv($TDClientProxy())._on_($recv($recv(self._class())._proxies())._at_(aSymbol)))._yourself();
+var $2,$3,$1;
+$2=$recv($TDClientProxy())._on_($recv($recv(self._class())._proxies())._at_(aSymbol));
+$recv($2)._connect();
+$3=$recv($2)._yourself();
+$1=$3;
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"loadProxy:",{aSymbol:aSymbol},$globals.SlData)});
@@ -160,10 +163,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSymbol"],
-source: "loadProxy: aSymbol\x0a\x0a\x09^ (TDClientProxy on: (self class proxies at: aSymbol))\x0a\x09\x09\x22connect;\x22\x0a\x09\x09yourself",
+source: "loadProxy: aSymbol\x0a\x0a\x09^ (TDClientProxy on: (self class proxies at: aSymbol))\x0a\x09\x09connect;\x0a\x09\x09yourself",
 referencedClasses: ["TDClientProxy"],
 //>>excludeEnd("ide");
-messageSends: ["yourself", "on:", "at:", "proxies", "class"]
+messageSends: ["connect", "on:", "at:", "proxies", "class", "yourself"]
 }),
 $globals.SlData);
 
@@ -676,6 +679,31 @@ source: "session\x0a\x0a\x09^ SlSession current",
 referencedClasses: ["SlSession"],
 //>>excludeEnd("ide");
 messageSends: ["current"]
+}),
+$globals.SlWidget);
+
+$core.addMethod(
+$core.method({
+selector: "url:",
+protocol: 'navigation',
+fn: function (aString){
+var self=this;
+function $ShoreLine(){return $globals.ShoreLine||(typeof ShoreLine=="undefined"?nil:ShoreLine)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv($recv($ShoreLine())._current())._url_(aString);
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"url:",{aString:aString},$globals.SlWidget)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aString"],
+source: "url: aString\x0a\x0a\x09ShoreLine current url: aString",
+referencedClasses: ["ShoreLine"],
+//>>excludeEnd("ide");
+messageSends: ["url:", "current"]
 }),
 $globals.SlWidget);
 

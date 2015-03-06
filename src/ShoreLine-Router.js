@@ -554,7 +554,7 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anAssociationCollection"],
-source: "registerAll: anAssociationCollection\x0a\x0a\x09anAssociationCollection do: [ :each | self register: each key with: each value ]",
+source: "registerAll: anAssociationCollection\x0a\x0a\x09\x22aSlPageCollection do: [ :each | self register: each key with: each value ]\x22\x0a\x09anAssociationCollection do: [ :each | self register: each key with: each value ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: ["do:", "register:with:", "key", "value"]

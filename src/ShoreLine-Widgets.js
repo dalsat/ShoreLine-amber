@@ -264,21 +264,32 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-$recv(self._extractData())._then_((function(r1){
+$recv(self._data())._then_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-return $recv($recv(r1)._contents())._then_((function(r2){
+return $recv(self._extractData())._then_((function(r1){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
+return $recv($recv(r1)._contents())._then_((function(r2){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx4) {
+//>>excludeEnd("ctx");
 return $recv(aBlock)._value_(r2);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx3) {$ctx3.fillBlock({r2:r2},$ctx2,2)});
+}, function($ctx4) {$ctx4.fillBlock({r2:r2},$ctx3,3)});
 //>>excludeEnd("ctx");
 }));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({r1:r1},$ctx1,1)});
+}, function($ctx3) {$ctx3.fillBlock({r1:r1},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["then:"]=2;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
 //>>excludeEnd("ctx");
 }));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -291,10 +302,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aBlock"],
-source: "dataDo: aBlock\x0a\x0a\x09self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ]",
+source: "dataDo: aBlock\x0a\x0a\x09self data then: [ self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ] ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["then:", "extractData", "contents", "value:"]
+messageSends: ["then:", "data", "extractData", "contents", "value:"]
 }),
 $globals.SlStackTraceList);
 
@@ -322,11 +333,12 @@ selector: "extractData",
 protocol: 'accessing',
 fn: function (){
 var self=this;
+function $Date(){return $globals.Date||(typeof Date=="undefined"?nil:Date)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
-$1=$recv(self._data())._reportsWithAuthor_("TommasoDalSasso");
+$1=$recv(self._data())._tracesOnDate_($recv($Date())._fromString_("2015/03/04"));
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"extractData",{},$globals.SlStackTraceList)});
@@ -334,10 +346,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "extractData\x0a\x0a\x09^ self data \x22reportsOnDate: (Date fromString: '2014/12/15')\x22reportsWithAuthor: 'TommasoDalSasso'",
-referencedClasses: [],
+source: "extractData\x0a\x0a\x09^ self data tracesOnDate: (Date fromString: '2015/03/04').",
+referencedClasses: ["Date"],
 //>>excludeEnd("ide");
-messageSends: ["reportsWithAuthor:", "data"]
+messageSends: ["tracesOnDate:", "data", "fromString:"]
 }),
 $globals.SlStackTraceList);
 
@@ -434,6 +446,49 @@ source: "renderItem: aStacktrace on: html\x0a\x0a\x09html tr with: [\x0a\x09\x09
 referencedClasses: ["Date"],
 //>>excludeEnd("ide");
 messageSends: ["with:", "tr", "fromString:", "date", "td", "asDateString", "author", "topClass", "topMethod"]
+}),
+$globals.SlStackTraceList);
+
+$core.addMethod(
+$core.method({
+selector: "renderList:on:",
+protocol: 'rendering',
+fn: function (aCollection,html){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1,$2;
+(
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = true, 
+//>>excludeEnd("ctx");
+$globals.SlStackTraceList.superclass.fn.prototype._renderList_on_.apply($recv(self), [aCollection,html]));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.supercall = false;
+//>>excludeEnd("ctx");;
+$1=$recv(html)._a();
+$recv($1)._onClick_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return self._updateContents();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+$2=$recv($1)._with_("Load More");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderList:on:",{aCollection:aCollection,html:html},$globals.SlStackTraceList)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aCollection", "html"],
+source: "renderList: aCollection on: html\x0a\x0a\x09super renderList: aCollection on: html.\x0a\x0a\x09html a onClick: [ self updateContents ]; with: 'Load More'",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["renderList:on:", "onClick:", "a", "updateContents", "with:"]
 }),
 $globals.SlStackTraceList);
 
@@ -1326,13 +1381,14 @@ $globals.SlTabbedContainer);
 
 
 
-$core.addClass('SlToolbar', $globals.SlWidget, ['data', 'list', 'login'], 'ShoreLine-Widgets');
+$core.addClass('SlToolbar', $globals.SlWidget, ['items', 'login'], 'ShoreLine-Widgets');
 $core.addMethod(
 $core.method({
 selector: "initialize",
 protocol: 'initialization',
 fn: function (){
 var self=this;
+function $MozPersonaLogin(){return $globals.MozPersonaLogin||(typeof MozPersonaLogin=="undefined"?nil:MozPersonaLogin)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
@@ -1344,6 +1400,7 @@ $globals.SlToolbar.superclass.fn.prototype._initialize.apply($recv(self), []));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
 //>>excludeEnd("ctx");;
+self["@login"]=$recv($MozPersonaLogin())._new();
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlToolbar)});
@@ -1351,10 +1408,106 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x09\x0a\x09super initialize.\x0a\x09\x22login := MozPersonaLogin new.\x22",
+source: "initialize\x0a\x09\x0a\x09super initialize.\x0a\x09login := MozPersonaLogin new.",
+referencedClasses: ["MozPersonaLogin"],
+//>>excludeEnd("ide");
+messageSends: ["initialize", "new"]
+}),
+$globals.SlToolbar);
+
+$core.addMethod(
+$core.method({
+selector: "items",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+var $1;
+$1=self["@items"];
+return $1;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "items\x0a\x09^ items",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["initialize"]
+messageSends: []
+}),
+$globals.SlToolbar);
+
+$core.addMethod(
+$core.method({
+selector: "items:",
+protocol: 'accessing',
+fn: function (anObject){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+self["@items"]=$recv(anObject)._sorted_((function(a,b){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$1=$recv(a)._order();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["order"]=1;
+//>>excludeEnd("ctx");
+return $recv($1).__lt($recv(b)._order());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({a:a,b:b},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"items:",{anObject:anObject},$globals.SlToolbar)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["anObject"],
+source: "items: anObject\x0a\x09items := anObject sorted: [ :a :b | a order < b order ]",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["sorted:", "<", "order"]
+}),
+$globals.SlToolbar);
+
+$core.addMethod(
+$core.method({
+selector: "login",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+var $1;
+$1=self["@login"];
+return $1;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "login\x0a\x09^ login",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlToolbar);
+
+$core.addMethod(
+$core.method({
+selector: "login:",
+protocol: 'accessing',
+fn: function (anObject){
+var self=this;
+self["@login"]=anObject;
+return self;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["anObject"],
+source: "login: anObject\x0a\x09login := anObject",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
 }),
 $globals.SlToolbar);
 
@@ -1570,7 +1723,7 @@ $core.addMethod(
 $core.method({
 selector: "renderMenuItem:on:",
 protocol: 'rendering',
-fn: function (aMenuItem,html){
+fn: function (aSlPage,html){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
@@ -1581,17 +1734,8 @@ $recv(html)._li_((function(){
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
 $1=$recv(html)._a();
-$recv($1)._href_("#");
-$recv($1)._onClick_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx3) {
-//>>excludeEnd("ctx");
-return self._announce_($recv($recv(aMenuItem)._value())._new());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
-//>>excludeEnd("ctx");
-}));
-$2=$recv($1)._with_($recv(aMenuItem)._key());
+$recv($1)._href_("#".__comma($recv(aSlPage)._path()));
+$2=$recv($1)._with_($recv(aSlPage)._title());
 return $2;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
@@ -1599,15 +1743,15 @@ return $2;
 }));
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"renderMenuItem:on:",{aMenuItem:aMenuItem,html:html},$globals.SlToolbar)});
+}, function($ctx1) {$ctx1.fill(self,"renderMenuItem:on:",{aSlPage:aSlPage,html:html},$globals.SlToolbar)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aMenuItem", "html"],
-source: "renderMenuItem: aMenuItem on: html\x0a\x0a\x09html li: [ html a\x0a\x09\x09href: '#';\x0a\x09\x09onClick: [ self announce: aMenuItem value new ];\x0a\x09\x09with: aMenuItem key ].",
+args: ["aSlPage", "html"],
+source: "renderMenuItem: aSlPage on: html\x0a\x0a\x09html li: [ html a\x0a\x09\x09href: '#', aSlPage path;\x0a\x09\x09\x22onClick: aSlPage route;\x22 \x22[ self announce: aMenuItem value new ];\x22\x0a\x09\x09with: aSlPage title ].",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["li:", "href:", "a", "onClick:", "announce:", "new", "value", "with:", "key"]
+messageSends: ["li:", "href:", "a", ",", "path", "with:", "title"]
 }),
 $globals.SlToolbar);
 
@@ -1627,7 +1771,7 @@ $2=$recv($1)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-return $recv($recv(self._class())._menuItems())._do_((function(eachItem){
+return $recv(self["@items"])._do_((function(eachItem){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
@@ -1647,10 +1791,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
-source: "renderMenuOn: html\x0a\x0a\x09html ul\x0a\x09\x09class: 'nav navbar-nav';\x0a\x09\x09with: [\x0a\x09\x09\x09self class menuItems do: [ :eachItem | self renderMenuItem: eachItem on: html ] ].",
+source: "renderMenuOn: html\x0a\x0a\x09html ul\x0a\x09\x09class: 'nav navbar-nav';\x0a\x09\x09with: [ items do: [ :eachItem | self renderMenuItem: eachItem on: html ] ].",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["class:", "ul", "with:", "do:", "menuItems", "class", "renderMenuItem:on:"]
+messageSends: ["class:", "ul", "with:", "do:", "renderMenuItem:on:"]
 }),
 $globals.SlToolbar);
 
@@ -1732,26 +1876,29 @@ $globals.SlToolbar);
 
 $core.addMethod(
 $core.method({
-selector: "menuItems",
-protocol: 'items',
-fn: function (){
+selector: "withItems:",
+protocol: 'instance creation',
+fn: function (aCollection){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $1;
-$1=["Menu Items".__minus_gt(nil)];
+var $2,$3,$1;
+$2=self._new();
+$recv($2)._items_(aCollection);
+$3=$recv($2)._yourself();
+$1=$3;
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"menuItems",{},$globals.SlToolbar.klass)});
+}, function($ctx1) {$ctx1.fill(self,"withItems:",{aCollection:aCollection},$globals.SlToolbar.klass)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "menuItems\x0a\x0a\x09^ {\x0a\x09\x09\x22'Helios' -> SlHeliosPopupAnnouncement.\x22\x0a\x09\x09'Menu Items' -> nil\x0a\x09}",
+args: ["aCollection"],
+source: "withItems: aCollection\x0a\x0a\x09^ self new\x0a\x09\x09items: aCollection;\x0a\x09\x09yourself",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["->"]
+messageSends: ["items:", "new", "yourself"]
 }),
 $globals.SlToolbar.klass);
 

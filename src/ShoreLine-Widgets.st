@@ -67,7 +67,7 @@ SlList subclass: #SlStackTraceList
 
 dataDo: aBlock
 
-	self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ]
+	self data then: [ self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ] ]
 !
 
 dataTag
@@ -77,7 +77,7 @@ dataTag
 
 extractData
 
-	^ self data "reportsOnDate: (Date fromString: '2014/12/15')"reportsWithAuthor: 'TommasoDalSasso'
+	^ self data tracesOnDate: (Date fromString: '2015/03/04').
 !
 
 header
@@ -104,6 +104,13 @@ renderItem: aStacktrace on: html
 		html td with: date asDateString.
 		html td with: aStacktrace topClass.
 		html td with: aStacktrace topMethod ]
+!
+
+renderList: aCollection on: html
+
+	super renderList: aCollection on: html.
+
+	html a onClick: [ self updateContents ]; with: 'Load More'
 ! !
 
 SlWidget subclass: #SlSummaryWidget
@@ -270,15 +277,33 @@ tabNamed: aString with: aWidget
 ! !
 
 SlWidget subclass: #SlToolbar
-	instanceVariableNames: 'data list login'
+	instanceVariableNames: 'items login'
 	package: 'ShoreLine-Widgets'!
+
+!SlToolbar methodsFor: 'accessing'!
+
+items
+	^ items
+!
+
+items: anObject
+	items := anObject sorted: [ :a :b | a order < b order ]
+!
+
+login
+	^ login
+!
+
+login: anObject
+	login := anObject
+! !
 
 !SlToolbar methodsFor: 'initialization'!
 
 initialize
 	
 	super initialize.
-	"login := MozPersonaLogin new."
+	login := MozPersonaLogin new.
 ! !
 
 !SlToolbar methodsFor: 'rendering'!
@@ -321,20 +346,19 @@ renderLogoOn: html
 			html span class: 'logo-line'; with: 'Line' ]
 !
 
-renderMenuItem: aMenuItem on: html
+renderMenuItem: aSlPage on: html
 
 	html li: [ html a
-		href: '#';
-		onClick: [ self announce: aMenuItem value new ];
-		with: aMenuItem key ].
+		href: '#', aSlPage path;
+		"onClick: aSlPage route;" "[ self announce: aMenuItem value new ];"
+		with: aSlPage title ].
 !
 
 renderMenuOn: html
 
 	html ul
 		class: 'nav navbar-nav';
-		with: [
-			self class menuItems do: [ :eachItem | self renderMenuItem: eachItem on: html ] ].
+		with: [ items do: [ :eachItem | self renderMenuItem: eachItem on: html ] ].
 !
 
 renderOn: html
@@ -357,14 +381,13 @@ renderUserOn: html
 		with: [ html li: login ].
 ! !
 
-!SlToolbar class methodsFor: 'items'!
+!SlToolbar class methodsFor: 'instance creation'!
 
-menuItems
+withItems: aCollection
 
-	^ {
-		"'Helios' -> SlHeliosPopupAnnouncement."
-		'Menu Items' -> nil
-	}
+	^ self new
+		items: aCollection;
+		yourself
 ! !
 
 !Array methodsFor: '*ShoreLine-Widgets'!

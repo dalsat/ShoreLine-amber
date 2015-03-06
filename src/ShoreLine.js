@@ -718,11 +718,11 @@ function $SlRouter(){return $globals.SlRouter||(typeof SlRouter=="undefined"?nil
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $2,$1;
-$1=$recv($SlRouter())._withRoutes_notFound_($recv($recv(self._class())._routes())._collect_((function(each){
+$1=$recv($SlRouter())._withRoutes_notFound_($recv($recv(self._class())._pages())._collect_((function(eachPage){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-return $recv($recv(each)._key()).__minus_gt((function(args){
+return $recv($recv(eachPage)._path()).__minus_gt((function(args){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
@@ -730,13 +730,13 @@ $2=self._root();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx3.sendIdx["root"]=1;
 //>>excludeEnd("ctx");
-return $recv($2)._displayPage_withArgs_($recv(each)._value(),args);
+return $recv($2)._displayPage_withArgs_(eachPage,args);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx3) {$ctx3.fillBlock({args:args},$ctx2,2)});
 //>>excludeEnd("ctx");
 }));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({each:each},$ctx1,1)});
+}, function($ctx2) {$ctx2.fillBlock({eachPage:eachPage},$ctx1,1)});
 //>>excludeEnd("ctx");
 })),(function(args){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -754,10 +754,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initializeRouter\x0a\x0a\x09^ SlRouter\x0a\x09\x09withRoutes: (self class routes collect: [ :each |\x0a\x09\x09\x09each key -> [ :args | self root displayPage: each value withArgs: args ] ])\x0a\x09\x09notFound: [ :args | self root pageNotFound: args ]",
+source: "initializeRouter\x0a\x0a\x09^ SlRouter\x0a\x09\x09withRoutes: (self class pages collect: [ :eachPage |\x0a\x09\x09\x09eachPage path -> [ :args | self root displayPage: eachPage withArgs: args ] ])\x0a\x09\x09notFound: [ :args | self root pageNotFound: args ]",
 referencedClasses: ["SlRouter"],
 //>>excludeEnd("ide");
-messageSends: ["withRoutes:notFound:", "collect:", "routes", "class", "->", "key", "displayPage:withArgs:", "root", "value", "pageNotFound:"]
+messageSends: ["withRoutes:notFound:", "collect:", "pages", "class", "->", "path", "displayPage:withArgs:", "root", "pageNotFound:"]
 }),
 $globals.ShoreLine);
 
@@ -847,6 +847,30 @@ messageSends: ["appendToJQuery:", "root", "asJQuery", "canvas", "class", "update
 }),
 $globals.ShoreLine);
 
+$core.addMethod(
+$core.method({
+selector: "url:",
+protocol: 'navigation',
+fn: function (aString){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv($recv(window)._location())._hash_(aString);
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"url:",{aString:aString},$globals.ShoreLine)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aString"],
+source: "url: aString\x0a\x0a\x09window location hash: aString",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["hash:", "location"]
+}),
+$globals.ShoreLine);
+
 
 $globals.ShoreLine.klass.iVarNames = ['current'];
 $core.addMethod(
@@ -895,6 +919,57 @@ source: "current\x0a\x0a\x09^ current ifNil: [ current := self new ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: ["ifNil:", "new"]
+}),
+$globals.ShoreLine.klass);
+
+$core.addMethod(
+$core.method({
+selector: "menuPages",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=$recv(self._pages())._select_("showInMenu");
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"menuPages",{},$globals.ShoreLine.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "menuPages\x0a\x0a\x09^ self pages select: #showInMenu",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["select:", "pages"]
+}),
+$globals.ShoreLine.klass);
+
+$core.addMethod(
+$core.method({
+selector: "pages",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+function $SlPage(){return $globals.SlPage||(typeof SlPage=="undefined"?nil:SlPage)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=$recv($recv($SlPage())._allSubclasses())._select_("enabled");
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"pages",{},$globals.ShoreLine.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "pages\x0a\x0a\x09^ SlPage allSubclasses select: #enabled",
+referencedClasses: ["SlPage"],
+//>>excludeEnd("ide");
+messageSends: ["select:", "allSubclasses"]
 }),
 $globals.ShoreLine.klass);
 

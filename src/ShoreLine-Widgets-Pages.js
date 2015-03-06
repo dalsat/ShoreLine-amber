@@ -74,26 +74,32 @@ messageSends: ["message:", "at:ifAbsent:", "defaultMessage", "class"]
 $globals.SlMessageFrame);
 
 
-$core.addMethod(
-$core.method({
-selector: "defaultMessage",
-protocol: 'as yet unclassified',
-fn: function (){
-var self=this;
-return "No Message";
-
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "defaultMessage\x0a\x0a\x09^ 'No Message'",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: []
-}),
-$globals.SlMessageFrame.klass);
-
 
 $core.addClass('SlErrorFrame', $globals.SlMessageFrame, ['message'], 'ShoreLine-Widgets-Pages');
+$core.addMethod(
+$core.method({
+selector: "message:",
+protocol: 'accessing',
+fn: function (aString){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self._contents_(aString);
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"message:",{aString:aString},$globals.SlErrorFrame)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aString"],
+source: "message: aString\x0a\x0a\x09self contents: aString",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["contents:"]
+}),
+$globals.SlErrorFrame);
+
 $core.addMethod(
 $core.method({
 selector: "pushArgs:",

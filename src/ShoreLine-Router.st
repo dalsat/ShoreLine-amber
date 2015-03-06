@@ -152,6 +152,7 @@ register: aString with: aBlock
 
 registerAll: anAssociationCollection
 
+	"aSlPageCollection do: [ :each | self register: each key with: each value ]"
 	anAssociationCollection do: [ :each | self register: each key with: each value ]
 ! !
 

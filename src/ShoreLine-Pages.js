@@ -158,91 +158,6 @@ messageSends: ["report:", "new", "yourself"]
 $globals.SlDetailsFrame.klass);
 
 
-$core.addClass('SlHomePage', $globals.SlFrame, [], 'ShoreLine-Pages');
-$core.addMethod(
-$core.method({
-selector: "initializeContents",
-protocol: 'initialization',
-fn: function (){
-var self=this;
-function $ShoreLine(){return $globals.ShoreLine||(typeof ShoreLine=="undefined"?nil:ShoreLine)}
-function $SlSummaryWidget(){return $globals.SlSummaryWidget||(typeof SlSummaryWidget=="undefined"?nil:SlSummaryWidget)}
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-var $2,$3,$5,$4,$6,$1;
-$1=(function(html){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx2) {
-//>>excludeEnd("ctx");
-$recv(html)._h1_("Home Page");
-$recv(html)._div_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx3) {
-//>>excludeEnd("ctx");
-$recv(html)._h2_("Navigation");
-return $recv(html)._ol_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx4) {
-//>>excludeEnd("ctx");
-return $recv($recv($ShoreLine())._routes())._do_((function(eachRoute){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx5) {
-//>>excludeEnd("ctx");
-return $recv(html)._li_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx6) {
-//>>excludeEnd("ctx");
-$2=$recv(html)._a();
-$3=$2;
-$5=$recv(eachRoute)._key();
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx6.sendIdx["key"]=1;
-//>>excludeEnd("ctx");
-$4="#".__comma($5);
-$recv($3)._href_($4);
-$6=$recv($2)._with_($recv(eachRoute)._key());
-return $6;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx6) {$ctx6.fillBlock({},$ctx5,5)});
-//>>excludeEnd("ctx");
-}));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx5) {$ctx5.fillBlock({eachRoute:eachRoute},$ctx4,4)});
-//>>excludeEnd("ctx");
-}));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx4) {$ctx4.fillBlock({},$ctx3,3)});
-//>>excludeEnd("ctx");
-}));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
-//>>excludeEnd("ctx");
-}));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx2.sendIdx["div:"]=1;
-//>>excludeEnd("ctx");
-return $recv(html)._div_($recv($SlSummaryWidget())._new());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)});
-//>>excludeEnd("ctx");
-});
-return $1;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"initializeContents",{},$globals.SlHomePage)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "initializeContents\x0a\x0a\x09^ [ :html |\x0a\x09\x09html h1: 'Home Page'.\x0a\x09\x09\x0a\x09\x09html div: [\x0a\x09\x09\x09html h2: 'Navigation'.\x0a\x09\x09\x09html ol: [\x0a\x09\x09\x09\x09ShoreLine routes do: [ :eachRoute |\x0a\x09\x09\x09\x09\x09html li: [ html a href: '#', eachRoute key; with: eachRoute key ] ] ] ].\x0a\x09\x09\x0a\x09\x09html div: SlSummaryWidget new ]",
-referencedClasses: ["ShoreLine", "SlSummaryWidget"],
-//>>excludeEnd("ide");
-messageSends: ["h1:", "div:", "h2:", "ol:", "do:", "routes", "li:", "href:", "a", ",", "key", "with:", "new"]
-}),
-$globals.SlHomePage);
-
-
-
 $core.addClass('SlListFrame', $globals.SlFrame, [], 'ShoreLine-Pages');
 $core.addMethod(
 $core.method({
@@ -353,7 +268,267 @@ $globals.SlListFrame);
 
 
 
-$core.addClass('SlStackTraceFrame', $globals.SlFrame, [], 'ShoreLine-Pages');
+$core.addClass('SlPage', $globals.SlFrame, [], 'ShoreLine-Pages');
+
+$core.addMethod(
+$core.method({
+selector: "enabled",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return true;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "enabled\x0a\x0a\x09^ true",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "id",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=self._subclassResponsibility();
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"id",{},$globals.SlPage.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "id\x0a\x0a\x09^ self subclassResponsibility",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["subclassResponsibility"]
+}),
+$globals.SlPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "order",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return (10);
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "order\x0a\x0a\x09^ 10",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "path",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=self._subclassResponsibility();
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"path",{},$globals.SlPage.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "path\x0a\x0a\x09^ self subclassResponsibility",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["subclassResponsibility"]
+}),
+$globals.SlPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "showInMenu",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return false;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "showInMenu\x0a\x0a\x09^ false",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "title",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=self._subclassResponsibility();
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"title",{},$globals.SlPage.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "title\x0a\x0a\x09^ self subclassResponsibility",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["subclassResponsibility"]
+}),
+$globals.SlPage.klass);
+
+
+$core.addClass('SlHomePage', $globals.SlPage, [], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
+selector: "initializeContents",
+protocol: 'initialization',
+fn: function (){
+var self=this;
+function $SlSummaryWidget(){return $globals.SlSummaryWidget||(typeof SlSummaryWidget=="undefined"?nil:SlSummaryWidget)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=(function(html){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$recv(html)._h1_("Home Page");
+return $recv(html)._div_($recv($SlSummaryWidget())._new());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)});
+//>>excludeEnd("ctx");
+});
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initializeContents",{},$globals.SlHomePage)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "initializeContents\x0a\x0a\x09^ [ :html |\x0a\x09\x09html h1: 'Home Page'.\x09\x09\x0a\x09\x09html div: SlSummaryWidget new ]",
+referencedClasses: ["SlSummaryWidget"],
+//>>excludeEnd("ide");
+messageSends: ["h1:", "div:", "new"]
+}),
+$globals.SlHomePage);
+
+
+$core.addMethod(
+$core.method({
+selector: "id",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "home";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "id\x0a\x0a\x09^ #home",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlHomePage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "order",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return (1);
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "order\x0a\x0a\x09^ 1",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlHomePage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "path",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "/";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "path\x0a\x0a\x09^ '/'",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlHomePage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "showInMenu",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return true;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "showInMenu\x0a\x0a\x09^ true",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlHomePage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "title",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "Home";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "title\x0a\x0a\x09^ 'Home'",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlHomePage.klass);
+
+
+$core.addClass('SlStackTracePage', $globals.SlPage, [], 'ShoreLine-Pages');
 $core.addMethod(
 $core.method({
 selector: "displayList",
@@ -367,7 +542,7 @@ return $core.withContext(function($ctx1) {
 self["@contents"]=$recv($SlStackTraceList())._new();
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"displayList",{},$globals.SlStackTraceFrame)});
+}, function($ctx1) {$ctx1.fill(self,"displayList",{},$globals.SlStackTracePage)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -377,7 +552,7 @@ referencedClasses: ["SlStackTraceList"],
 //>>excludeEnd("ide");
 messageSends: ["new"]
 }),
-$globals.SlStackTraceFrame);
+$globals.SlStackTracePage);
 
 $core.addMethod(
 $core.method({
@@ -392,7 +567,7 @@ return $core.withContext(function($ctx1) {
 self["@contents"]=$recv($SlStackTrace())._withId_(traceId);
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"displayTrace:",{traceId:traceId},$globals.SlStackTraceFrame)});
+}, function($ctx1) {$ctx1.fill(self,"displayTrace:",{traceId:traceId},$globals.SlStackTracePage)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -402,7 +577,7 @@ referencedClasses: ["SlStackTrace"],
 //>>excludeEnd("ide");
 messageSends: ["withId:"]
 }),
-$globals.SlStackTraceFrame);
+$globals.SlStackTracePage);
 
 $core.addMethod(
 $core.method({
@@ -433,7 +608,7 @@ return self._displayList();
 }));
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"pushArgs:",{aDictionary:aDictionary,id:id},$globals.SlStackTraceFrame)});
+}, function($ctx1) {$ctx1.fill(self,"pushArgs:",{aDictionary:aDictionary,id:id},$globals.SlStackTracePage)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -443,8 +618,220 @@ referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: ["at:ifPresent:ifAbsent:", "displayTrace:", "displayList"]
 }),
-$globals.SlStackTraceFrame);
+$globals.SlStackTracePage);
 
+
+$core.addMethod(
+$core.method({
+selector: "id",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "stacktraces";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "id\x0a\x0a\x09^ #stacktraces",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlStackTracePage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "order",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return (10);
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "order\x0a\x0a\x09^ 10",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlStackTracePage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "path",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "/stacktraces";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "path\x0a\x0a\x09^ '/stacktraces'",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlStackTracePage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "showInMenu",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return true;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "showInMenu\x0a\x0a\x09^ true",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlStackTracePage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "title",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "Stack Traces";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "title\x0a\x0a\x09^ 'Stack Traces'",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlStackTracePage.klass);
+
+
+$core.addClass('SlTestPage', $globals.SlPage, [], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
+selector: "initializeContents",
+protocol: 'initialization',
+fn: function (){
+var self=this;
+function $SlMessageFrame(){return $globals.SlMessageFrame||(typeof SlMessageFrame=="undefined"?nil:SlMessageFrame)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $2,$3,$1;
+$2=$recv($SlMessageFrame())._new();
+$recv($2)._message_("Test Page");
+$3=$recv($2)._yourself();
+$1=$3;
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initializeContents",{},$globals.SlTestPage)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "initializeContents\x0a\x0a\x09^ SlMessageFrame new\x0a\x09\x09message: 'Test Page';\x0a\x09\x09yourself",
+referencedClasses: ["SlMessageFrame"],
+//>>excludeEnd("ide");
+messageSends: ["message:", "new", "yourself"]
+}),
+$globals.SlTestPage);
+
+
+$core.addMethod(
+$core.method({
+selector: "id",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "test";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "id\x0a\x0a\x09^ #test",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlTestPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "order",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return (100);
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "order\x0a\x0a\x09^ 100",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlTestPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "path",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "/test";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "path\x0a\x0a\x09^ '/test'",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlTestPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "showInMenu",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return true;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "showInMenu\x0a\x0a\x09^ true",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlTestPage.klass);
+
+$core.addMethod(
+$core.method({
+selector: "title",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+return "Test";
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "title\x0a\x0a\x09^ 'Test'",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlTestPage.klass);
 
 
 $core.addClass('SlToolbarFrame', $globals.SlFrame, ['toolbar'], 'ShoreLine-Pages');
@@ -466,7 +853,7 @@ $globals.SlToolbarFrame.superclass.fn.prototype._initialize.apply($recv(self), [
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
 //>>excludeEnd("ctx");;
-self["@toolbar"]=$recv($SlToolbar())._new();
+self["@toolbar"]=$recv($SlToolbar())._withItems_(self._toolbarItems());
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlToolbarFrame)});
@@ -474,10 +861,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09super initialize.\x0a\x09toolbar := SlToolbar new.",
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09toolbar := SlToolbar withItems: self toolbarItems.",
 referencedClasses: ["SlToolbar"],
 //>>excludeEnd("ide");
-messageSends: ["initialize", "new"]
+messageSends: ["initialize", "withItems:", "toolbarItems"]
 }),
 $globals.SlToolbarFrame);
 
@@ -513,6 +900,26 @@ messageSends: ["with:", "renderOn:"]
 }),
 $globals.SlToolbarFrame);
 
+$core.addMethod(
+$core.method({
+selector: "toolbarItems",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+var $1;
+$1=[];
+return $1;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "toolbarItems\x0a\x0a\x09^ {}",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlToolbarFrame);
+
 
 
 $core.addClass('SlMainFrame', $globals.SlToolbarFrame, ['pages'], 'ShoreLine-Pages');
@@ -545,20 +952,20 @@ $core.addMethod(
 $core.method({
 selector: "displayPage:",
 protocol: 'actions',
-fn: function (aSymbol){
+fn: function (aSlPage){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-self._displayPage_withArgs_(aSymbol,[]);
+self._displayPage_withArgs_(aSlPage,[]);
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"displayPage:",{aSymbol:aSymbol},$globals.SlMainFrame)});
+}, function($ctx1) {$ctx1.fill(self,"displayPage:",{aSlPage:aSlPage},$globals.SlMainFrame)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aSymbol"],
-source: "displayPage: aSymbol\x0a\x0a\x09self displayPage: aSymbol withArgs: {}",
+args: ["aSlPage"],
+source: "displayPage: aSlPage\x0a\x0a\x09self displayPage: aSlPage withArgs: {}",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: ["displayPage:withArgs:"]
@@ -569,51 +976,49 @@ $core.addMethod(
 $core.method({
 selector: "displayPage:withArgs:",
 protocol: 'actions',
-fn: function (aSymbol,aDictionary){
+fn: function (aSlPage,aDictionary){
 var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-self._contents_(self._pageAt_(aSymbol));
-$recv(self["@contents"])._pushArgs_(aDictionary);
-self._updateContents();
+self._displayPageNamed_withArgs_($recv(aSlPage)._id(),aDictionary);
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"displayPage:withArgs:",{aSymbol:aSymbol,aDictionary:aDictionary},$globals.SlMainFrame)});
+}, function($ctx1) {$ctx1.fill(self,"displayPage:withArgs:",{aSlPage:aSlPage,aDictionary:aDictionary},$globals.SlMainFrame)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aSymbol", "aDictionary"],
-source: "displayPage: aSymbol withArgs: aDictionary\x0a\x0a\x09self contents: (self pageAt: aSymbol).\x0a\x09contents pushArgs: aDictionary.\x0a\x09\x0a\x09self updateContents.",
+args: ["aSlPage", "aDictionary"],
+source: "displayPage: aSlPage withArgs: aDictionary\x0a\x0a\x09self displayPageNamed: aSlPage id withArgs: aDictionary",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["contents:", "pageAt:", "pushArgs:", "updateContents"]
+messageSends: ["displayPageNamed:withArgs:", "id"]
 }),
 $globals.SlMainFrame);
 
 $core.addMethod(
 $core.method({
-selector: "displayReportDetails:",
+selector: "displayPageNamed:withArgs:",
 protocol: 'actions',
-fn: function (aReport){
+fn: function (aString,aDictionary){
 var self=this;
-function $SlDetailsFrame(){return $globals.SlDetailsFrame||(typeof SlDetailsFrame=="undefined"?nil:SlDetailsFrame)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-$recv(self["@pages"])._at_put_("details",$recv($SlDetailsFrame())._withReport_(aReport));
-self._displayPage_("details");
+self._contents_(self._pageAt_(aString));
+$recv(self["@contents"])._pushArgs_(aDictionary);
+self._updateContents();
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"displayReportDetails:",{aReport:aReport},$globals.SlMainFrame)});
+}, function($ctx1) {$ctx1.fill(self,"displayPageNamed:withArgs:",{aString:aString,aDictionary:aDictionary},$globals.SlMainFrame)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aReport"],
-source: "displayReportDetails: aReport\x0a\x0a\x09pages at: #details put: (SlDetailsFrame withReport: aReport).\x0a\x09self displayPage: #details.",
-referencedClasses: ["SlDetailsFrame"],
+args: ["aString", "aDictionary"],
+source: "displayPageNamed: aString withArgs: aDictionary\x0a\x0a\x09self contents: (self pageAt: aString).\x0a\x09contents pushArgs: aDictionary.\x0a\x09\x0a\x09self updateContents.",
+referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["at:put:", "withReport:", "displayPage:"]
+messageSends: ["contents:", "pageAt:", "pushArgs:", "updateContents"]
 }),
 $globals.SlMainFrame);
 
@@ -648,9 +1053,12 @@ protocol: 'initialization',
 fn: function (){
 var self=this;
 function $Dictionary(){return $globals.Dictionary||(typeof Dictionary=="undefined"?nil:Dictionary)}
+function $ShoreLine(){return $globals.ShoreLine||(typeof ShoreLine=="undefined"?nil:ShoreLine)}
+function $SlErrorFrame(){return $globals.SlErrorFrame||(typeof SlErrorFrame=="undefined"?nil:SlErrorFrame)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
+var $1,$2,$3;
 (
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = true, 
@@ -663,15 +1071,25 @@ self["@pages"]=$recv($Dictionary())._new();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["new"]=1;
 //>>excludeEnd("ctx");
-$recv($recv(self._class())._pages())._do_((function(eachPage){
+$recv($recv($ShoreLine())._pages())._do_((function(eachPage){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-return $recv(self["@pages"])._at_put_($recv(eachPage)._key(),$recv($recv(eachPage)._value())._new());
+$1=self["@pages"];
+$2=$recv(eachPage)._id();
+$3=$recv(eachPage)._new();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["new"]=2;
+//>>excludeEnd("ctx");
+return $recv($1)._at_put_($2,$3);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["at:put:"]=1;
+//>>excludeEnd("ctx");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx2) {$ctx2.fillBlock({eachPage:eachPage},$ctx1,1)});
 //>>excludeEnd("ctx");
 }));
+$recv(self["@pages"])._at_put_("notFound",$recv($SlErrorFrame())._new());
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"initialize",{},$globals.SlMainFrame)});
@@ -679,10 +1097,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initialize\x0a\x0a\x09super initialize.\x0a\x09pages := Dictionary new.\x0a\x09\x0a\x09self class pages do: [ :eachPage |\x0a\x09\x09pages at: eachPage key put: eachPage value new ].",
-referencedClasses: ["Dictionary"],
+source: "initialize\x0a\x0a\x09super initialize.\x0a\x09pages := Dictionary new.\x0a\x09\x0a\x09ShoreLine pages do: [ :eachPage |\x0a\x09\x09pages at: eachPage id put: eachPage new ].\x0a\x09pages at: #notFound put: SlErrorFrame new.\x0a\x09\x22self class pages do: [ :eachPage |\x0a\x09\x09pages at: eachPage key put: eachPage value new ].\x22",
+referencedClasses: ["Dictionary", "ShoreLine", "SlErrorFrame"],
 //>>excludeEnd("ide");
-messageSends: ["initialize", "new", "do:", "pages", "class", "at:put:", "key", "value"]
+messageSends: ["initialize", "new", "do:", "pages", "at:put:", "id"]
 }),
 $globals.SlMainFrame);
 
@@ -729,7 +1147,7 @@ $ctx1.sendIdx[","]=1;
 $3="message".__minus_gt($4);
 $2=[$3];
 $1=$recv($Dictionary())._from_($2);
-self._displayPage_withArgs_("notFound",$1);
+self._displayPageNamed_withArgs_("notFound",$1);
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"pageNotFound:",{args:args},$globals.SlMainFrame)});
@@ -737,10 +1155,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["args"],
-source: "pageNotFound: args\x0a\x0a\x09self displayPage: #notFound withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })",
+source: "pageNotFound: args\x0a\x0a\x09self displayPageNamed: #notFound withArgs: (Dictionary from: { #message -> ('Page ', (args at: #url), ' not found') })",
 referencedClasses: ["Dictionary"],
 //>>excludeEnd("ide");
-messageSends: ["displayPage:withArgs:", "from:", "->", ",", "at:"]
+messageSends: ["displayPageNamed:withArgs:", "from:", "->", ",", "at:"]
 }),
 $globals.SlMainFrame);
 
@@ -786,25 +1204,27 @@ $globals.SlMainFrame);
 
 $core.addMethod(
 $core.method({
-selector: "reportSelectedEvent:",
-protocol: 'events',
-fn: function (anAnnouncement){
+selector: "toolbarItems",
+protocol: 'accessing',
+fn: function (){
 var self=this;
+function $ShoreLine(){return $globals.ShoreLine||(typeof ShoreLine=="undefined"?nil:ShoreLine)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-self._displayPage_("details");
-return self;
+var $1;
+$1=$recv($ShoreLine())._menuPages();
+return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"reportSelectedEvent:",{anAnnouncement:anAnnouncement},$globals.SlMainFrame)});
+}, function($ctx1) {$ctx1.fill(self,"toolbarItems",{},$globals.SlMainFrame)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["anAnnouncement"],
-source: "reportSelectedEvent: anAnnouncement\x0a\x0a\x09self displayPage: #details",
-referencedClasses: [],
+args: [],
+source: "toolbarItems\x0a\x0a\x09^ ShoreLine menuPages",
+referencedClasses: ["ShoreLine"],
 //>>excludeEnd("ide");
-messageSends: ["displayPage:"]
+messageSends: ["menuPages"]
 }),
 $globals.SlMainFrame);
 

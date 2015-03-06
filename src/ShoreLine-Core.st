@@ -37,7 +37,7 @@ at: aSymbol
 loadProxy: aSymbol
 
 	^ (TDClientProxy on: (self class proxies at: aSymbol))
-		"connect;"
+		connect;
 		yourself
 !
 
@@ -185,6 +185,13 @@ initialize
 
 	super initialize.
 	self registerEvents.
+! !
+
+!SlWidget methodsFor: 'navigation'!
+
+url: aString
+
+	ShoreLine current url: aString
 ! !
 
 !SlWidget methodsFor: 'session'!
