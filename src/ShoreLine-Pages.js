@@ -426,6 +426,130 @@ $globals.SlPage.klass);
 
 
 $core.addClass('SlClassPage', $globals.SlPage, [], 'ShoreLine-Pages');
+$core.addMethod(
+$core.method({
+selector: "displayClass:",
+protocol: 'actions',
+fn: function (className){
+var self=this;
+function $SlClassWidget(){return $globals.SlClassWidget||(typeof SlClassWidget=="undefined"?nil:SlClassWidget)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self["@contents"]=$recv($SlClassWidget())._withClass_(className);
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"displayClass:",{className:className},$globals.SlClassPage)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["className"],
+source: "displayClass: className\x0a\x0a\x09contents := SlClassWidget withClass: className",
+referencedClasses: ["SlClassWidget"],
+//>>excludeEnd("ide");
+messageSends: ["withClass:"]
+}),
+$globals.SlClassPage);
+
+$core.addMethod(
+$core.method({
+selector: "displayList",
+protocol: 'actions',
+fn: function (){
+var self=this;
+function $SlClassListWidget(){return $globals.SlClassListWidget||(typeof SlClassListWidget=="undefined"?nil:SlClassListWidget)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self["@contents"]=$recv($SlClassListWidget())._new();
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"displayList",{},$globals.SlClassPage)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "displayList\x0a\x0a\x09contents := SlClassListWidget new",
+referencedClasses: ["SlClassListWidget"],
+//>>excludeEnd("ide");
+messageSends: ["new"]
+}),
+$globals.SlClassPage);
+
+$core.addMethod(
+$core.method({
+selector: "initializeContents",
+protocol: 'initialization',
+fn: function (){
+var self=this;
+function $SlClassListWidget(){return $globals.SlClassListWidget||(typeof SlClassListWidget=="undefined"?nil:SlClassListWidget)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=(function(html){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv(html)._with_($recv($SlClassListWidget())._new());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)});
+//>>excludeEnd("ctx");
+});
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initializeContents",{},$globals.SlClassPage)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "initializeContents\x0a\x0a\x09^ [ :html |\x0a\x09\x09html with: SlClassListWidget new ]",
+referencedClasses: ["SlClassListWidget"],
+//>>excludeEnd("ide");
+messageSends: ["with:", "new"]
+}),
+$globals.SlClassPage);
+
+$core.addMethod(
+$core.method({
+selector: "pushArgs:",
+protocol: 'arguments',
+fn: function (aDictionary){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(aDictionary)._at_ifPresent_ifAbsent_("className",(function(className){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return self._displayClass_(className);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({className:className},$ctx1,1)});
+//>>excludeEnd("ctx");
+}),(function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return self._displayList();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,2)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"pushArgs:",{aDictionary:aDictionary},$globals.SlClassPage)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aDictionary"],
+source: "pushArgs: aDictionary\x0a\x09\x0a\x09aDictionary at: #className\x0a\x09\x09ifPresent: [ :className | self displayClass: className ]\x0a\x09\x09ifAbsent: [ self displayList ]",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["at:ifPresent:ifAbsent:", "displayClass:", "displayList"]
+}),
+$globals.SlClassPage);
+
 
 $core.addMethod(
 $core.method({
@@ -470,13 +594,13 @@ protocol: 'accessing',
 fn: function (){
 var self=this;
 var $1;
-$1=["/classes"];
+$1=["/classes","/classes/{className}"];
 return $1;
 
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "routes\x0a\x0a\x09^ { '/classes' }",
+source: "routes\x0a\x0a\x09^ { '/classes'.\x0a\x09\x09'/classes/{className}' }",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: []

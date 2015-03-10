@@ -1,4 +1,45 @@
 Smalltalk createPackage: 'ShoreLine-Widgets'!
+SlList subclass: #SlClassListWidget
+	instanceVariableNames: ''
+	package: 'ShoreLine-Widgets'!
+
+!SlClassListWidget methodsFor: 'rendering'!
+
+renderOn: html
+
+	html with: 'Classes'
+! !
+
+SlList subclass: #SlClassWidget
+	instanceVariableNames: 'className'
+	package: 'ShoreLine-Widgets'!
+
+!SlClassWidget methodsFor: 'accessing'!
+
+className
+	^ className
+!
+
+className: anObject
+	className := anObject
+! !
+
+!SlClassWidget methodsFor: 'rendering'!
+
+renderOn: html
+
+	html with: 'Class widget: ', self className
+! !
+
+!SlClassWidget class methodsFor: 'instance creation'!
+
+withClass: aString
+
+	^ self new
+		className: aString;
+		yourself
+! !
+
 SlList subclass: #SlStackTraceListWidget
 	instanceVariableNames: 'stacktrace'
 	package: 'ShoreLine-Widgets'!
@@ -52,7 +93,14 @@ renderList: aCollection on: html
 
 	super renderList: aCollection on: html.
 
-	html a onClick: [ self updateContents ]; with: 'Load More'
+	html nav with: [
+		html ul
+			class: 'pager';
+			with: [
+				html li: [
+					html a
+						onClick: [ self updateContents ];
+						with: 'Load Older' ] ] ]
 ! !
 
 SlWidget subclass: #SlStackTraceWidget
@@ -107,9 +155,12 @@ renderStackTraceEvents: aStackTrace on: html
 		class: 'table';
 		with: [
 			html tbody with: [
-				aStackTrace stacktrace do: [ :each |
+				aStackTrace stacktrace do: [ :eachEvent |
 					html tr with: [
-					html td with: [ html div: each contents ] ] ] ] ]
+						html td with: [
+							html a
+								onClick: [ self url: '/classes/', eachEvent signature ];
+								with: [ html div: eachEvent contents ] ] ] ] ] ]
 !
 
 renderStackTraceMetadata: aStackTrace on: html
@@ -336,7 +387,7 @@ renderControlsOn: html
 renderDebugControlsOn: html
 
 	html button
-		class: 'btn btn-default navbar-btn navbar-right';
+		class: 'btn btn-default navbar-btn navbar-nav navbar-right';
 		onClick: [ self announce: SlHeliosPopupAnnouncement new ];
 		with: 'Helios'
 !
@@ -373,7 +424,8 @@ renderMenuOn: html
 
 	html ul
 		class: 'nav navbar-nav';
-		with: [ items do: [ :eachItem | self renderMenuItem: eachItem on: html ] ].
+		with: [
+			items do: [ :eachItem | self renderMenuItem: eachItem on: html ] ]
 !
 
 renderOn: html
@@ -386,7 +438,7 @@ renderOn: html
 			self renderHeaderOn: html.
 			self renderMenuOn: html.
 			self renderUserOn: html.
-			self renderDebugControlsOn: html ].
+			self renderDebugControlsOn: html ]
 !
 
 renderUserOn: html

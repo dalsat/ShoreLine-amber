@@ -114,6 +114,35 @@ SlPage subclass: #SlClassPage
 	instanceVariableNames: ''
 	package: 'ShoreLine-Pages'!
 
+!SlClassPage methodsFor: 'actions'!
+
+displayClass: className
+
+	contents := SlClassWidget withClass: className
+!
+
+displayList
+
+	contents := SlClassListWidget new
+! !
+
+!SlClassPage methodsFor: 'arguments'!
+
+pushArgs: aDictionary
+	
+	aDictionary at: #className
+		ifPresent: [ :className | self displayClass: className ]
+		ifAbsent: [ self displayList ]
+! !
+
+!SlClassPage methodsFor: 'initialization'!
+
+initializeContents
+
+	^ [ :html |
+		html with: SlClassListWidget new ]
+! !
+
 !SlClassPage class methodsFor: 'accessing'!
 
 id
@@ -128,7 +157,8 @@ order
 
 routes
 
-	^ { '/classes' }
+	^ { '/classes'.
+		'/classes/{className}' }
 !
 
 showInMenu
