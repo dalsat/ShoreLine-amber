@@ -614,53 +614,45 @@ var self=this;
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1,$3,$4,$2;
-$recv(self._data())._then_((function(data){
+$recv(html)._div_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-return $recv(html)._div_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx3) {
-//>>excludeEnd("ctx");
 $1=$recv(html)._div();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx3.sendIdx["div"]=1;
+$ctx2.sendIdx["div"]=1;
 //>>excludeEnd("ctx");
 $recv($1)._class_("panel panel-default");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx3.sendIdx["class:"]=1;
+$ctx2.sendIdx["class:"]=1;
 //>>excludeEnd("ctx");
 $2=$recv($1)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx4) {
+return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
 self._renderTitleOn_(html);
 $3=$recv(html)._div();
 $recv($3)._class_("panel-body");
 $4=$recv($3)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx5) {
+return $core.withContext(function($ctx4) {
 //>>excludeEnd("ctx");
 return self._renderList_on_(self._contents(),html);
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx5) {$ctx5.fillBlock({},$ctx4,4)});
-//>>excludeEnd("ctx");
-}));
-return $4;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx4) {$ctx4.fillBlock({},$ctx3,3)});
 //>>excludeEnd("ctx");
 }));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx3.sendIdx["with:"]=1;
-//>>excludeEnd("ctx");
-return $2;
+return $4;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
 //>>excludeEnd("ctx");
 }));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({data:data},$ctx1,1)});
+$ctx2.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
+return $2;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
 //>>excludeEnd("ctx");
 }));
 return self;
@@ -670,10 +662,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
-source: "renderContentsOn: html\x0a\x0a\x09self data then: [ :data |\x0a\x09\x09html div: [\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'panel panel-default';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09self renderTitleOn: html.\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'panel-body';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderList: self contents on: html ] ] ] ]",
+source: "renderContentsOn: html\x0a\x0a\x09html div: [\x0a\x09\x09html div\x0a\x09\x09\x09class: 'panel panel-default';\x0a\x09\x09\x09with: [\x0a\x09\x09\x09\x09self renderTitleOn: html.\x0a\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09class: 'panel-body';\x0a\x09\x09\x09\x09\x09with: [ self renderList: self contents on: html ] ] ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["then:", "data", "div:", "class:", "div", "with:", "renderTitleOn:", "renderList:on:", "contents"]
+messageSends: ["div:", "class:", "div", "with:", "renderTitleOn:", "renderList:on:", "contents"]
 }),
 $globals.SlList);
 

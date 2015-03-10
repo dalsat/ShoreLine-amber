@@ -1,260 +1,10 @@
-define("shoreline/ShoreLine-Widgets", ["amber/boot", "shoreline/ShoreLine-Pages", "shoreline/ShoreLine-Widgets-Core", "shoreline/ShoreLine-Core", "amber_core/Kernel-Collections"], function($boot){
+define("shoreline/ShoreLine-Widgets", ["amber/boot", "shoreline/ShoreLine-Widgets-Core", "shoreline/ShoreLine-Core", "amber_core/Kernel-Collections"], function($boot){
 var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
 $core.addPackage('ShoreLine-Widgets');
 $core.packages["ShoreLine-Widgets"].innerEval = function (expr) { return eval(expr); };
 $core.packages["ShoreLine-Widgets"].transport = {"type":"amd","amdNamespace":"shoreline"};
 
-$core.addClass('SlStackTrace', $globals.SlToolbarFrame, ['stacktrace', 'traceId'], 'ShoreLine-Widgets');
-$core.addMethod(
-$core.method({
-selector: "pushArgs:",
-protocol: 'arguments',
-fn: function (aDictionary){
-var self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-self["@traceId"]=$recv(aDictionary)._at_("id");
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"pushArgs:",{aDictionary:aDictionary},$globals.SlStackTrace)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aDictionary"],
-source: "pushArgs: aDictionary\x0a\x0a\x09traceId := aDictionary at: #id",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: ["at:"]
-}),
-$globals.SlStackTrace);
-
-$core.addMethod(
-$core.method({
-selector: "renderOn:",
-protocol: 'rendering',
-fn: function (html){
-var self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-var $1,$3,$5,$7,$8,$9,$10,$6,$4,$2;
-$1=self._stacktrace();
-$recv($1)._connect();
-$2=$recv($1)._then_((function(){
-var trace;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx2) {
-//>>excludeEnd("ctx");
-trace=$recv($recv(self["@stacktrace"])._list())._at_ifAbsent_(self["@traceId"],(function(){
-return nil;
-
-}));
-trace;
-$3=$recv(html)._div();
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx2.sendIdx["div"]=1;
-//>>excludeEnd("ctx");
-$recv($3)._class_("container");
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx2.sendIdx["class:"]=1;
-//>>excludeEnd("ctx");
-$4=$recv($3)._with_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx3) {
-//>>excludeEnd("ctx");
-$5=$recv(html)._div();
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx3.sendIdx["div"]=2;
-//>>excludeEnd("ctx");
-$recv($5)._class_("panel panel-default");
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx3.sendIdx["class:"]=2;
-//>>excludeEnd("ctx");
-$6=$recv($5)._with_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx4) {
-//>>excludeEnd("ctx");
-$7=$recv(html)._div();
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx4.sendIdx["div"]=3;
-//>>excludeEnd("ctx");
-$recv($7)._class_("panel-heading");
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx4.sendIdx["class:"]=3;
-//>>excludeEnd("ctx");
-$8=$recv($7)._with_("StackTrace ".__comma(self["@traceId"]));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx4.sendIdx["with:"]=3;
-//>>excludeEnd("ctx");
-$8;
-$9=$recv(html)._div();
-$recv($9)._class_("panel-body");
-$10=$recv($9)._with_((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx5) {
-//>>excludeEnd("ctx");
-return self._renderStackTrace_on_(trace,html);
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx5) {$ctx5.fillBlock({},$ctx4,5)});
-//>>excludeEnd("ctx");
-}));
-return $10;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx4) {$ctx4.fillBlock({},$ctx3,4)});
-//>>excludeEnd("ctx");
-}));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx3.sendIdx["with:"]=2;
-//>>excludeEnd("ctx");
-return $6;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx3) {$ctx3.fillBlock({},$ctx2,3)});
-//>>excludeEnd("ctx");
-}));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx2.sendIdx["with:"]=1;
-//>>excludeEnd("ctx");
-return $4;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({trace:trace},$ctx1,1)});
-//>>excludeEnd("ctx");
-}));
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},$globals.SlStackTrace)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["html"],
-source: "renderOn: html\x0a\x0a\x09self stacktrace\x0a\x09\x09connect;\x0a\x09\x09then: [\x0a\x09\x09\x09| trace |\x0a\x09\x09\x09trace := stacktrace list at: traceId ifAbsent: [ nil ].\x0a\x09\x09\x09\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'container';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'panel panel-default';\x0a\x09\x09\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09\x09\x09class: 'panel-heading';\x0a\x09\x09\x09\x09\x09\x09\x09\x09with: 'StackTrace ', traceId.\x0a\x09\x09\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09\x09\x09class: 'panel-body';\x0a\x09\x09\x09\x09\x09\x09\x09\x09with: [ self renderStackTrace: trace on: html ] ] ] ]",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: ["connect", "stacktrace", "then:", "at:ifAbsent:", "list", "class:", "div", "with:", ",", "renderStackTrace:on:"]
-}),
-$globals.SlStackTrace);
-
-$core.addMethod(
-$core.method({
-selector: "renderStackTrace:on:",
-protocol: 'rendering',
-fn: function (aStackTrace,html){
-var self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-self._renderStackTraceMetadata_on_(aStackTrace,html);
-self._renderStackTraceEvents_on_(aStackTrace,html);
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"renderStackTrace:on:",{aStackTrace:aStackTrace,html:html},$globals.SlStackTrace)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aStackTrace", "html"],
-source: "renderStackTrace: aStackTrace on: html\x0a\x0a\x09self renderStackTraceMetadata: aStackTrace on: html.\x0a\x09self renderStackTraceEvents: aStackTrace on: html.",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: ["renderStackTraceMetadata:on:", "renderStackTraceEvents:on:"]
-}),
-$globals.SlStackTrace);
-
-$core.addMethod(
-$core.method({
-selector: "renderStackTraceEvents:on:",
-protocol: 'rendering',
-fn: function (aStackTrace,html){
-var self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv($recv(aStackTrace)._stacktrace())._do_((function(each){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx2) {
-//>>excludeEnd("ctx");
-return $recv(html)._div_($recv(each)._contents());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({each:each},$ctx1,1)});
-//>>excludeEnd("ctx");
-}));
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"renderStackTraceEvents:on:",{aStackTrace:aStackTrace,html:html},$globals.SlStackTrace)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aStackTrace", "html"],
-source: "renderStackTraceEvents: aStackTrace on: html\x0a\x0a\x09aStackTrace stacktrace do: [ :each |\x0a\x09\x09html div: each contents ]",
-referencedClasses: [],
-//>>excludeEnd("ide");
-messageSends: ["do:", "stacktrace", "div:", "contents"]
-}),
-$globals.SlStackTrace);
-
-$core.addMethod(
-$core.method({
-selector: "renderStackTraceMetadata:on:",
-protocol: 'rendering',
-fn: function (aStackTrace,html){
-var self=this;
-function $Date(){return $globals.Date||(typeof Date=="undefined"?nil:Date)}
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv(html)._div_($recv($recv($Date())._fromString_($recv(aStackTrace)._date()))._asDateString());
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx["div:"]=1;
-//>>excludeEnd("ctx");
-$recv(html)._div_($recv(aStackTrace)._author());
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"renderStackTraceMetadata:on:",{aStackTrace:aStackTrace,html:html},$globals.SlStackTrace)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aStackTrace", "html"],
-source: "renderStackTraceMetadata: aStackTrace on: html\x0a\x0a\x09html div: (Date fromString: aStackTrace date) asDateString.\x0a\x09html div: aStackTrace author.",
-referencedClasses: ["Date"],
-//>>excludeEnd("ide");
-messageSends: ["div:", "asDateString", "fromString:", "date", "author"]
-}),
-$globals.SlStackTrace);
-
-$core.addMethod(
-$core.method({
-selector: "stacktrace",
-protocol: 'accessing',
-fn: function (){
-var self=this;
-function $TDClientProxy(){return $globals.TDClientProxy||(typeof TDClientProxy=="undefined"?nil:TDClientProxy)}
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-var $2,$1,$receiver;
-$2=self["@stacktrace"];
-if(($receiver = $2) == null || $receiver.isNil){
-self["@stacktrace"]=$recv($TDClientProxy())._on_("/stacktraces");
-$1=self["@stacktrace"];
-} else {
-$1=$2;
-};
-return $1;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"stacktrace",{},$globals.SlStackTrace)});
-//>>excludeEnd("ctx");
-},
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "stacktrace\x0a\x0a\x09^ stacktrace ifNil: [ stacktrace := TDClientProxy on: '/stacktraces' ]",
-referencedClasses: ["TDClientProxy"],
-//>>excludeEnd("ide");
-messageSends: ["ifNil:", "on:"]
-}),
-$globals.SlStackTrace);
-
-
-
-$core.addClass('SlStackTraceList', $globals.SlList, ['stacktrace'], 'ShoreLine-Widgets');
+$core.addClass('SlStackTraceListWidget', $globals.SlList, ['stacktrace'], 'ShoreLine-Widgets');
 $core.addMethod(
 $core.method({
 selector: "dataDo:",
@@ -297,7 +47,7 @@ $ctx1.sendIdx["then:"]=1;
 //>>excludeEnd("ctx");
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"dataDo:",{aBlock:aBlock},$globals.SlStackTraceList)});
+}, function($ctx1) {$ctx1.fill(self,"dataDo:",{aBlock:aBlock},$globals.SlStackTraceListWidget)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -307,7 +57,7 @@ referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: ["then:", "data", "extractData", "contents", "value:"]
 }),
-$globals.SlStackTraceList);
+$globals.SlStackTraceListWidget);
 
 $core.addMethod(
 $core.method({
@@ -325,7 +75,7 @@ referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: []
 }),
-$globals.SlStackTraceList);
+$globals.SlStackTraceListWidget);
 
 $core.addMethod(
 $core.method({
@@ -341,7 +91,7 @@ var $1;
 $1=$recv(self._data())._tracesOnDate_($recv($Date())._fromString_("2015/03/04"));
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"extractData",{},$globals.SlStackTraceList)});
+}, function($ctx1) {$ctx1.fill(self,"extractData",{},$globals.SlStackTraceListWidget)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -351,7 +101,7 @@ referencedClasses: ["Date"],
 //>>excludeEnd("ide");
 messageSends: ["tracesOnDate:", "data", "fromString:"]
 }),
-$globals.SlStackTraceList);
+$globals.SlStackTraceListWidget);
 
 $core.addMethod(
 $core.method({
@@ -360,76 +110,82 @@ protocol: 'accessing',
 fn: function (){
 var self=this;
 var $1;
-$1=["Date","Author","Creation Date","Class","Method"];
+$1=["Date","Time","Author","Class","Method"];
 return $1;
 
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "header\x0a\x0a\x09^ { 'Date'. 'Author'. 'Creation Date'. 'Class'. 'Method' }",
+source: "header\x0a\x0a\x09^ { 'Date'. 'Time'. 'Author'. 'Class'. 'Method' }",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: []
 }),
-$globals.SlStackTraceList);
+$globals.SlStackTraceListWidget);
 
 $core.addMethod(
 $core.method({
 selector: "renderItem:on:",
 protocol: 'rendering',
-fn: function (aStacktrace,html){
+fn: function (aStackTrace,html){
 var self=this;
 function $Date(){return $globals.Date||(typeof Date=="undefined"?nil:Date)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $1,$2,$3,$4,$5;
-$recv($recv(html)._tr())._with_((function(){
+var $1,$3,$4,$5,$6,$2;
+$1=$recv(html)._tr();
+$recv($1)._onClick_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return self._url_("/stacktraces/".__comma($recv(aStackTrace)._traceId()));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+$2=$recv($1)._with_((function(){
 var date;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-date=$recv($Date())._fromString_($recv(aStacktrace)._date());
+date=$recv($Date())._fromString_($recv(aStackTrace)._date());
 date;
-$1=$recv(html)._td();
+$3=$recv(html)._td();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["td"]=1;
 //>>excludeEnd("ctx");
-$2=$recv(date)._asDateString();
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx2.sendIdx["asDateString"]=1;
-//>>excludeEnd("ctx");
-$recv($1)._with_($2);
+$recv($3)._with_($recv(date)._asDateString());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["with:"]=2;
 //>>excludeEnd("ctx");
-$3=$recv(html)._td();
+$4=$recv(html)._td();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["td"]=2;
 //>>excludeEnd("ctx");
-$recv($3)._with_($recv(aStacktrace)._author());
+$recv($4)._with_($recv(date)._asTimeString());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["with:"]=3;
 //>>excludeEnd("ctx");
-$4=$recv(html)._td();
+$5=$recv(html)._td();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["td"]=3;
 //>>excludeEnd("ctx");
-$recv($4)._with_($recv(date)._asDateString());
+$recv($5)._with_($recv(aStackTrace)._author());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["with:"]=4;
 //>>excludeEnd("ctx");
-$5=$recv(html)._td();
+$6=$recv(html)._td();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["td"]=4;
 //>>excludeEnd("ctx");
-$recv($5)._with_($recv(aStacktrace)._topClass());
+$recv($6)._with_($recv(aStackTrace)._topClass());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx2.sendIdx["with:"]=5;
 //>>excludeEnd("ctx");
-return $recv($recv(html)._td())._with_($recv(aStacktrace)._topMethod());
+return $recv($recv(html)._td())._with_($recv(aStackTrace)._topMethod());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({date:date},$ctx1,1)});
+}, function($ctx2) {$ctx2.fillBlock({date:date},$ctx1,2)});
 //>>excludeEnd("ctx");
 }));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -437,17 +193,17 @@ $ctx1.sendIdx["with:"]=1;
 //>>excludeEnd("ctx");
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"renderItem:on:",{aStacktrace:aStacktrace,html:html},$globals.SlStackTraceList)});
+}, function($ctx1) {$ctx1.fill(self,"renderItem:on:",{aStackTrace:aStackTrace,html:html},$globals.SlStackTraceListWidget)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aStacktrace", "html"],
-source: "renderItem: aStacktrace on: html\x0a\x0a\x09html tr with: [\x0a\x09\x09| date |\x0a\x09\x09date := Date fromString: aStacktrace date.\x0a\x09\x09\x0a\x09\x09html td with: date asDateString.\x0a\x09\x09html td with: aStacktrace author.\x0a\x0a\x09\x09html td with: date asDateString.\x0a\x09\x09html td with: aStacktrace topClass.\x0a\x09\x09html td with: aStacktrace topMethod ]",
+args: ["aStackTrace", "html"],
+source: "renderItem: aStackTrace on: html\x0a\x0a\x09html tr\x0a\x09\x09onClick: [ self url: '/stacktraces/', aStackTrace traceId ];\x0a\x09\x09with: [\x0a\x09\x09\x09| date |\x0a\x09\x09\x09date := Date fromString: aStackTrace date.\x0a\x0a\x09\x09\x09html td with: date asDateString.\x0a\x09\x09\x09html td with: date asTimeString.\x0a\x0a\x09\x09\x09html td with: aStackTrace author.\x0a\x09\x09\x09html td with: aStackTrace topClass.\x0a\x09\x09\x09html td with: aStackTrace topMethod ]",
 referencedClasses: ["Date"],
 //>>excludeEnd("ide");
-messageSends: ["with:", "tr", "fromString:", "date", "td", "asDateString", "author", "topClass", "topMethod"]
+messageSends: ["onClick:", "tr", "url:", ",", "traceId", "with:", "fromString:", "date", "td", "asDateString", "asTimeString", "author", "topClass", "topMethod"]
 }),
-$globals.SlStackTraceList);
+$globals.SlStackTraceListWidget);
 
 $core.addMethod(
 $core.method({
@@ -463,7 +219,7 @@ var $1,$2;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = true, 
 //>>excludeEnd("ctx");
-$globals.SlStackTraceList.superclass.fn.prototype._renderList_on_.apply($recv(self), [aCollection,html]));
+$globals.SlStackTraceListWidget.superclass.fn.prototype._renderList_on_.apply($recv(self), [aCollection,html]));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.supercall = false;
 //>>excludeEnd("ctx");;
@@ -480,7 +236,7 @@ return self._updateContents();
 $2=$recv($1)._with_("Load More");
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"renderList:on:",{aCollection:aCollection,html:html},$globals.SlStackTraceList)});
+}, function($ctx1) {$ctx1.fill(self,"renderList:on:",{aCollection:aCollection,html:html},$globals.SlStackTraceListWidget)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -490,7 +246,7 @@ referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: ["renderList:on:", "onClick:", "a", "updateContents", "with:"]
 }),
-$globals.SlStackTraceList);
+$globals.SlStackTraceListWidget);
 
 $core.addMethod(
 $core.method({
@@ -508,8 +264,359 @@ referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: []
 }),
-$globals.SlStackTraceList);
+$globals.SlStackTraceListWidget);
 
+
+
+$core.addClass('SlStackTraceWidget', $globals.SlWidget, ['traceId'], 'ShoreLine-Widgets');
+$core.addMethod(
+$core.method({
+selector: "data",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=$recv($recv(self._session())._data())._at_("stacktraces");
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"data",{},$globals.SlStackTraceWidget)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "data\x0a\x0a\x09^ self session data at: #stacktraces",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["at:", "data", "session"]
+}),
+$globals.SlStackTraceWidget);
+
+$core.addMethod(
+$core.method({
+selector: "renderOn:",
+protocol: 'rendering',
+fn: function (html){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1,$2,$3,$5,$7,$9,$11,$10,$8,$12,$13,$6,$4;
+$1=self._data();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.sendIdx["data"]=1;
+//>>excludeEnd("ctx");
+$recv($1)._then_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+$2=self._data();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["data"]=2;
+//>>excludeEnd("ctx");
+$recv($2)._traceWithId_(self["@traceId"]);
+return $recv(self._data())._then_((function(trace){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
+$3=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["div"]=1;
+//>>excludeEnd("ctx");
+$recv($3)._class_("container");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["class:"]=1;
+//>>excludeEnd("ctx");
+$4=$recv($3)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx4) {
+//>>excludeEnd("ctx");
+$5=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["div"]=2;
+//>>excludeEnd("ctx");
+$recv($5)._class_("panel panel-default");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["class:"]=2;
+//>>excludeEnd("ctx");
+$6=$recv($5)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx5) {
+//>>excludeEnd("ctx");
+$7=$recv(html)._div();
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["div"]=3;
+//>>excludeEnd("ctx");
+$recv($7)._class_("panel-heading");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["class:"]=3;
+//>>excludeEnd("ctx");
+$9=$7;
+$11=$recv("StackTrace #".__comma(self["@traceId"])).__comma(" and ");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx[","]=2;
+//>>excludeEnd("ctx");
+$10=$recv($11).__comma($recv(trace)._date());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx[","]=1;
+//>>excludeEnd("ctx");
+$8=$recv($9)._with_($10);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx5.sendIdx["with:"]=3;
+//>>excludeEnd("ctx");
+$8;
+$12=$recv(html)._div();
+$recv($12)._class_("panel-body");
+$13=$recv($12)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx6) {
+//>>excludeEnd("ctx");
+return self._renderStackTrace_on_(trace,html);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx6) {$ctx6.fillBlock({},$ctx5,5)});
+//>>excludeEnd("ctx");
+}));
+return $13;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx5) {$ctx5.fillBlock({},$ctx4,4)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["with:"]=2;
+//>>excludeEnd("ctx");
+return $6;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx4) {$ctx4.fillBlock({},$ctx3,3)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx3.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
+return $4;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({trace:trace},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.sendIdx["then:"]=1;
+//>>excludeEnd("ctx");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},$globals.SlStackTraceWidget)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["html"],
+source: "renderOn: html\x0a\x0a\x09self data\x0a\x09\x09then: [ self data traceWithId: traceId.\x0a\x09\x09\x09self data then: [ :trace |\x0a\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09class: 'container';\x0a\x09\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09\x09class: 'panel panel-default';\x0a\x09\x09\x09\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09class: 'panel-heading';\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09with: 'StackTrace #', traceId, ' and ', trace date.\x0a\x09\x09\x09\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09class: 'panel-body';\x0a\x09\x09\x09\x09\x09\x09\x09\x09\x09with: [ self renderStackTrace: trace on: html ] ] ] ] ]",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["then:", "data", "traceWithId:", "class:", "div", "with:", ",", "date", "renderStackTrace:on:"]
+}),
+$globals.SlStackTraceWidget);
+
+$core.addMethod(
+$core.method({
+selector: "renderStackTrace:on:",
+protocol: 'rendering',
+fn: function (aStackTrace,html){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+self._renderStackTraceMetadata_on_(aStackTrace,html);
+self._renderStackTraceEvents_on_(aStackTrace,html);
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderStackTrace:on:",{aStackTrace:aStackTrace,html:html},$globals.SlStackTraceWidget)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aStackTrace", "html"],
+source: "renderStackTrace: aStackTrace on: html\x0a\x0a\x09self renderStackTraceMetadata: aStackTrace on: html.\x0a\x09self renderStackTraceEvents: aStackTrace on: html.",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["renderStackTraceMetadata:on:", "renderStackTraceEvents:on:"]
+}),
+$globals.SlStackTraceWidget);
+
+$core.addMethod(
+$core.method({
+selector: "renderStackTraceEvents:on:",
+protocol: 'rendering',
+fn: function (aStackTrace,html){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1,$2;
+$1=$recv(html)._table();
+$recv($1)._class_("table");
+$2=$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv($recv(html)._tbody())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
+return $recv($recv(aStackTrace)._stacktrace())._do_((function(each){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx4) {
+//>>excludeEnd("ctx");
+return $recv($recv(html)._tr())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx5) {
+//>>excludeEnd("ctx");
+return $recv($recv(html)._td())._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx6) {
+//>>excludeEnd("ctx");
+return $recv(html)._div_($recv(each)._contents());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx6) {$ctx6.fillBlock({},$ctx5,5)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx5) {$ctx5.fillBlock({},$ctx4,4)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx4.sendIdx["with:"]=3;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx4) {$ctx4.fillBlock({each:each},$ctx3,3)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx2.sendIdx["with:"]=2;
+//>>excludeEnd("ctx");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.sendIdx["with:"]=1;
+//>>excludeEnd("ctx");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderStackTraceEvents:on:",{aStackTrace:aStackTrace,html:html},$globals.SlStackTraceWidget)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aStackTrace", "html"],
+source: "renderStackTraceEvents: aStackTrace on: html\x0a\x0a\x09html table\x0a\x09\x09class: 'table';\x0a\x09\x09with: [\x0a\x09\x09\x09html tbody with: [\x0a\x09\x09\x09\x09aStackTrace stacktrace do: [ :each |\x0a\x09\x09\x09\x09\x09html tr with: [\x0a\x09\x09\x09\x09\x09html td with: [ html div: each contents ] ] ] ] ]",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["class:", "table", "with:", "tbody", "do:", "stacktrace", "tr", "td", "div:", "contents"]
+}),
+$globals.SlStackTraceWidget);
+
+$core.addMethod(
+$core.method({
+selector: "renderStackTraceMetadata:on:",
+protocol: 'rendering',
+fn: function (aStackTrace,html){
+var self=this;
+function $Date(){return $globals.Date||(typeof Date=="undefined"?nil:Date)}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(html)._div_($recv($recv($Date())._fromString_($recv(aStackTrace)._date()))._asDateString());
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+$ctx1.sendIdx["div:"]=1;
+//>>excludeEnd("ctx");
+$recv(html)._div_($recv(aStackTrace)._author());
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderStackTraceMetadata:on:",{aStackTrace:aStackTrace,html:html},$globals.SlStackTraceWidget)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aStackTrace", "html"],
+source: "renderStackTraceMetadata: aStackTrace on: html\x0a\x0a\x09html div: (Date fromString: aStackTrace date) asDateString.\x0a\x09html div: aStackTrace author.",
+referencedClasses: ["Date"],
+//>>excludeEnd("ide");
+messageSends: ["div:", "asDateString", "fromString:", "date", "author"]
+}),
+$globals.SlStackTraceWidget);
+
+$core.addMethod(
+$core.method({
+selector: "traceId",
+protocol: 'accessing',
+fn: function (){
+var self=this;
+var $1;
+$1=self["@traceId"];
+return $1;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "traceId\x0a\x09^ traceId",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlStackTraceWidget);
+
+$core.addMethod(
+$core.method({
+selector: "traceId:",
+protocol: 'accessing',
+fn: function (anObject){
+var self=this;
+self["@traceId"]=anObject;
+return self;
+
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["anObject"],
+source: "traceId: anObject\x0a\x09traceId := anObject",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: []
+}),
+$globals.SlStackTraceWidget);
+
+
+$core.addMethod(
+$core.method({
+selector: "withId:",
+protocol: 'instance creation',
+fn: function (id){
+var self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $2,$3,$1;
+$2=self._new();
+$recv($2)._traceId_(id);
+$3=$recv($2)._yourself();
+$1=$3;
+return $1;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"withId:",{id:id},$globals.SlStackTraceWidget.klass)});
+//>>excludeEnd("ctx");
+},
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["id"],
+source: "withId: id\x0a\x0a\x09^ self new\x0a\x09\x09traceId: id;\x0a\x09\x09yourself",
+referencedClasses: [],
+//>>excludeEnd("ide");
+messageSends: ["traceId:", "new", "yourself"]
+}),
+$globals.SlStackTraceWidget.klass);
 
 
 $core.addClass('SlSummaryWidget', $globals.SlWidget, ['data'], 'ShoreLine-Widgets');
@@ -519,18 +626,11 @@ selector: "data",
 protocol: 'accessing',
 fn: function (){
 var self=this;
-function $TDClientProxy(){return $globals.TDClientProxy||(typeof TDClientProxy=="undefined"?nil:TDClientProxy)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $2,$1,$receiver;
-$2=self["@data"];
-if(($receiver = $2) == null || $receiver.isNil){
-self["@data"]=$recv($TDClientProxy())._on_("/stacktraces");
-$1=self["@data"];
-} else {
-$1=$2;
-};
+var $1;
+$1=$recv($recv(self._session())._data())._at_("stacktraces");
 return $1;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"data",{},$globals.SlSummaryWidget)});
@@ -538,10 +638,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "data\x0a\x0a\x09^ data ifNil: [ data := TDClientProxy on: '/stacktraces' ]",
-referencedClasses: ["TDClientProxy"],
+source: "data\x0a\x0a\x09\x22^ data ifNil: [ data := TDClientProxy on: '/stacktraces' ]\x22\x0a\x09^ self session data at: #stacktraces",
+referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["ifNil:", "on:"]
+messageSends: ["at:", "data", "session"]
 }),
 $globals.SlSummaryWidget);
 
@@ -1005,17 +1105,12 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $1,$2,$3,$5,$6,$4,$7,$9,$10,$11,$12,$8;
+var $1,$2,$4,$5,$3,$6,$8,$9,$10,$11,$7;
 $1=self._data();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["data"]=1;
 //>>excludeEnd("ctx");
-$recv($1)._connect();
-$2=self._data();
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-$ctx1.sendIdx["data"]=2;
-//>>excludeEnd("ctx");
-$recv($2)._then_((function(){
+$recv($1)._then_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
@@ -1024,27 +1119,27 @@ return $recv($recv(self._data())._summary())._then_((function(dictionary){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
-$3=$recv(html)._div();
+$2=$recv(html)._div();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx3.sendIdx["div"]=1;
 //>>excludeEnd("ctx");
-$recv($3)._class_("row");
+$recv($2)._class_("row");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx3.sendIdx["class:"]=1;
 //>>excludeEnd("ctx");
-$4=$recv($3)._with_((function(){
+$3=$recv($2)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx4) {
 //>>excludeEnd("ctx");
-$5=$recv(html)._div();
+$4=$recv(html)._div();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx4.sendIdx["div"]=2;
 //>>excludeEnd("ctx");
-$recv($5)._class_("col-xs-4");
+$recv($4)._class_("col-xs-4");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx4.sendIdx["class:"]=2;
 //>>excludeEnd("ctx");
-$6=$recv($5)._with_((function(){
+$5=$recv($4)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx5) {
 //>>excludeEnd("ctx");
@@ -1056,7 +1151,7 @@ return self._renderNumberOfTraces_on_(dictionary,html);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx4.sendIdx["with:"]=2;
 //>>excludeEnd("ctx");
-return $6;
+return $5;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx4) {$ctx4.fillBlock({},$ctx3,3)});
 //>>excludeEnd("ctx");
@@ -1064,28 +1159,28 @@ return $6;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx3.sendIdx["with:"]=1;
 //>>excludeEnd("ctx");
-$4;
-$7=$recv(html)._div();
+$3;
+$6=$recv(html)._div();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx3.sendIdx["div"]=3;
 //>>excludeEnd("ctx");
-$recv($7)._class_("row");
+$recv($6)._class_("row");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx3.sendIdx["class:"]=3;
 //>>excludeEnd("ctx");
-$8=$recv($7)._with_((function(){
+$7=$recv($6)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx4) {
 //>>excludeEnd("ctx");
-$9=$recv(html)._div();
+$8=$recv(html)._div();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx4.sendIdx["div"]=4;
 //>>excludeEnd("ctx");
-$recv($9)._class_("col-xs-4");
+$recv($8)._class_("col-xs-4");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx4.sendIdx["class:"]=4;
 //>>excludeEnd("ctx");
-$10=$recv($9)._with_((function(){
+$9=$recv($8)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx5) {
 //>>excludeEnd("ctx");
@@ -1097,10 +1192,10 @@ return self._renderAuthors_on_(dictionary,html);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx4.sendIdx["with:"]=4;
 //>>excludeEnd("ctx");
-$10;
-$11=$recv(html)._div();
-$recv($11)._class_("col-xs-4");
-$12=$recv($11)._with_((function(){
+$9;
+$10=$recv(html)._div();
+$recv($10)._class_("col-xs-4");
+$11=$recv($10)._with_((function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx5) {
 //>>excludeEnd("ctx");
@@ -1109,7 +1204,7 @@ return self._renderClasses_on_(dictionary,html);
 }, function($ctx5) {$ctx5.fillBlock({},$ctx4,7)});
 //>>excludeEnd("ctx");
 }));
-return $12;
+return $11;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx4) {$ctx4.fillBlock({},$ctx3,5)});
 //>>excludeEnd("ctx");
@@ -1117,7 +1212,7 @@ return $12;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx3.sendIdx["with:"]=3;
 //>>excludeEnd("ctx");
-return $8;
+return $7;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx3) {$ctx3.fillBlock({dictionary:dictionary},$ctx2,2)});
 //>>excludeEnd("ctx");
@@ -1136,10 +1231,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
-source: "renderOn: html\x0a\x0a\x09self data connect.\x0a\x09self data then: [\x0a\x09\x09html h2: 'Summay widget'.\x0a\x09\x09self data summary then: [ :dictionary |\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'row';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderNumberOfTraces: dictionary on: html ] ].\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'row';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderAuthors: dictionary on: html ].\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderClasses: dictionary on: html ] ] ] ]",
+source: "renderOn: html\x0a\x0a\x09\x22self data connect.\x22\x0a\x09self data then: [\x0a\x09\x09html h2: 'Summay widget'.\x0a\x09\x09self data summary then: [ :dictionary |\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'row';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderNumberOfTraces: dictionary on: html ] ].\x0a\x09\x09\x09html div\x0a\x09\x09\x09\x09class: 'row';\x0a\x09\x09\x09\x09with: [\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderAuthors: dictionary on: html ].\x0a\x09\x09\x09\x09\x09html div\x0a\x09\x09\x09\x09\x09\x09class: 'col-xs-4';\x0a\x09\x09\x09\x09\x09\x09with: [ self renderClasses: dictionary on: html ] ] ] ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["connect", "data", "then:", "h2:", "summary", "class:", "div", "with:", "renderNumberOfTraces:on:", "renderAuthors:on:", "renderClasses:on:"]
+messageSends: ["then:", "data", "h2:", "summary", "class:", "div", "with:", "renderNumberOfTraces:on:", "renderAuthors:on:", "renderClasses:on:"]
 }),
 $globals.SlSummaryWidget);
 

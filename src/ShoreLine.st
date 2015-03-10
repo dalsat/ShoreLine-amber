@@ -131,7 +131,7 @@ initializeRouter
 
 	^ SlRouter
 		withRoutes: (self class pages collect: [ :eachPage |
-			eachPage path -> [ :args | self root displayPage: eachPage withArgs: args ] ])
+			eachPage routes -> [ :args | self root displayPage: eachPage withArgs: args ] ])
 		notFound: [ :args | self root pageNotFound: args ]
 ! !
 

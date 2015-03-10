@@ -1,69 +1,9 @@
 Smalltalk createPackage: 'ShoreLine-Widgets'!
-SlToolbarFrame subclass: #SlStackTrace
-	instanceVariableNames: 'stacktrace traceId'
-	package: 'ShoreLine-Widgets'!
-
-!SlStackTrace methodsFor: 'accessing'!
-
-stacktrace
-
-	^ stacktrace ifNil: [ stacktrace := TDClientProxy on: '/stacktraces' ]
-! !
-
-!SlStackTrace methodsFor: 'arguments'!
-
-pushArgs: aDictionary
-
-	traceId := aDictionary at: #id
-! !
-
-!SlStackTrace methodsFor: 'rendering'!
-
-renderOn: html
-
-	self stacktrace
-		connect;
-		then: [
-			| trace |
-			trace := stacktrace list at: traceId ifAbsent: [ nil ].
-			
-			html div
-				class: 'container';
-				with: [
-					html div
-						class: 'panel panel-default';
-						with: [
-							html div
-								class: 'panel-heading';
-								with: 'StackTrace ', traceId.
-							html div
-								class: 'panel-body';
-								with: [ self renderStackTrace: trace on: html ] ] ] ]
-!
-
-renderStackTrace: aStackTrace on: html
-
-	self renderStackTraceMetadata: aStackTrace on: html.
-	self renderStackTraceEvents: aStackTrace on: html.
-!
-
-renderStackTraceEvents: aStackTrace on: html
-
-	aStackTrace stacktrace do: [ :each |
-		html div: each contents ]
-!
-
-renderStackTraceMetadata: aStackTrace on: html
-
-	html div: (Date fromString: aStackTrace date) asDateString.
-	html div: aStackTrace author.
-! !
-
-SlList subclass: #SlStackTraceList
+SlList subclass: #SlStackTraceListWidget
 	instanceVariableNames: 'stacktrace'
 	package: 'ShoreLine-Widgets'!
 
-!SlStackTraceList methodsFor: 'accessing'!
+!SlStackTraceListWidget methodsFor: 'accessing'!
 
 dataDo: aBlock
 
@@ -82,7 +22,7 @@ extractData
 
 header
 
-	^ { 'Date'. 'Author'. 'Creation Date'. 'Class'. 'Method' }
+	^ { 'Date'. 'Time'. 'Author'. 'Class'. 'Method' }
 !
 
 title
@@ -90,20 +30,22 @@ title
 	^ 'Stack Traces'
 ! !
 
-!SlStackTraceList methodsFor: 'rendering'!
+!SlStackTraceListWidget methodsFor: 'rendering'!
 
-renderItem: aStacktrace on: html
+renderItem: aStackTrace on: html
 
-	html tr with: [
-		| date |
-		date := Date fromString: aStacktrace date.
-		
-		html td with: date asDateString.
-		html td with: aStacktrace author.
+	html tr
+		onClick: [ self url: '/stacktraces/', aStackTrace traceId ];
+		with: [
+			| date |
+			date := Date fromString: aStackTrace date.
 
-		html td with: date asDateString.
-		html td with: aStacktrace topClass.
-		html td with: aStacktrace topMethod ]
+			html td with: date asDateString.
+			html td with: date asTimeString.
+
+			html td with: aStackTrace author.
+			html td with: aStackTrace topClass.
+			html td with: aStackTrace topMethod ]
 !
 
 renderList: aCollection on: html
@@ -111,6 +53,78 @@ renderList: aCollection on: html
 	super renderList: aCollection on: html.
 
 	html a onClick: [ self updateContents ]; with: 'Load More'
+! !
+
+SlWidget subclass: #SlStackTraceWidget
+	instanceVariableNames: 'traceId'
+	package: 'ShoreLine-Widgets'!
+
+!SlStackTraceWidget methodsFor: 'accessing'!
+
+data
+
+	^ self session data at: #stacktraces
+!
+
+traceId
+	^ traceId
+!
+
+traceId: anObject
+	traceId := anObject
+! !
+
+!SlStackTraceWidget methodsFor: 'rendering'!
+
+renderOn: html
+
+	self data
+		then: [ self data traceWithId: traceId.
+			self data then: [ :trace |
+				html div
+					class: 'container';
+					with: [
+						html div
+							class: 'panel panel-default';
+							with: [
+								html div
+									class: 'panel-heading';
+									with: 'StackTrace #', traceId, ' and ', trace date.
+								html div
+									class: 'panel-body';
+									with: [ self renderStackTrace: trace on: html ] ] ] ] ]
+!
+
+renderStackTrace: aStackTrace on: html
+
+	self renderStackTraceMetadata: aStackTrace on: html.
+	self renderStackTraceEvents: aStackTrace on: html.
+!
+
+renderStackTraceEvents: aStackTrace on: html
+
+	html table
+		class: 'table';
+		with: [
+			html tbody with: [
+				aStackTrace stacktrace do: [ :each |
+					html tr with: [
+					html td with: [ html div: each contents ] ] ] ] ]
+!
+
+renderStackTraceMetadata: aStackTrace on: html
+
+	html div: (Date fromString: aStackTrace date) asDateString.
+	html div: aStackTrace author.
+! !
+
+!SlStackTraceWidget class methodsFor: 'instance creation'!
+
+withId: id
+
+	^ self new
+		traceId: id;
+		yourself
 ! !
 
 SlWidget subclass: #SlSummaryWidget
@@ -121,7 +135,8 @@ SlWidget subclass: #SlSummaryWidget
 
 data
 
-	^ data ifNil: [ data := TDClientProxy on: '/stacktraces' ]
+	"^ data ifNil: [ data := TDClientProxy on: '/stacktraces' ]"
+	^ self session data at: #stacktraces
 !
 
 dataDo: aBlock
@@ -193,7 +208,7 @@ renderNumberOfTraces: aDictionary on: html
 
 renderOn: html
 
-	self data connect.
+	"self data connect."
 	self data then: [
 		html h2: 'Summay widget'.
 		self data summary then: [ :dictionary |

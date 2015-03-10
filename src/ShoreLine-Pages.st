@@ -92,6 +92,11 @@ order
 
 path
 
+	^ self routes first
+!
+
+routes
+
 	^ self subclassResponsibility
 !
 
@@ -103,6 +108,37 @@ showInMenu
 title
 
 	^ self subclassResponsibility
+! !
+
+SlPage subclass: #SlClassPage
+	instanceVariableNames: ''
+	package: 'ShoreLine-Pages'!
+
+!SlClassPage class methodsFor: 'accessing'!
+
+id
+
+	^ #class
+!
+
+order
+
+	^ 30
+!
+
+routes
+
+	^ { '/classes' }
+!
+
+showInMenu
+
+	^ true
+!
+
+title
+
+	^ 'Classes'
 ! !
 
 SlPage subclass: #SlHomePage
@@ -130,9 +166,9 @@ order
 	^ 1
 !
 
-path
+routes
 
-	^ '/'
+	^ { '/' }
 !
 
 showInMenu
@@ -153,12 +189,12 @@ SlPage subclass: #SlStackTracePage
 
 displayList
 
-	contents := SlStackTraceList new.
+	contents := SlStackTraceListWidget new.
 !
 
 displayTrace: traceId
 
-	contents := SlStackTrace withId: traceId.
+	contents := SlStackTraceWidget withId: traceId.
 ! !
 
 !SlStackTracePage methodsFor: 'arguments'!
@@ -183,9 +219,11 @@ order
 	^ 10
 !
 
-path
+routes
 
-	^ '/stacktraces'
+	^ {
+		'/stacktraces'.
+		'/stacktraces/{id}' }
 !
 
 showInMenu
@@ -207,7 +245,7 @@ SlPage subclass: #SlTestPage
 initializeContents
 
 	^ SlMessageFrame new
-		message: 'Test Page';
+		message: [ :html | html h2: 'Test OK' ];
 		yourself
 ! !
 
@@ -223,9 +261,9 @@ order
 	^ 100
 !
 
-path
+routes
 
-	^ '/test'
+	^ { '/test' }
 !
 
 showInMenu

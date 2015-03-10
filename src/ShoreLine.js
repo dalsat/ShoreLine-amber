@@ -1,4 +1,4 @@
-define("shoreline/ShoreLine", ["amber/boot", "amber-contrib-web/Web", "amber_core/Kernel-Objects", "shoreline/ShoreLine-Core"], function($boot){
+define("shoreline/ShoreLine", ["amber/boot", "amber-contrib-web/Web", "shoreline/ShoreLine-Core", "amber_core/Kernel-Objects"], function($boot){
 var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
 $core.addPackage('ShoreLine');
 $core.packages["ShoreLine"].innerEval = function (expr) { return eval(expr); };
@@ -297,7 +297,7 @@ $1=$recv($SlRouter())._withRoutes_notFound_($recv($recv(self._class())._pages())
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-return $recv($recv(eachPage)._path()).__minus_gt((function(args){
+return $recv($recv(eachPage)._routes()).__minus_gt((function(args){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx3) {
 //>>excludeEnd("ctx");
@@ -329,10 +329,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initializeRouter\x0a\x0a\x09^ SlRouter\x0a\x09\x09withRoutes: (self class pages collect: [ :eachPage |\x0a\x09\x09\x09eachPage path -> [ :args | self root displayPage: eachPage withArgs: args ] ])\x0a\x09\x09notFound: [ :args | self root pageNotFound: args ]",
+source: "initializeRouter\x0a\x0a\x09^ SlRouter\x0a\x09\x09withRoutes: (self class pages collect: [ :eachPage |\x0a\x09\x09\x09eachPage routes -> [ :args | self root displayPage: eachPage withArgs: args ] ])\x0a\x09\x09notFound: [ :args | self root pageNotFound: args ]",
 referencedClasses: ["SlRouter"],
 //>>excludeEnd("ide");
-messageSends: ["withRoutes:notFound:", "collect:", "pages", "class", "->", "path", "displayPage:withArgs:", "root", "pageNotFound:"]
+messageSends: ["withRoutes:notFound:", "collect:", "pages", "class", "->", "routes", "displayPage:withArgs:", "root", "pageNotFound:"]
 }),
 $globals.ShoreLine);
 

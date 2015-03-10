@@ -507,24 +507,39 @@ $core.addMethod(
 $core.method({
 selector: "register:with:",
 protocol: 'routing',
-fn: function (aString,aBlock){
+fn: function (aStringOrCollection,aBlock){
 var self=this;
 function $SlRoute(){return $globals.SlRoute||(typeof SlRoute=="undefined"?nil:SlRoute)}
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-$recv(self["@routes"])._add_($recv($SlRoute())._on_withCallback_(aString,aBlock));
+var $2,$1;
+$2=$recv(aStringOrCollection)._isString();
+if($core.assert($2)){
+$1=[aStringOrCollection];
+} else {
+$1=aStringOrCollection;
+};
+$recv($1)._do_((function(eachString){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv(self["@routes"])._add_($recv($SlRoute())._on_withCallback_(eachString,aBlock));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({eachString:eachString},$ctx1,3)});
+//>>excludeEnd("ctx");
+}));
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"register:with:",{aString:aString,aBlock:aBlock},$globals.SlRouter)});
+}, function($ctx1) {$ctx1.fill(self,"register:with:",{aStringOrCollection:aStringOrCollection,aBlock:aBlock},$globals.SlRouter)});
 //>>excludeEnd("ctx");
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aString", "aBlock"],
-source: "register: aString with: aBlock\x0a\x0a\x09routes add: (SlRoute on: aString withCallback: aBlock)",
+args: ["aStringOrCollection", "aBlock"],
+source: "register: aStringOrCollection with: aBlock\x0a\x0a\x09(aStringOrCollection isString\x0a\x09\x09ifTrue: [ { aStringOrCollection } ]\x0a\x09\x09ifFalse: [ aStringOrCollection ]) do: [ :eachString |\x0a\x09\x09routes add: (SlRoute on: eachString withCallback: aBlock) ]",
 referencedClasses: ["SlRoute"],
 //>>excludeEnd("ide");
-messageSends: ["add:", "on:withCallback:"]
+messageSends: ["do:", "ifTrue:ifFalse:", "isString", "add:", "on:withCallback:"]
 }),
 $globals.SlRouter);
 
@@ -553,7 +568,7 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anAssociationCollection"],
-source: "registerAll: anAssociationCollection\x0a\x0a\x09\x22aSlPageCollection do: [ :each | self register: each key with: each value ]\x22\x0a\x09anAssociationCollection do: [ :each | self register: each key with: each value ]",
+source: "registerAll: anAssociationCollection\x0a\x0a\x09anAssociationCollection do: [ :each | self register: each key with: each value ]",
 referencedClasses: [],
 //>>excludeEnd("ide");
 messageSends: ["do:", "register:with:", "key", "value"]

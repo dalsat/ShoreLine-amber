@@ -162,6 +162,13 @@ Widget subclass: #SlWidget
 	instanceVariableNames: ''
 	package: 'ShoreLine-Core'!
 
+!SlWidget methodsFor: 'accessing'!
+
+session
+
+	^ SlSession current
+! !
+
 !SlWidget methodsFor: 'actions'!
 
 announce: anAnnouncement
@@ -192,12 +199,5 @@ initialize
 url: aString
 
 	ShoreLine current url: aString
-! !
-
-!SlWidget methodsFor: 'session'!
-
-session
-
-	^ SlSession current
 ! !
 

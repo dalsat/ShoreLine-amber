@@ -659,7 +659,7 @@ $globals.SlWidget);
 $core.addMethod(
 $core.method({
 selector: "session",
-protocol: 'session',
+protocol: 'accessing',
 fn: function (){
 var self=this;
 function $SlSession(){return $globals.SlSession||(typeof SlSession=="undefined"?nil:SlSession)}

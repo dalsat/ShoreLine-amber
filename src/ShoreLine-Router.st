@@ -144,14 +144,16 @@ notFound: aBlock
 	notFound := aBlock
 !
 
-register: aString with: aBlock
+register: aStringOrCollection with: aBlock
 
-	routes add: (SlRoute on: aString withCallback: aBlock)
+	(aStringOrCollection isString
+		ifTrue: [ { aStringOrCollection } ]
+		ifFalse: [ aStringOrCollection ]) do: [ :eachString |
+		routes add: (SlRoute on: eachString withCallback: aBlock) ]
 !
 
 registerAll: anAssociationCollection
 
-	"aSlPageCollection do: [ :each | self register: each key with: each value ]"
 	anAssociationCollection do: [ :each | self register: each key with: each value ]
 ! !
 

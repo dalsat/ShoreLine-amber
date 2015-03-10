@@ -149,15 +149,14 @@ title
 
 renderContentsOn: html
 
-	self data then: [ :data |
-		html div: [
-			html div
-				class: 'panel panel-default';
-				with: [
-					self renderTitleOn: html.
-					html div
-						class: 'panel-body';
-						with: [ self renderList: self contents on: html ] ] ] ]
+	html div: [
+		html div
+			class: 'panel panel-default';
+			with: [
+				self renderTitleOn: html.
+				html div
+					class: 'panel-body';
+					with: [ self renderList: self contents on: html ] ] ]
 !
 
 renderItem: anItem on: html
