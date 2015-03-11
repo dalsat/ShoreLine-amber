@@ -27,7 +27,8 @@
     "private": false,
     "dependencies": {
         "amber": "^0.14.10",
-        "bootstrap": "^3.3"
+        "bootstrap": "^3.3",
+        "raleway": "*"
     },
 
     "devDependencies": {
