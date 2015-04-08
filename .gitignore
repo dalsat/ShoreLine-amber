@@ -1,9 +1,10 @@
-/node_modules/
-/bower_components/
+node_modules/
+bower_components/
+build/
 
 /test_runner.js
 
 config.js
-the.js
+shoreline.js
 
 .DS_Store
