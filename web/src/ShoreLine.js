@@ -1,4 +1,4 @@
-define("shoreline/ShoreLine", ["amber/boot", "amber-contrib-web/Web", "shoreline/ShoreLine-Core", "amber_core/Kernel-Objects"], function($boot){
+define("shoreline/ShoreLine", ["amber/boot", "amber/web/Web", "shoreline/ShoreLine-Core", "amber_core/Kernel-Objects"], function($boot){
 var $core=$boot.api,nil=$boot.nil,$recv=$boot.asReceiver,$globals=$boot.globals;
 $core.addPackage('ShoreLine');
 $core.packages["ShoreLine"].innerEval = function (expr) { return eval(expr); };
