@@ -1,10 +1,13 @@
 node_modules/
 bower_components/
 build/
+vm/
 
-/test_runner.js
+test_runner.js
 
 config.js
 shoreline.js
 
+*.log
+*.pid
 .DS_Store
