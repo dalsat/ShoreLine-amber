@@ -26,14 +26,14 @@
     ],
     "private": false,
     "dependencies": {
-        "amber": "^0.14.10",
+        "amber": "^0.14.13",
         "bootstrap": "^3.3",
         "raleway": "*"
     },
 
     "devDependencies": {
         "amber-ide-starter-dialog": "^0.1.0",
-        "amber-attic": "^0.1.5",
-        "helios": "^0.4.0"
+        "helios": "^0.4.3",
+        "amber-contrib-legacy": "^0.2.0"
     }
 }
