@@ -179,9 +179,10 @@ SlPage subclass: #SlHomePage
 
 initializeContents
 
-	^ [ :html |
-		html h1: 'Home Page'.		
-		html div: SlSummaryWidget new ]
+	^ [ :html | | summaryCanvas |
+		html h1: 'Home Page'.
+		summaryCanvas := html div id: 'summary-widget'.
+		SlSummaryWidget new appendToJQuery: summaryCanvas asJQuery ]
 ! !
 
 !SlHomePage class methodsFor: 'accessing'!

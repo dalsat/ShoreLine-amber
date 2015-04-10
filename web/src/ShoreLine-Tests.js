@@ -11,7 +11,7 @@ $core.addClass('SlRouteTest', $globals.TestCase, [], 'ShoreLine-Tests');
 $core.addMethod(
 $core.method({
 selector: "testMatch",
-protocol: 'as yet unclassified',
+protocol: 'tests',
 fn: function (){
 var self=this;
 var route;
@@ -50,7 +50,7 @@ $globals.SlRouteTest);
 $core.addMethod(
 $core.method({
 selector: "testMatchArgs",
-protocol: 'as yet unclassified',
+protocol: 'tests',
 fn: function (){
 var self=this;
 var route;

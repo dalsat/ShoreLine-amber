@@ -2676,12 +2676,18 @@ selector: "renderField:on:",
 protocol: 'rendering',
 fn: function (aSelector,html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._div();
-_st($1)._class_("report-metadata-".__comma(aSelector));
-$2=_st($1)._with_(_st(self["@report"])._perform_(aSelector));
-return self}, function($ctx1) {$ctx1.fill(self,"renderField:on:",{aSelector:aSelector,html:html},smalltalk.SlReportMetadata)})},
+$1=$recv(html)._div();
+$recv($1)._class_("report-metadata-".__comma(aSelector));
+$2=$recv($1)._with_($recv(self["@report"])._perform_(aSelector));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderField:on:",{aSelector:aSelector,html:html},$globals.SlReportMetadata)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aSelector", "html"],
 source: "renderField: aSelector on: html\x0a\x0a\x09html div\x0a\x09\x09class: 'report-metadata-', aSelector;\x0a\x09\x09with: (report perform: aSelector)",
@@ -2697,18 +2703,34 @@ selector: "renderOn:",
 protocol: 'rendering',
 fn: function (html){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $1,$2;
-$1=_st(html)._div();
-_st($1)._class_("report-metadata");
-$2=_st($1)._with_((function(){
-return smalltalk.withContext(function($ctx2) {
-return _st(_st(self._class())._fields())._do_((function(each){
-return smalltalk.withContext(function($ctx3) {
+$1=$recv(html)._div();
+$recv($1)._class_("report-metadata");
+$2=$recv($1)._with_((function(){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+return $recv($recv(self._class())._fields())._do_((function(each){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx3) {
+//>>excludeEnd("ctx");
 return self._renderField_on_(each,html);
-}, function($ctx3) {$ctx3.fillBlock({each:each},$ctx2,2)})}));
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
-return self}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},smalltalk.SlReportMetadata)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx3) {$ctx3.fillBlock({each:each},$ctx2,2)});
+//>>excludeEnd("ctx");
+}));
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+//>>excludeEnd("ctx");
+}));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"renderOn:",{html:html},$globals.SlReportMetadata)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["html"],
 source: "renderOn: html\x0a\x0a\x09html div\x0a\x09\x09class: 'report-metadata';\x0a\x09\x09with: [\x0a\x09\x09\x09self class fields do: [ :each | self renderField: each on: html ] ].",
@@ -2724,11 +2746,11 @@ selector: "report",
 protocol: 'accessing',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
 var $1;
 $1=self["@report"];
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"report",{},smalltalk.SlReportMetadata)})},
+
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "report\x0a\x0a\x09^ report",
@@ -2744,9 +2766,10 @@ selector: "report:",
 protocol: 'accessing',
 fn: function (anObject){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
 self["@report"]=anObject;
-return self}, function($ctx1) {$ctx1.fill(self,"report:",{anObject:anObject},smalltalk.SlReportMetadata)})},
+return self;
+
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["anObject"],
 source: "report: anObject\x0a\x0a\x09report := anObject",
@@ -2763,11 +2786,11 @@ selector: "fields",
 protocol: 'configuration',
 fn: function (){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
 var $1;
 $1=["id", "title", "status", "project"];
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"fields",{},smalltalk.SlReportMetadata.klass)})},
+
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "fields\x0a\x0a\x09^ #( id title status project )",
@@ -2783,14 +2806,19 @@ selector: "withReport:",
 protocol: 'instance creation',
 fn: function (aReport){
 var self=this;
-return smalltalk.withContext(function($ctx1) { 
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
 var $2,$3,$1;
 $2=self._new();
-_st($2)._report_(aReport);
-$3=_st($2)._yourself();
+$recv($2)._report_(aReport);
+$3=$recv($2)._yourself();
 $1=$3;
 return $1;
-}, function($ctx1) {$ctx1.fill(self,"withReport:",{aReport:aReport},smalltalk.SlReportMetadata.klass)})},
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"withReport:",{aReport:aReport},$globals.SlReportMetadata.klass)});
+//>>excludeEnd("ctx");
+},
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aReport"],
 source: "withReport: aReport\x0a\x0a\x09^ self new\x0a\x09\x09report: aReport;\x0a\x09\x09yourself",

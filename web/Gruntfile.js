@@ -33,7 +33,21 @@ module.exports = function (grunt) {
             },
             all: {
                 src: [
+                    'src/ShoreLine-Core.st',
+                    'src/ShoreLine-Router.st',
+
+                    'src/ShoreLine-Widgets-Core.st',
+                    'src/ShoreLine-Layout.st',
+                    'src/ShoreLine-Widgets-Pages.st',
+
+                    'src/ShoreLine-Announcements.st',
+
+                    'src/ShoreLine-Widgets.st',
+                    'src/ShoreLine-Widgets-Legacy.st',
+                    'src/ShoreLine-Pages.st',
                     'src/ShoreLine.st', // list all sources in dependency order
+
+
                     'src/ShoreLine-Tests.st' // list all tests in dependency order
                 ],
                 amd_namespace: 'shoreline',

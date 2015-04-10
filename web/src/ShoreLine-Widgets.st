@@ -179,7 +179,7 @@ withId: id
 ! !
 
 SlWidget subclass: #SlSummaryWidget
-	instanceVariableNames: 'data'
+	instanceVariableNames: 'data canvas'
 	package: 'ShoreLine-Widgets'!
 
 !SlSummaryWidget methodsFor: 'accessing'!
@@ -252,6 +252,27 @@ renderClasses: aDictionary on: html
 							html td with: eachClass key ] ] ] ] ] ] ]
 !
 
+renderContentOn: html
+
+		html h2: 'Summay widget'.
+		self data summary then: [ :dictionary |
+		html div
+		class: 'row';
+		with: [
+			html div
+			class: 'col-xs-4';
+			with: [ self renderNumberOfTraces: dictionary on: html ] ].
+			html div
+			class: 'row';
+			with: [
+				html div
+				class: 'col-xs-4';
+				with: [ self renderAuthors: dictionary on: html ].
+				html div
+				class: 'col-xs-4';
+				with: [ self renderClasses: dictionary on: html ] ] ].
+!
+
 renderNumberOfTraces: aDictionary on: html
 
 	(aDictionary at: #numberOfTraces) then: [ :number | html div: number asString, ' stack traces in the last 7 days' ]
@@ -259,25 +280,25 @@ renderNumberOfTraces: aDictionary on: html
 
 renderOn: html
 
-	"self data connect."
+	self data connect.
 	self data then: [
 		html h2: 'Summay widget'.
 		self data summary then: [ :dictionary |
+		html div
+		class: 'row';
+		with: [
 			html div
-				class: 'row';
-				with: [
-					html div
-						class: 'col-xs-4';
-						with: [ self renderNumberOfTraces: dictionary on: html ] ].
+			class: 'col-xs-4';
+			with: [ self renderNumberOfTraces: dictionary on: html ] ].
 			html div
-				class: 'row';
-				with: [
-					html div
-						class: 'col-xs-4';
-						with: [ self renderAuthors: dictionary on: html ].
-					html div
-						class: 'col-xs-4';
-						with: [ self renderClasses: dictionary on: html ] ] ] ]
+			class: 'row';
+			with: [
+				html div
+				class: 'col-xs-4';
+				with: [ self renderAuthors: dictionary on: html ].
+				html div
+				class: 'col-xs-4';
+				with: [ self renderClasses: dictionary on: html ] ] ] ].
 ! !
 
 SlContainer subclass: #SlTabbedContainer

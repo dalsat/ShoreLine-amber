@@ -7,7 +7,7 @@ TestCase subclass: #SlRouteTest
 	instanceVariableNames: ''
 	package: 'ShoreLine-Tests'!
 
-!SlRouteTest methodsFor: 'as yet unclassified'!
+!SlRouteTest methodsFor: 'tests'!
 
 testMatch
 	| route |

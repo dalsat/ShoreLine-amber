@@ -657,13 +657,16 @@ return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 var $1;
 $1=(function(html){
+var summaryCanvas;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
 $recv(html)._h1_("Home Page");
-return $recv(html)._div_($recv($SlSummaryWidget())._new());
+summaryCanvas=$recv($recv(html)._div())._id_("summary-widget");
+summaryCanvas;
+return $recv($recv($SlSummaryWidget())._new())._appendToJQuery_($recv(summaryCanvas)._asJQuery());
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)});
+}, function($ctx2) {$ctx2.fillBlock({html:html,summaryCanvas:summaryCanvas},$ctx1,1)});
 //>>excludeEnd("ctx");
 });
 return $1;
@@ -673,10 +676,10 @@ return $1;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "initializeContents\x0a\x0a\x09^ [ :html |\x0a\x09\x09html h1: 'Home Page'.\x09\x09\x0a\x09\x09html div: SlSummaryWidget new ]",
+source: "initializeContents\x0a\x0a\x09^ [ :html | | summaryCanvas |\x0a\x09\x09html h1: 'Home Page'.\x0a\x09\x09summaryCanvas := html div id: 'summary-widget'.\x0a\x09\x09SlSummaryWidget new appendToJQuery: summaryCanvas asJQuery ]",
 referencedClasses: ["SlSummaryWidget"],
 //>>excludeEnd("ide");
-messageSends: ["h1:", "div:", "new"]
+messageSends: ["h1:", "id:", "div", "appendToJQuery:", "new", "asJQuery"]
 }),
 $globals.SlHomePage);
 
