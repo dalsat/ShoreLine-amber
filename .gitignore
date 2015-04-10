@@ -2,6 +2,7 @@ node_modules/
 bower_components/
 build/
 vm/
+src/*.js
 
 test_runner.js
 
