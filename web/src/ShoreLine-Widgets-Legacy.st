@@ -1,4 +1,214 @@
 Smalltalk createPackage: 'ShoreLine-Widgets-Legacy'!
+SlWidget subclass: #SlNewList
+	instanceVariableNames: 'container sortField'
+	package: 'ShoreLine-Widgets-Legacy'!
+
+!SlNewList methodsFor: 'accessing'!
+
+width
+
+	^ container asJQuery innerWidth
+! !
+
+!SlNewList methodsFor: 'actions'!
+
+updateContents
+
+	self updateList: self data
+!
+
+updateList: aCollection
+
+	container contents: [ :html | self renderList: aCollection on: html ].
+! !
+
+!SlNewList methodsFor: 'initialization'!
+
+initialize
+
+	super initialize.
+! !
+
+!SlNewList methodsFor: 'rendering'!
+
+render
+
+	^ self subclassResponsibility
+!
+
+renderContentsOn: html
+	
+	html div
+		class: 'panel-body';
+		with: [
+			self renderControlsOn: html.
+			container := html div ];
+		yourself.
+!
+
+renderControlsOn: html
+!
+
+renderHeadControlsOn: html
+!
+
+renderHeaderOn: html
+
+	self class listName ifNotNil: [
+		html div
+			class: 'panel-heading';
+			with: [
+				html with: self class listName.
+				self renderHeadControlsOn: html ] ]
+!
+
+renderItem: anElement on: html
+
+	^ self subclassResponsibility
+!
+
+renderItems: aCollection on: html
+
+	"(sortBlock ifNil: [ aCollection ] ifNotNil: [ aCollection sort: sortBlock ])
+		do: [ :each | self renderItem: each on: html ]."
+!
+
+renderList: aCollection on: html
+
+	html div: [ self renderItems: aCollection on: html ].
+!
+
+renderOn: html
+
+	html div
+		class: 'panel panel-default';
+		with: [
+			self renderHeaderOn: html.
+			self renderContentsOn: html ].
+	
+	self render.
+	"self updateContents."
+! !
+
+!SlNewList class methodsFor: 'configuration'!
+
+listName
+
+	^ nil
+! !
+
+SlWidget subclass: #SlOldList
+	instanceVariableNames: 'container filteredItems sortBlock sortField'
+	package: 'ShoreLine-Widgets-Legacy'!
+
+!SlOldList methodsFor: 'accessing'!
+
+data
+
+	^ self subclassResponsibility
+!
+
+sortBlock
+
+	^ sortBlock
+!
+
+sortBlock: aBlock
+
+	sortBlock := aBlock
+!
+
+width
+
+	^ container asJQuery innerWidth
+! !
+
+!SlOldList methodsFor: 'actions'!
+
+updateContents
+
+	"ForkPool default fork: [ "self updateList: (self filteredItemsFrom: self data) "]."
+!
+
+updateList: aCollection
+
+	container contents: [ :html | self renderList: aCollection on: html ].
+! !
+
+!SlOldList methodsFor: 'filtering'!
+
+filteredItemsFrom: aCollection
+
+	self subclassResponsibility
+! !
+
+!SlOldList methodsFor: 'initialization'!
+
+initialize
+
+	super initialize.
+	filteredItems := Set new.
+! !
+
+!SlOldList methodsFor: 'rendering'!
+
+renderContentsOn: html
+	
+	html div
+		class: 'panel-body';
+		with: [
+			self renderControlsOn: html.
+			container := html div ];
+		yourself.
+!
+
+renderControlsOn: html
+!
+
+renderHeadControlsOn: html
+!
+
+renderHeaderOn: html
+
+	html div
+		class: 'panel-heading';
+		with: [
+			html with: self class listName.
+			self renderHeadControlsOn: html ].
+!
+
+renderItem: anElement on: html
+
+	^ self subclassResponsibility
+!
+
+renderItems: aCollection on: html
+
+	(sortBlock ifNil: [ aCollection ] ifNotNil: [ aCollection sort: sortBlock ])
+		do: [ :each | self renderItem: each on: html ].
+!
+
+renderList: aCollection on: html
+
+	html div: [ self renderItems: aCollection on: html ].
+!
+
+renderOn: html
+
+	html div
+		class: 'panel panel-default';
+		with: [
+			self renderHeaderOn: html.
+			self renderContentsOn: html ].
+! !
+
+!SlOldList class methodsFor: 'configuration'!
+
+listName
+
+	^ self subclassResponsibility
+! !
+
 SlOldList subclass: #SlLoadList
 	instanceVariableNames: ''
 	package: 'ShoreLine-Widgets-Legacy'!

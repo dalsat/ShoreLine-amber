@@ -5,7 +5,7 @@ SlList subclass: #SlClassListWidget
 
 !SlClassListWidget methodsFor: 'rendering'!
 
-renderOn: html
+renderContentsOn: html
 
 	html with: 'Classes'
 ! !
@@ -26,7 +26,7 @@ className: anObject
 
 !SlClassWidget methodsFor: 'rendering'!
 
-renderOn: html
+renderContentsOn: html
 
 	html with: 'Class widget: ', self className
 ! !
@@ -49,11 +49,6 @@ SlList subclass: #SlStackTraceListWidget
 dataDo: aBlock
 
 	self data then: [ self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ] ]
-!
-
-dataTag
-
-	^ #stacktraces
 !
 
 extractData
@@ -109,11 +104,6 @@ SlWidget subclass: #SlStackTraceWidget
 
 !SlStackTraceWidget methodsFor: 'accessing'!
 
-data
-
-	^ self session data at: #stacktraces
-!
-
 traceId
 	^ traceId
 !
@@ -124,7 +114,7 @@ traceId: anObject
 
 !SlStackTraceWidget methodsFor: 'rendering'!
 
-renderOn: html
+renderContentsOn: html
 
 	self data
 		then: [ self data traceWithId: traceId.
@@ -182,20 +172,6 @@ SlWidget subclass: #SlSummaryWidget
 	instanceVariableNames: 'data canvas'
 	package: 'ShoreLine-Widgets'!
 
-!SlSummaryWidget methodsFor: 'accessing'!
-
-data
-
-	"^ data ifNil: [ data := TDClientProxy on: '/stacktraces' ]"
-	^ self session data at: #stacktraces
-!
-
-dataDo: aBlock
-	| proxy |
-	
-	^ SlSession current data with: #stacktraces do: aBlock
-! !
-
 !SlSummaryWidget methodsFor: 'rendering'!
 
 renderAuthor: anAuthor withIndex: aNumber on: html
@@ -252,33 +228,7 @@ renderClasses: aDictionary on: html
 							html td with: eachClass key ] ] ] ] ] ] ]
 !
 
-renderContentOn: html
-
-		html h2: 'Summay widget'.
-		self data summary then: [ :dictionary |
-		html div
-		class: 'row';
-		with: [
-			html div
-			class: 'col-xs-4';
-			with: [ self renderNumberOfTraces: dictionary on: html ] ].
-			html div
-			class: 'row';
-			with: [
-				html div
-				class: 'col-xs-4';
-				with: [ self renderAuthors: dictionary on: html ].
-				html div
-				class: 'col-xs-4';
-				with: [ self renderClasses: dictionary on: html ] ] ].
-!
-
-renderNumberOfTraces: aDictionary on: html
-
-	(aDictionary at: #numberOfTraces) then: [ :number | html div: number asString, ' stack traces in the last 7 days' ]
-!
-
-renderOn: html
+renderContentsOn: html
 
 	self data connect.
 	self data then: [
@@ -299,6 +249,11 @@ renderOn: html
 				html div
 				class: 'col-xs-4';
 				with: [ self renderClasses: dictionary on: html ] ] ] ].
+!
+
+renderNumberOfTraces: aDictionary on: html
+
+	(aDictionary at: #numberOfTraces) then: [ :number | html div: number asString, ' stack traces in the last 7 days' ]
 ! !
 
 SlContainer subclass: #SlTabbedContainer

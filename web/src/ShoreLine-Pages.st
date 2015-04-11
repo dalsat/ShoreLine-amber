@@ -73,6 +73,30 @@ SlFrame subclass: #SlPage
 	instanceVariableNames: ''
 	package: 'ShoreLine-Pages'!
 
+!SlPage methodsFor: 'accessing'!
+
+title
+
+	^ nil
+! !
+
+!SlPage methodsFor: 'rendering'!
+
+renderOn: html
+
+	self renderTitleOn: html.
+	super renderOn: html.
+	canvas class: 'container-fluid'.
+!
+
+renderTitleOn: html
+
+	self title ifNotNil: [
+		html div
+			class: 'title';
+			with: [ html h1: self title ] ]
+! !
+
 !SlPage class methodsFor: 'accessing'!
 
 enabled
@@ -175,14 +199,33 @@ SlPage subclass: #SlHomePage
 	instanceVariableNames: ''
 	package: 'ShoreLine-Pages'!
 
+!SlHomePage methodsFor: 'accessing'!
+
+title
+
+	^ 'ShoreLine'
+! !
+
 !SlHomePage methodsFor: 'initialization'!
 
 initializeContents
 
-	^ [ :html | | summaryCanvas |
-		html h1: 'Home Page'.
-		summaryCanvas := html div id: 'summary-widget'.
-		SlSummaryWidget new appendToJQuery: summaryCanvas asJQuery ]
+	^ SlSummaryWidget new
+! !
+
+!SlHomePage methodsFor: 'rendering'!
+
+renderContentsOn: html
+
+	"SlSummaryWidget new appendToJQuery: canvas asJQuery"
+	super renderContentsOn: html
+!
+
+renderTitleOn: html
+
+	html div
+		class: 'title';
+		with: [ html h1: [ self renderLogoOn: html ] ]
 ! !
 
 !SlHomePage class methodsFor: 'accessing'!
@@ -367,7 +410,7 @@ displayPageNamed: aString withArgs: aDictionary
 	self contents: (self pageAt: aString).
 	contents pushArgs: aDictionary.
 	
-	self updateContents.
+	self refresh.
 !
 
 pageNotFound: args
