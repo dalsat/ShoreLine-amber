@@ -210,7 +210,9 @@ title
 
 initializeContents
 
-	^ SlSummaryWidget new
+	^ [ :html |
+		html div with: SlSummaryWidget new.
+		html div with: SlSystemViewWidget new ]
 ! !
 
 !SlHomePage methodsFor: 'rendering'!
@@ -324,6 +326,11 @@ initializeContents
 ! !
 
 !SlTestPage class methodsFor: 'accessing'!
+
+enabled
+
+	^ false
+!
 
 id
 

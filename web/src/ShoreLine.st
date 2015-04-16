@@ -169,22 +169,6 @@ pages
 startWidget
 
 	^ SlMainFrame
-	"^ SlTestFrame"
-! !
-
-!ShoreLine class methodsFor: 'routes'!
-
-routes
-
-	^ {
-	'/' -> #home.
-	'/test/{message}' -> #test.
-	'/reports' -> #images.
-	'/reports/{id}' -> #test.
-	'/stacktraces' -> #stacktraces.
-	'/stacktraces/author/{authorName}' -> #stacktraces.
-	'/stacktraces/{id}' -> #stacktraces
-	}
 ! !
 
 !ShoreLine class methodsFor: 'starting'!

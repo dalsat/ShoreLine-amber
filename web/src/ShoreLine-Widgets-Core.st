@@ -195,6 +195,11 @@ SlFramedContainer subclass: #SlList
 
 !SlList methodsFor: 'accessing'!
 
+dataDo: aBlock
+
+	self data then: [ self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ] ]
+!
+
 extractData
 
 	^ self subclassResponsibility
@@ -221,7 +226,7 @@ renderContentsOn: html
 				self renderTitleOn: html.
 				html div
 					class: 'panel-body';
-					with: [ self renderList: self contents on: html ] ] ]
+					with: [ self renderListOn: html ] ] ]
 !
 
 renderItem: anItem on: html
@@ -236,13 +241,33 @@ renderList: aCollection on: html
 		with: [
 			self renderListHeaderOn: html.
 			
-			html tbody with: [ aCollection do: [ :each | self renderItem: each on: html ] ] ]
+			self data then: [ self extractData then: [
+				[ html tbody with: [
+					aCollection do: [ :each |
+						self renderItem: each on: html ] ] ] appendToJQuery: html div asJQuery ] ] ]
 !
 
 renderListHeaderOn: html
 
 	self header ifNotEmpty: [ :header |
 		html thead with: [ html tr with: [ header do: [ :each | html th with: each ] ] ] ]
+!
+
+renderListOn: html
+	| dynamicCanvas |
+
+	dynamicCanvas := html div.
+
+	self dataDo: [ :collection |
+		[ :updateHtml | 
+			updateHtml table
+				class: 'table';
+				with: [
+					self renderListHeaderOn: updateHtml.
+
+					updateHtml tbody with: [
+						collection do: [ :each |
+							self renderItem: each on: updateHtml ] ] ] ] appendToJQuery: dynamicCanvas asJQuery ]
 !
 
 renderTitleOn: html

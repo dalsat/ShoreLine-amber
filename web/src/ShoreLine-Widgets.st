@@ -46,14 +46,9 @@ SlList subclass: #SlStackTraceListWidget
 
 !SlStackTraceListWidget methodsFor: 'accessing'!
 
-dataDo: aBlock
-
-	self data then: [ self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ] ]
-!
-
 extractData
 
-	^ self data tracesOnDate: (Date fromString: '2015/03/04').
+	^ self data tracesInLastHours: 24
 !
 
 header
@@ -169,7 +164,7 @@ withId: id
 ! !
 
 SlWidget subclass: #SlSummaryWidget
-	instanceVariableNames: 'data canvas'
+	instanceVariableNames: 'data'
 	package: 'ShoreLine-Widgets'!
 
 !SlSummaryWidget methodsFor: 'rendering'!
@@ -265,6 +260,32 @@ renderHeaderFor: aDictionary on: html
 				(html tag: 'b') with: 'Summary'.
 				html span: ' of the last 24 hours: '.
 				html with: number asString, ' stack traces submitted' ] ]
+! !
+
+SlWidget subclass: #SlSystemViewWidget
+	instanceVariableNames: ''
+	package: 'ShoreLine-Widgets'!
+
+!SlSystemViewWidget methodsFor: 'as yet unclassified'!
+
+renderImageOn: html
+
+	html img
+		style: 'margin: auto;';
+		src: 'data/system.svg';
+		alt: 'Map of the Pharo System'
+! !
+
+!SlSystemViewWidget methodsFor: 'rendering'!
+
+renderContentsOn: html
+
+	html div
+		class: 'row';
+		with: [
+			html div
+				class: 'col-xs-6';
+				with: [ self renderImageOn: html ] ]
 ! !
 
 SlContainer subclass: #SlTabbedContainer
@@ -373,10 +394,11 @@ renderControlsOn: html
 
 renderDebugControlsOn: html
 
-	html button
-		class: 'btn btn-default navbar-btn navbar-nav navbar-right';
-		onClick: [ self announce: SlHeliosPopupAnnouncement new ];
-		with: 'Helios'
+	(require value: 'amber/devel') ifNotNil: [
+		html button
+			class: 'btn btn-default navbar-btn navbar-nav navbar-right';
+			onClick: [ self announce: SlHeliosPopupAnnouncement new ];
+			with: 'Helios' ]
 !
 
 renderHeaderOn: html
