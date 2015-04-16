@@ -182,78 +182,89 @@ renderAuthor: anAuthor withIndex: aNumber on: html
 		html td with: anAuthor key ]
 !
 
-renderAuthors: aDictionary on: html
+renderAuthors: authors on: html
 
-	(aDictionary at: #authors) then: [ :collection |
-		collection contents then: [ :authors |
-
+	html div
+		class: 'summary-users panel panel-default';
+		with: [
 			html div
-				class: 'summary-users panel panel-default';
+				class: 'panel-heading';
 				with: [
 					html div
-						class: 'panel-heading';
+						class: 'panel-title';
+						with: [ html h5: 'Top Reporters' ] ].
+			html div
+				class: 'panel-body';
+				with: [
+					html table
+						class: 'table table-hover table-striped';
 						with: [
-							html div
-								class: 'panel-title';
-								with: [ html h5: 'Top Reporters' ] ].
-					html div
-						class: 'panel-body';
-						with: [
-							html table
-								class: 'table table-hover table-striped';
-								with: [
-									html thead with: [
-										html tr with: [
-											html th with: 'User Name'.
-											html th with: 'Number of Traces' ] ].
-									html tbody with: [ authors withIndexDo: [ :each :i |
-										self renderAuthor: each withIndex: i on: html ] ] ] ] ] ] ]
+							html thead with: [
+								html tr with: [
+									html th with: 'a'.
+									html th with: 'User Name'.
+									html th with: 'Number of Traces' ] ].
+							html tbody with: [ authors withIndexDo: [ :each :i |
+								self renderAuthor: each withIndex: i on: html ] ] ] ] ]
 !
 
-renderClasses: aDictionary on: html
+renderClasses: classes on: html
 
-	(aDictionary at: #classes) then: [ :r | r contents then: [ :classes |
-		html div: [
-			html h5: 'The troublesome classes'.
-			html table
-				class: 'table';
+
+	html div
+		class: 'summary-users panel panel-default';
+		with: [
+			html div
+				class: 'panel-heading';
 				with: [
-					html thead with: [
-						html tr with: [
-							html th with: 'Class Name'.
-							html th with: 'Number of Stack Traces' ] ].
-					html tbody with: [
-						classes do: [ :eachClass | html tr with: [
-							html td with: eachClass associationValue.
-							html td with: eachClass key ] ] ] ] ] ] ]
+					html div
+						class: 'panel-title';
+						with: [ html h5: 'The Troublesome Classes' ] ].
+			html div
+				class: 'panel-body';
+				with: [
+					html table
+						class: 'table table-hover table-striped';
+						with: [
+							html thead with: [
+								html tr with: [
+									html th with: 'Class Name'.
+									html th with: 'Number of Stack Traces' ] ].
+							html tbody with: [ classes do: [ :eachClass | html tr with: [
+								html td with: eachClass associationValue.
+								html td with: eachClass key ] ] ] ] ] ]
 !
 
 renderContentsOn: html
 
-	self data connect.
 	self data then: [
-		html h2: 'Summay widget'.
 		self data summary then: [ :dictionary |
-		html div
-		class: 'row';
-		with: [
+			self renderHeaderFor: dictionary on: html.
 			html div
-			class: 'col-xs-4';
-			with: [ self renderNumberOfTraces: dictionary on: html ] ].
-			html div
-			class: 'row';
-			with: [
-				html div
-				class: 'col-xs-4';
-				with: [ self renderAuthors: dictionary on: html ].
-				html div
-				class: 'col-xs-4';
-				with: [ self renderClasses: dictionary on: html ] ] ] ].
+				class: 'row';
+				with: [
+					(dictionary at: #authors) then: [ :collection | collection contents then: [ :authors |
+						"html div class: 'col-xs-1'; with: [ html entity: 'nbsp' ]."
+
+						html div
+							class: 'col-xs-4';
+							with: [	self renderAuthors: authors on: html ] ] ].
+					
+					(dictionary at: #classes) then: [ :r | r contents then: [ :classes |
+						html div
+							class: 'col-xs-5';
+							with: [ self renderClasses: classes on: html ] ] ] ] ] ].
 !
 
-renderNumberOfTraces: aDictionary on: html
+renderHeaderFor: aDictionary on: html
 
-	(aDictionary at: #numberOfTraces) then: [ :number | html div: number asString, ' stack traces in the last 7 days' ]
+	(aDictionary at: #numberOfTraces) then: [ :number |
+		html div
+			class: 'alert alert-info';
+			with: [
+				(html tag: 'b') with: 'Summary'.
+				html span: ' of the last 24 hours: '.
+				html with: number asString, ' stack traces submitted' ] ]
 ! !
 
 SlContainer subclass: #SlTabbedContainer
