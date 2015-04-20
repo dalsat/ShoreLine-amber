@@ -5,7 +5,8 @@
 
 
 body {
-	background: #F5F5F5;
+	/*background: #F5F5F5;*/
+	background: black;
 	margin: 0;
 	border: 0;
 	padding: 70px 0 0 0;
@@ -50,8 +51,8 @@ div {
 	/*background: #BAD4F8;*/
 	/*height: 2em;*/
 	/*line-height: 2em;*/
-	margin: 0px;
-	margin-bottom: 30px;
+	margin: 30px 0px;
+	/*margin-bottom: 30px;*/
 
 	text-align: center;
 	font-size: 45pt;
@@ -67,4 +68,11 @@ div {
 	background: #f5f5f5;
 	border: 1px solid #b0b0b0;
 	border-radius: 4px;
+}
+
+.sl-row {
+	/*background-color: #f3f3f3;*/
+	border-bottom: 1px solid #e0e0e0;
+	margin-bottom: 1em;
+	padding: 1em 0;
 }

@@ -80,6 +80,14 @@ title
 	^ nil
 ! !
 
+!SlPage methodsFor: 'as yet unclassified'!
+
+renderRow: anObject on: html
+
+	[ :updateHtml | updateHtml with: anObject ] appendToJQuery: (html div class: 'row sl-row'; yourself) asJQuery
+	"(html div class: 'row sl-row'; yourself) contents: [ :updateHtml | updateHtml with: anObject ]"
+! !
+
 !SlPage methodsFor: 'rendering'!
 
 renderOn: html
@@ -147,7 +155,7 @@ displayClass: className
 
 displayList
 
-	contents := SlClassListWidget new
+	contents := SlPanel title: 'Classes' contents: SlClassListWidget new.
 ! !
 
 !SlClassPage methodsFor: 'arguments'!
@@ -164,7 +172,10 @@ pushArgs: aDictionary
 initializeContents
 
 	^ [ :html |
-		html with: SlClassListWidget new ]
+		html h1: 'banana'.
+		SlPanel
+			title: 'Classes'
+			contents: html with: SlClassListWidget new ]
 ! !
 
 !SlClassPage class methodsFor: 'accessing'!
@@ -213,15 +224,25 @@ initializeContents
 	^ [ :html |
 		html div with: SlSummaryWidget new.
 		html div with: SlSystemViewWidget new ]
-! !
-
-!SlHomePage methodsFor: 'rendering'!
+!
 
 renderContentsOn: html
 
-	"SlSummaryWidget new appendToJQuery: canvas asJQuery"
-	super renderContentsOn: html
-!
+	self renderRow: [ 
+		html div
+			"class: 'xol-xs-12';"
+			with: SlSummaryWidget new ]
+		on: html.
+
+	self
+		renderRow: [
+			html div
+				class: 'col-xs-5';
+				with: SlSystemViewWidget new ]
+		on: html
+! !
+
+!SlHomePage methodsFor: 'rendering'!
 
 renderTitleOn: html
 

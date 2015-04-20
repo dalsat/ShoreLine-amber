@@ -179,76 +179,57 @@ renderAuthor: anAuthor withIndex: aNumber on: html
 
 renderAuthors: authors on: html
 
-	html div
-		class: 'summary-users panel panel-default';
-		with: [
-			html div
-				class: 'panel-heading';
-				with: [
-					html div
-						class: 'panel-title';
-						with: [ html h5: 'Top Reporters' ] ].
-			html div
-				class: 'panel-body';
-				with: [
-					html table
-						class: 'table table-hover table-striped';
+	html with: (SlPanel
+		title: 'Top Reporters'
+		with: [	:panelHtml |
+			panelHtml table
+				class: 'table table-hover table-striped';
 						with: [
-							html thead with: [
-								html tr with: [
-									html th with: 'a'.
-									html th with: 'User Name'.
-									html th with: 'Number of Traces' ] ].
-							html tbody with: [ authors withIndexDo: [ :each :i |
-								self renderAuthor: each withIndex: i on: html ] ] ] ] ]
+							panelHtml thead with: [
+								panelHtml tr with: [
+									panelHtml th with: '#'.
+									panelHtml th with: 'User Name'.
+									panelHtml th with: 'Number of Traces' ] ].
+							panelHtml tbody with: [ authors withIndexDo: [ :each :i |
+								self renderAuthor: each withIndex: i on: panelHtml ] ] ] ])
 !
 
 renderClasses: classes on: html
 
-
-	html div
-		class: 'summary-users panel panel-default';
-		with: [
-			html div
-				class: 'panel-heading';
+	html with: (SlPanel
+		title: 'The Troublesome Classes'
+		with: [ :panelHtml |
+			panelHtml table
+				class: 'table';
 				with: [
-					html div
-						class: 'panel-title';
-						with: [ html h5: 'The Troublesome Classes' ] ].
-			html div
-				class: 'panel-body';
-				with: [
-					html table
-						class: 'table table-hover table-striped';
-						with: [
-							html thead with: [
-								html tr with: [
-									html th with: 'Class Name'.
-									html th with: 'Number of Stack Traces' ] ].
-							html tbody with: [ classes do: [ :eachClass | html tr with: [
-								html td with: eachClass associationValue.
-								html td with: eachClass key ] ] ] ] ] ]
+					panelHtml thead with: [
+						panelHtml tr with: [
+							panelHtml th with: 'Class Name'.
+							panelHtml th with: 'Number of Stack Traces' ] ].
+					panelHtml tbody with: [ classes do: [ :eachClass | panelHtml tr with: [
+						panelHtml td with: eachClass associationValue.
+						panelHtml td with: eachClass key ] ] ] ] ])
 !
 
 renderContentsOn: html
 
-	self data then: [
-		self data summary then: [ :dictionary |
-			self renderHeaderFor: dictionary on: html.
-			html div
-				class: 'row';
-				with: [
-					(dictionary at: #authors) then: [ :collection | collection contents then: [ :authors |
-						"html div class: 'col-xs-1'; with: [ html entity: 'nbsp' ]."
+	self data then: [ self data summary then: [ :dictionary |
+		
+		html div
+			class: 'col-xs-12';
+			with: [ self renderHeaderFor: dictionary on: html ].
+		
+		(dictionary at: #authors) then: [ :collection | collection contents then: [ :authors |
+			"html div class: 'col-xs-1'; with: [ html entity: 'nbsp' ]."
 
-						html div
-							class: 'col-xs-4';
-							with: [	self renderAuthors: authors on: html ] ] ].
+			html div
+				class: 'col-xs-4';
+				with: [	self renderAuthors: authors on: html ] ] ].
 					
-					(dictionary at: #classes) then: [ :r | r contents then: [ :classes |
-						html div
-							class: 'col-xs-5';
-							with: [ self renderClasses: classes on: html ] ] ] ] ] ].
+		(dictionary at: #classes) then: [ :r | r contents then: [ :classes |
+			html div
+				class: 'col-xs-5';
+				with: [ self renderClasses: classes on: html ] ] ] ] ].
 !
 
 renderHeaderFor: aDictionary on: html
@@ -266,26 +247,21 @@ SlWidget subclass: #SlSystemViewWidget
 	instanceVariableNames: ''
 	package: 'ShoreLine-Widgets'!
 
-!SlSystemViewWidget methodsFor: 'as yet unclassified'!
-
-renderImageOn: html
-
-	html img
-		style: 'margin: auto;';
-		src: 'data/system.svg';
-		alt: 'Map of the Pharo System'
-! !
-
 !SlSystemViewWidget methodsFor: 'rendering'!
 
 renderContentsOn: html
 
-	html div
-		class: 'row';
-		with: [
-			html div
-				class: 'col-xs-6';
-				with: [ self renderImageOn: html ] ]
+	html with: (SlPanel
+				title: 'Pharo 4'
+				with: [ self renderImageOn: html ])
+!
+
+renderImageOn: html
+
+	html img
+		style: 'margin: auto; width: 100%;';
+		src: 'data/system.svg';
+		alt: 'Map of the Pharo System'
 ! !
 
 SlContainer subclass: #SlTabbedContainer
@@ -393,12 +369,8 @@ renderControlsOn: html
 !
 
 renderDebugControlsOn: html
-
-	(require value: 'amber/devel') ifNotNil: [
-		html button
-			class: 'btn btn-default navbar-btn navbar-nav navbar-right';
-			onClick: [ self announce: SlHeliosPopupAnnouncement new ];
-			with: 'Helios' ]
+	
+	SlHeliosButton ifNotNil: [ :widget | html with: widget new ]
 !
 
 renderHeaderOn: html
@@ -440,7 +412,9 @@ renderMenuOn: html
 renderOn: html
 
 	html nav
+		id: 'toolbar';
 		class: 'navbar navbar-default navbar-fixed-top';
+		style: 'padding: 0px 15px';
 		at: 'role' put: 'navigation';
 		with: [
 			self renderControlsOn: html.

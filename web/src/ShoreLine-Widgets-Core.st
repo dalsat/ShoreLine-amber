@@ -278,3 +278,45 @@ renderTitleOn: html
 			with: title ]
 ! !
 
+SlContainer subclass: #SlPanel
+	instanceVariableNames: 'title'
+	package: 'ShoreLine-Widgets-Core'!
+
+!SlPanel methodsFor: 'accessing'!
+
+title
+	^ title
+!
+
+title: anObject
+	title := anObject
+! !
+
+!SlPanel methodsFor: 'rendering'!
+
+renderOn: html
+
+	html div
+		class: 'panel panel-default';
+		with: [
+			html div
+				class: 'panel-heading';
+				with: [
+					html div
+						class: 'panel-title';
+						with: [ html h5: self title ] ].
+			html div
+				class: 'panel-body';
+				with: [ super renderOn: html ] ]
+! !
+
+!SlPanel class methodsFor: 'instance creation'!
+
+title: aString with: aWidget
+
+	^ self new
+		title: aString;
+		contents: aWidget;
+		yourself
+! !
+
