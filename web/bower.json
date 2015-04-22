@@ -28,6 +28,7 @@
     "dependencies": {
         "amber": "^0.14.13",
         "bootstrap": "^3.3",
+        "d3": "",
         "raleway": "*"
     },
 

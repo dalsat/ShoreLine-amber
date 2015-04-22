@@ -86,6 +86,18 @@ renderRow: anObject on: html
 
 	[ :updateHtml | updateHtml with: anObject ] appendToJQuery: (html div class: 'row sl-row'; yourself) asJQuery
 	"(html div class: 'row sl-row'; yourself) contents: [ :updateHtml | updateHtml with: anObject ]"
+!
+
+renderSection: aString on: html
+
+	html div
+		class: 'row section';
+		with: [ html div class: 'col-xs-12'; with: [ html h4: aString ]  ]
+!
+
+renderSeparatorOn: html
+
+	self renderSection: '' on: html
 ! !
 
 !SlPage methodsFor: 'rendering'!
@@ -155,7 +167,7 @@ displayClass: className
 
 displayList
 
-	contents := SlPanel title: 'Classes' contents: SlClassListWidget new.
+	contents := SlPanel title: 'Classes' with: SlClassListWidget lastWeek.
 ! !
 
 !SlClassPage methodsFor: 'arguments'!
@@ -175,7 +187,7 @@ initializeContents
 		html h1: 'banana'.
 		SlPanel
 			title: 'Classes'
-			contents: html with: SlClassListWidget new ]
+			with: html with: SlClassListWidget new ]
 ! !
 
 !SlClassPage class methodsFor: 'accessing'!
@@ -228,12 +240,28 @@ initializeContents
 
 renderContentsOn: html
 
+	self renderSection: 'Summary' on: html.
 	self renderRow: [ 
 		html div
-			"class: 'xol-xs-12';"
+			class: 'xol-xs-12';
 			with: SlSummaryWidget new ]
 		on: html.
+	
+	self renderRow: [
+		html div
+			class: 'col-xs-4';
+			with: (SlPanel title: 'Top Reporters' with: SlUserListWidget lastDay ).
+					
+		html div
+			class: 'col-xs-4';
+			with: (SlPanel title: 'The Troublesome Classes' with: SlClassListWidget lastDay).
 
+		html div
+			class: 'col-xs-4';
+			with: SlSystemViewWidget new]
+		on: html.
+
+	self renderSeparatorOn: html.
 	self
 		renderRow: [
 			html div
@@ -376,6 +404,64 @@ showInMenu
 title
 
 	^ 'Test'
+! !
+
+SlPage subclass: #SlUserPage
+	instanceVariableNames: ''
+	package: 'ShoreLine-Pages'!
+
+!SlUserPage methodsFor: 'actions'!
+
+displayList
+
+	contents := SlUserListWidget lastWeek.
+!
+
+displayUser: userName
+
+	contents := SlUserWidget named: userName.
+! !
+
+!SlUserPage methodsFor: 'arguments'!
+
+pushArgs: aDictionary
+	
+	aDictionary at: #username
+		ifPresent: [ :userId | self displayUser: userId ]
+		ifAbsent: [ self displayList ]
+! !
+
+!SlUserPage class methodsFor: 'as yet unclassified'!
+
+enabled
+
+	^ true
+!
+
+id
+
+	^ #users
+!
+
+order
+
+	^ 40
+!
+
+routes
+
+	^ { '/users'.
+		'users/{username}'}
+!
+
+showInMenu
+
+	^ true
+!
+
+title
+
+	^ 'Users'
 ! !
 
 SlFrame subclass: #SlToolbarFrame

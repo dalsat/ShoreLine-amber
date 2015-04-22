@@ -70,9 +70,12 @@ div {
 	border-radius: 4px;
 }
 
-.sl-row {
-	/*background-color: #f3f3f3;*/
+.separator {
+	border-bottom: 1px solid #e0e0e0;
+	margin-bottom: 2em;
+}
+
+.section {
 	border-bottom: 1px solid #e0e0e0;
 	margin-bottom: 1em;
-	padding: 1em 0;
 }

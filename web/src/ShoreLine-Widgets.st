@@ -1,16 +1,5 @@
 Smalltalk createPackage: 'ShoreLine-Widgets'!
-SlList subclass: #SlClassListWidget
-	instanceVariableNames: ''
-	package: 'ShoreLine-Widgets'!
-
-!SlClassListWidget methodsFor: 'rendering'!
-
-renderContentsOn: html
-
-	html with: 'Classes'
-! !
-
-SlList subclass: #SlClassWidget
+SlWidget subclass: #SlClassWidget
 	instanceVariableNames: 'className'
 	package: 'ShoreLine-Widgets'!
 
@@ -26,9 +15,27 @@ className: anObject
 
 !SlClassWidget methodsFor: 'rendering'!
 
+renderClassSummaryOn: html
+
+	self dataDo: [ :data |
+	(data summaryForClass: self className) then: [ :counts |
+		html div: [
+			html with: 'summary: '.
+			counts contents then: [ :countContents |
+				html with: (countContents collect: #key) ] ] ] ]
+!
+
 renderContentsOn: html
 
-	html with: 'Class widget: ', self className
+	html with: 'Class widget: ', self className.
+	self renderClassSummaryOn: html.
+! !
+
+!SlClassWidget class methodsFor: 'configuration'!
+
+dataTag
+
+	^ #stacktraces
 ! !
 
 !SlClassWidget class methodsFor: 'instance creation'!
@@ -40,15 +47,83 @@ withClass: aString
 		yourself
 ! !
 
-SlList subclass: #SlStackTraceListWidget
+SlList subclass: #SlListTile
+	instanceVariableNames: 'numberOfHours'
+	package: 'ShoreLine-Widgets'!
+
+!SlListTile methodsFor: 'accessing'!
+
+numberOfHours
+	^ numberOfHours
+!
+
+numberOfHours: anObject
+	numberOfHours := anObject
+! !
+
+!SlListTile class methodsFor: 'instance creation'!
+
+lastDay
+
+	^ self new
+		numberOfHours: 24;
+		yourself
+!
+
+lastWeek
+
+	^ self new
+		numberOfHours: 24 * 7;
+		yourself
+! !
+
+SlListTile subclass: #SlClassListWidget
+	instanceVariableNames: ''
+	package: 'ShoreLine-Widgets'!
+
+!SlClassListWidget methodsFor: 'rendering'!
+
+extractData: proxy
+
+	^ proxy classesInLast: self numberOfHours
+!
+
+renderClass: aClass on: html
+
+	html td with: [ html a href: ('#/classes/', aClass associationValue); with: aClass associationValue ].
+	html td with: aClass key
+!
+
+renderContentsOn: html
+	
+	self dataDo: [ :classes |
+		html table
+			class: 'table';
+			with: [
+				html thead with: [
+					html tr with: [
+						html th with: 'Class Name'.
+						html th with: 'Number of Stack Traces' ] ].
+				html tbody with: [ classes do: [ :eachClass | 
+					html tr with: [ self renderClass: eachClass on: html ] ] ] ] ]
+! !
+
+!SlClassListWidget class methodsFor: 'configuration'!
+
+dataTag
+
+	^ #stacktraces
+! !
+
+SlListTile subclass: #SlStackTraceListWidget
 	instanceVariableNames: 'stacktrace'
 	package: 'ShoreLine-Widgets'!
 
 !SlStackTraceListWidget methodsFor: 'accessing'!
 
-extractData
+extractData: proxy
 
-	^ self data tracesInLastHours: 24
+	^ proxy tracesInLastHours: 24
 !
 
 header
@@ -93,6 +168,56 @@ renderList: aCollection on: html
 						with: 'Load Older' ] ] ]
 ! !
 
+!SlStackTraceListWidget class methodsFor: 'as yet unclassified'!
+
+dataTag
+
+	^ #stacktraces
+! !
+
+SlListTile subclass: #SlUserListWidget
+	instanceVariableNames: ''
+	package: 'ShoreLine-Widgets'!
+
+!SlUserListWidget methodsFor: 'rendering'!
+
+extractData: proxy
+
+	^ proxy authorsInLast: self numberOfHours
+!
+
+renderAuthor: anAuthor withIndex: aNumber on: html
+
+	html tr
+		"onClick: [ self url: '/users/', anAuthor associationValue ];"
+		with: [
+			html td with: [ (html tag: #b) with: aNumber ].
+			html td with: [ html a href: '#/users/', anAuthor associationValue; with: anAuthor associationValue ].
+			html td with: anAuthor key ]
+!
+
+renderContentsOn: html
+
+	self dataDo: [ :authors |
+		html table
+			class: 'table table-hover table-striped';
+			with: [
+				html thead with: [
+					html tr with: [
+						html th with: '#'.
+						html th with: 'User Name'.
+						html th with: 'Number of Traces' ] ].
+						html tbody with: [ authors withIndexDo: [ :each :i |
+							self renderAuthor: each withIndex: i on: html ] ] ] ]
+! !
+
+!SlUserListWidget class methodsFor: 'configuration'!
+
+dataTag
+
+	^ #users
+! !
+
 SlWidget subclass: #SlStackTraceWidget
 	instanceVariableNames: 'traceId'
 	package: 'ShoreLine-Widgets'!
@@ -111,21 +236,20 @@ traceId: anObject
 
 renderContentsOn: html
 
-	self data
-		then: [ self data traceWithId: traceId.
-			self data then: [ :trace |
-				html div
-					class: 'container';
-					with: [
-						html div
-							class: 'panel panel-default';
-							with: [
-								html div
-									class: 'panel-heading';
-									with: 'StackTrace #', traceId, ' and ', trace date.
-								html div
-									class: 'panel-body';
-									with: [ self renderStackTrace: trace on: html ] ] ] ] ]
+	self dataDo: [ :data |
+		(data traceWithId: traceId) then: [ :trace |
+			html div
+				class: 'container';
+				with: [
+					html div
+						class: 'panel panel-default';
+						with: [
+							html div
+								class: 'panel-heading';
+								with: 'StackTrace #', traceId, ' and ', trace date.
+							html div
+								class: 'panel-body';
+								with: [ self renderStackTrace: trace on: html ] ] ] ] ]
 !
 
 renderStackTrace: aStackTrace on: html
@@ -154,6 +278,13 @@ renderStackTraceMetadata: aStackTrace on: html
 	html div: aStackTrace author.
 ! !
 
+!SlStackTraceWidget class methodsFor: 'as yet unclassified'!
+
+dataTag
+
+	^ #stacktraces
+! !
+
 !SlStackTraceWidget class methodsFor: 'instance creation'!
 
 withId: id
@@ -164,83 +295,27 @@ withId: id
 ! !
 
 SlWidget subclass: #SlSummaryWidget
-	instanceVariableNames: 'data'
+	instanceVariableNames: ''
 	package: 'ShoreLine-Widgets'!
 
 !SlSummaryWidget methodsFor: 'rendering'!
 
-renderAuthor: anAuthor withIndex: aNumber on: html
-
-	html tr with: [
-		html td with: [ (html tag: #b) with: aNumber ].
-		html td with: anAuthor associationValue.
-		html td with: anAuthor key ]
-!
-
-renderAuthors: authors on: html
-
-	html with: (SlPanel
-		title: 'Top Reporters'
-		with: [	:panelHtml |
-			panelHtml table
-				class: 'table table-hover table-striped';
-						with: [
-							panelHtml thead with: [
-								panelHtml tr with: [
-									panelHtml th with: '#'.
-									panelHtml th with: 'User Name'.
-									panelHtml th with: 'Number of Traces' ] ].
-							panelHtml tbody with: [ authors withIndexDo: [ :each :i |
-								self renderAuthor: each withIndex: i on: panelHtml ] ] ] ])
-!
-
-renderClasses: classes on: html
-
-	html with: (SlPanel
-		title: 'The Troublesome Classes'
-		with: [ :panelHtml |
-			panelHtml table
-				class: 'table';
-				with: [
-					panelHtml thead with: [
-						panelHtml tr with: [
-							panelHtml th with: 'Class Name'.
-							panelHtml th with: 'Number of Stack Traces' ] ].
-					panelHtml tbody with: [ classes do: [ :eachClass | panelHtml tr with: [
-						panelHtml td with: eachClass associationValue.
-						panelHtml td with: eachClass key ] ] ] ] ])
-!
-
 renderContentsOn: html
 
-	self data then: [ self data summary then: [ :dictionary |
-		
-		html div
-			class: 'col-xs-12';
-			with: [ self renderHeaderFor: dictionary on: html ].
-		
-		(dictionary at: #authors) then: [ :collection | collection contents then: [ :authors |
-			"html div class: 'col-xs-1'; with: [ html entity: 'nbsp' ]."
-
-			html div
-				class: 'col-xs-4';
-				with: [	self renderAuthors: authors on: html ] ] ].
-					
-		(dictionary at: #classes) then: [ :r | r contents then: [ :classes |
-			html div
-				class: 'col-xs-5';
-				with: [ self renderClasses: classes on: html ] ] ] ] ].
-!
-
-renderHeaderFor: aDictionary on: html
-
-	(aDictionary at: #numberOfTraces) then: [ :number |
+	self dataDo: [ :data | (data summaryInLast: 24) then: [ :number |
 		html div
 			class: 'alert alert-info';
 			with: [
 				(html tag: 'b') with: 'Summary'.
 				html span: ' of the last 24 hours: '.
-				html with: number asString, ' stack traces submitted' ] ]
+				html with: number asString, ' stack traces submitted' ] ] ]
+! !
+
+!SlSummaryWidget class methodsFor: 'configuration'!
+
+dataTag
+
+	^ #stacktraces
 ! !
 
 SlWidget subclass: #SlSystemViewWidget
@@ -437,6 +512,43 @@ withItems: aCollection
 
 	^ self new
 		items: aCollection;
+		yourself
+! !
+
+SlWidget subclass: #SlUserWidget
+	instanceVariableNames: 'username'
+	package: 'ShoreLine-Widgets'!
+
+!SlUserWidget methodsFor: 'accessing'!
+
+username
+	^ username
+!
+
+username: anObject
+	username := anObject
+! !
+
+!SlUserWidget methodsFor: 'rendering'!
+
+renderContentsOn: html
+
+	html with: 'User ', self username
+! !
+
+!SlUserWidget class methodsFor: 'configuration'!
+
+dataTag
+
+	^ #users
+! !
+
+!SlUserWidget class methodsFor: 'instance creation'!
+
+named: aString
+
+	^ self new
+		username: aString;
 		yourself
 ! !
 

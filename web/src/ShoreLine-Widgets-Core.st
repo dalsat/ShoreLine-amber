@@ -5,13 +5,7 @@ Widget subclass: #SlWidget
 
 !SlWidget methodsFor: 'accessing'!
 
-data
-
-	^ SlData current at: self class dataTag
-!
-
 dataDo: aBlock
-	| proxy |
 	
 	^ SlData current with: self class dataTag do: aBlock
 !
@@ -62,7 +56,6 @@ empty
 
 refresh
 
-	"canvas contents: [ :html | self renderContentsOn: html ]"
 	[ :newHtml | self empty; renderContentsOn: newHtml ] appendToJQuery: canvas asJQuery
 !
 
@@ -92,7 +85,7 @@ renderOn: html
 
 dataTag
 
-	^ #stacktraces
+	^ self subclassResponsibility
 ! !
 
 SlWidget subclass: #SlContainer
@@ -197,10 +190,10 @@ SlFramedContainer subclass: #SlList
 
 dataDo: aBlock
 
-	self data then: [ self extractData then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ] ]
+	super dataDo: [ :proxy | (self extractData: proxy) then: [ :r1 | r1 contents then: [ :r2 | aBlock value: r2 ] ] ]
 !
 
-extractData
+extractData: proxy
 
 	^ self subclassResponsibility
 !
@@ -241,10 +234,10 @@ renderList: aCollection on: html
 		with: [
 			self renderListHeaderOn: html.
 			
-			self data then: [ self extractData then: [
+			self dataDo: [
 				[ html tbody with: [
 					aCollection do: [ :each |
-						self renderItem: each on: html ] ] ] appendToJQuery: html div asJQuery ] ] ]
+						self renderItem: each on: html ] ] ] appendToJQuery: html div asJQuery ] ]
 !
 
 renderListHeaderOn: html

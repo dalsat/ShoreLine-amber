@@ -22,30 +22,21 @@ new
 ! !
 
 Object subclass: #SlData
-	instanceVariableNames: 'proxies'
+	instanceVariableNames: 'proxy'
 	package: 'ShoreLine-Core'!
-
-!SlData methodsFor: 'accessing'!
-
-at: aSymbol
-
-	^ proxies at: aSymbol ifAbsentPut: [ self loadProxy: aSymbol ]
-! !
 
 !SlData methodsFor: 'actions'!
 
-loadProxy: aSymbol
+initializeProxy
 
-	^ (TDClientProxy on: (self class proxies at: aSymbol))
+	proxy := (TDClientProxy on: self class proxyPath)
 		connect;
 		yourself
 !
 
 with: aSymbol do: aBlock
-	| proxy |
-	proxy := self at: aSymbol.
-	proxy connect.
-	proxy then: (aBlock value: proxy)
+
+	proxy then: [ (proxy perform: aSymbol) then: aBlock ]
 ! !
 
 !SlData methodsFor: 'initialization'!
@@ -53,7 +44,7 @@ with: aSymbol do: aBlock
 initialize
 
 	super initialize.
-	proxies := Dictionary new.
+	self initializeProxy.
 ! !
 
 SlData class instanceVariableNames: 'data'!
@@ -65,11 +56,9 @@ current
 	^ data ifNil: [ data := self new ]
 !
 
-proxies
+proxyPath
 
-	^ Dictionary from: {
-		#stacktraces -> '/stacktraces'
-	}
+	^ '/data'"'/stacktraces'"
 ! !
 
 Object subclass: #SlObject
